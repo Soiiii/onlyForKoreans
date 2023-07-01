@@ -8,7 +8,6 @@ public class OnlyForKoreansApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(OnlyForKoreansApplication.class, args);
-		//new
 	}
 
 }
