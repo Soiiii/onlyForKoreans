@@ -1,11 +1,72 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="./layout/header.jsp"%>
 
+  <div class="input-group">
+    <input type="text" class="form-control" placeholder="Search Blog..">
+    <span class="input-group-btn">
+      <button class="btn btn-default" type="button">
+        <span class="glyphicon glyphicon-search"></span>
+      </button>
+    </span>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-5">
+        <h3> MOST POPULAR </h3>
+        <hr>
+        <p>[카테고리] 제목1 view 3 comment 4</p>
+        <p>[카테고리] 제목2 view 3 comment 4</p>
+        <p>[카테고리] 제목3 view 3 comment 4</p>
+        <p>[카테고리] 제목4 view 3 comment 4</p>
+    </div>
+  </div>
+  <br>
+  <br>
+
+  <div class="row">
+    <div class="col-sm-5 ">
+      <p>이야기</p>
+      <hr>
+      <p>제목1 view 3</p>
+      <p>제목2 view 3</p>
+      <p>제목3 view 3</p>
+      <p>제목4 view 3</p>
+    </div>
+    <div class="col-sm-5">
+      <p>연애/결혼</p>
+      <hr>
+      <p>제목1 view 3</p>
+      <p>제목2 view 3</p>
+      <p>제목3 view 3</p>
+      <p>제목4 view 3</p>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-sm-5">
+      <p>회사</p>
+      <hr>
+      <p>제목1 view 3</p>
+      <p>제목2 view 3</p>
+      <p>제목3 view 3</p>
+      <p>제목4 view 3</p>
+    </div>
+    <div class="col-sm-5">
+      <p>투자</p>
+      <hr>
+      <p>제목1 view 3</p>
+      <p>제목2 view 3</p>
+      <p>제목3 view 3</p>
+      <p>제목4 view 3</p>
+    </div>
+  </div>
+
 
 <c:forEach var="board" items="${boards.content}">
 <div class="card m-2">
     <div class="card-body">
         <h4 class="card-title">${board.title}</h4>
+        <h3> aaa</h3>
             <a href="/board/${board.id}" class="btn btn-primary"> details</a>
     </div>
 </div>

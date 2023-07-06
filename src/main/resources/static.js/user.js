@@ -13,6 +13,7 @@ let index={
             username:$("#username").val(),
             password:$("#password").val(),
             email:$("#email").val()
+            country:$("#country").val()
         };
         console.log("data: ", data)
 

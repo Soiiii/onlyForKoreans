@@ -20,4 +20,17 @@ public class UserController {
     public String updateForm(){
         return "user/updateForm";
     }
+    @GetMapping("/user/myPage")
+    public String myPage(){
+        return "user/myPage";
+    }
+    @GetMapping("/user/bookmark")
+    public String bookmark(){
+        return "user/bookmark";
+    }
+    @GetMapping("/user/updateUser")
+    public String updateUser(){
+        return "user/updateUser";
+    }
+
 }
