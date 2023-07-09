@@ -25,8 +25,8 @@
         </select>
   </div>
   <div class="form-group">
-    <label for="username">Username:</label>
-    <input type="text" class="form-control" placeholder="Enter Username" id="username">
+    <label for="name">Username:</label>
+    <input type="text" class="form-control" placeholder="Enter Username" id="name">
   </div>
 
 </form>

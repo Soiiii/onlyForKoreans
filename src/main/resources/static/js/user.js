@@ -10,9 +10,9 @@ let index={
 
     save:function(){
         let data={
-            username:$("#username").val(),
+            name:$("#name").val(),
             password:$("#password").val(),
-            email:$("#email").val()
+            email:$("#email").val(),
             country:$("#country").val()
         };
         console.log("data: ", data)
@@ -36,7 +36,7 @@ let index={
         //입력 값을 찾아서 자바스큽트 오브젝트에 넣음 #-> #username 은 id=username 으로 되어있는 곳의 입력값을 찾음
            let data = {
                 id : $("#id").val(),
-                username: $("#username").val(),
+                name: $("#name").val(),
                 password: $("#password").val(),
                 email: $("#email").val()
            };
