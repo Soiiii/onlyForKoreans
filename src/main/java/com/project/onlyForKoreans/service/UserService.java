@@ -27,5 +27,16 @@ public class UserService {
 
     }
 
+    @Transactional
+    public void login(User user){
+        String email = user.getEmail();
+        String password = user.getPassword();
+        userRepository.findAllById();
+        System.out.println("email:" +email + "password:" + password);
+
+
+
+    }
+
 
 }

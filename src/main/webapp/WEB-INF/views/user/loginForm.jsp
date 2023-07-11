@@ -5,8 +5,8 @@
 
 <form action="/auth/loginProc" method="post">
   <div class="form-group">
-    <label for="username">Email:</label>
-    <input type="text" name="username" class="form-control" placeholder="Enter Email address" id="username">
+    <label for="email">Email:</label>
+    <input type="text" name="email" class="form-control" placeholder="Enter Email address" id="email">
   </div>
 
   <div class="form-group">

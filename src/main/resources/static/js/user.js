@@ -3,6 +3,9 @@ let index={
         $("#btn-save").on("click", ()=>{
             this.save();
         });
+        $("#btn-login").on("click", ()=>{
+            this.save();
+        });
         $("#btn-update").on("click", ()=>{
             this.update();
         });
@@ -25,6 +28,26 @@ let index={
             dataType: "json"
         }).done(function(resp){
             alert("회원가입 완료");
+            location.href="/";
+        }).fail(function(error){
+            alert(JSON.stringify(error));
+        });
+    },
+
+    login:function(){
+        let data={
+            email:$("#email").val(),
+            password:$("#password").val(),
+        };
+        console.log("data: ", data)
+
+        $.ajax({
+            type: "POST",
+            url: "/auth/loginProc",
+            data: JSON.stringify(data),
+            contentType:"application/json; charset=utf-8",
+            dataType: "json"
+        }).done(function(resp){
             location.href="/";
         }).fail(function(error){
             alert(JSON.stringify(error));
