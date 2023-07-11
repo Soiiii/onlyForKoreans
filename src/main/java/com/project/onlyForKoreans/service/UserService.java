@@ -17,8 +17,10 @@ public class UserService {
         String rawPassword = user.getPassword();
         // TODO: 패스워드 인코딩 하는거 추가
         String country = user.getCountry();
+        String name = user.getName();
         System.out.println("country:" +country);
 
+        user.setName(name);
         user.setPassword(rawPassword);
         user.setCountry(country);
         userRepository.save(user);
@@ -31,10 +33,8 @@ public class UserService {
     public void login(User user){
         String email = user.getEmail();
         String password = user.getPassword();
-        userRepository.findAllById();
+//        userRepository.findAllById(email);
         System.out.println("email:" +email + "password:" + password);
-
-
 
     }
 

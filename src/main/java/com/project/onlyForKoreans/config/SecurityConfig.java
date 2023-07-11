@@ -1,32 +1,30 @@
 package com.project.onlyForKoreans.config;
 
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
-@Configuration // IoC
-public class SecurityConfig {
 
-    @Bean
-    BCryptPasswordEncoder encode() {
-        String encPassword = new BCryptPasswordEncoder().encode("1234");
-        return new BCryptPasswordEncoder();
+@Configuration
+@EnableWebSecurity
+public class SecurityConfig extends WebSecurityConfigurerAdapter {
+
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        http
+                .authorizeRequests()
+                .antMatchers("/loginProc").permitAll()
+                .anyRequest().authenticated()
+                .and()
+                .formLogin()
+                .loginPage("/login")
+                .defaultSuccessUrl("/home")
+                .permitAll()
+                .and()
+                .logout()
+                .logoutUrl("/logout")
+                .logoutSuccessUrl("/login")
+                .permitAll();
     }
-//
-//    @Bean
-//    SecurityFilterChain configure(HttpSecurity http) throws Exception {
-//        http
-//                .csrf().disable()
-//                .authorizeRequests()
-//                .antMatchers("/auth/**", "/js/**", "/css/**", "*/image")
-//                .permitAll()
-//                .anyRequest()
-//                .authenticated()
-//                .and()
-//                .formLogin()
-//                .loginPage("/auth/loginForm")
-//                .loginProcessingUrl("/auth/loginProc")
-//                .defaultSuccessUrl("/");
-//        return http.build();
-//    }
 }
