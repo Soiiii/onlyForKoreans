@@ -22,7 +22,4 @@ public class UserApiController {
         userService.join(user);
         return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);
     }
-
-
-
 }
