@@ -20,7 +20,7 @@ public class UserController {
         return "user/joinForm";
     }
 
-    @GetMapping("/auth/loginForm")
+    @GetMapping("/auth/loginProc")
     public String loginForm(){
         System.out.println("@@@@@loginform");
         return "user/loginForm";

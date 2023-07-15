@@ -22,4 +22,15 @@ public class UserApiController {
         userService.join(user);
         return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);
     }
+
+
+    @PostMapping("/auth/loginProc")
+    public ResponseDto<Integer> login(@RequestBody User user){
+        System.out.println(user.getName());
+        System.out.println("UserApiController: login 호출");
+        userService.login(user);
+        return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);
+    }
+
+
 }
