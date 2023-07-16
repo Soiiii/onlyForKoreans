@@ -1,12 +1,11 @@
 package com.project.onlyForKoreans.controller;
 
-import com.project.onlyForKoreans.model.User;
 import com.project.onlyForKoreans.repository.UserRepository;
+import com.project.onlyForKoreans.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpSession;
 
@@ -15,26 +14,22 @@ public class UserController {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private UserService userService;
+
+
     @GetMapping("/auth/joinForm")
-    public String joinForm(){
+    public String joinForm(Model model){
+        model.addAttribute("object", userService.findCountry());
+        System.out.println("country 종류: " + userService.findCountry());
+
         return "user/joinForm";
     }
 
-    @GetMapping("/auth/loginProc")
+    @GetMapping("/auth/loginForm")
     public String loginForm(){
         System.out.println("@@@@@loginform");
         return "user/loginForm";
-    }
-
-    @PostMapping("/auth/loginForm")
-    public String login(@RequestParam("email") String email, @RequestParam("password") String password, HttpSession session){
-        User user = userRepository.findByEmail(email);
-        if(email != null && user.getPassword().equals(password)){
-            session.setAttribute("user", user);
-            return "redirect:index";
-        } else{
-            return "redirect:user/loginForm?error";
-        }
     }
 
     @GetMapping("/logout")
@@ -47,6 +42,7 @@ public class UserController {
     public String updateForm(){
         return "user/updateForm";
     }
+
     @GetMapping("/user/myPage")
     public String myPage(){
         return "user/myPage";

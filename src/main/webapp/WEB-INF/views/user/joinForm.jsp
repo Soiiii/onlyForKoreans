@@ -17,11 +17,11 @@
   <div class="form-group">
     <label for="country">Country:</label>
         <select class="form-control" id="country">
-          <option>Japan</option>
-          <option>China</option>
-          <option>Vietnam</option>
-          <option>Thai</option>
-          <option>Philippines</option>
+          <option>${object[0].name}</option>
+          <option>${object[1].name}</option>
+          <option>${object[2].name}</option>
+          <option>${object[3].name}</option>
+          <option>${object[4].name}</option>
         </select>
   </div>
   <div class="form-group">

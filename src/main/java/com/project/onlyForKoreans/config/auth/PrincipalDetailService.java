@@ -8,8 +8,6 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 
 @Service //IOC
 public class PrincipalDetailService implements UserDetailsService {
@@ -25,10 +23,11 @@ public class PrincipalDetailService implements UserDetailsService {
     //그 확인을 이 함수에서 처리
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        List<User> user = userRepository.findByEmail(email);
-        if (user == null) {
-            throw new UsernameNotFoundException("Not found");
-        }
+        User user = userRepository.findByEmail(email)
+                .orElseThrow(() ->{
+                    return new UsernameNotFoundException("Not found");
+                });
+
         return new PrincipalDetail(user);
     }
 }

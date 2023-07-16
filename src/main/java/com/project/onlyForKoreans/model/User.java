@@ -20,6 +20,7 @@ public class User  {
     @Column(nullable=false, length=30)
     private String name;
 
+//    @Id
     @Column(nullable=false, length=200)
     private String email;
 
@@ -28,8 +29,9 @@ public class User  {
 
     private int gender;
 
-    @Column(nullable=false, length=20)
-    private String country;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="countryId")
+    private Country country;
 
     private int status;
 

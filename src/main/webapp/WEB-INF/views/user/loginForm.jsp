@@ -18,6 +18,8 @@
     <hr>
     <a href="#"><h7> FORGOTTEN PASSWORD? </h7></a>
 </form>
+<script src="/js/user.js"></script>
+
 </div>
 
 <%@ include file="../layout/footer.jsp"%>

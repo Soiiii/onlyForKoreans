@@ -17,12 +17,16 @@ public class Country {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @ManyToOne
-    @JoinColumn(name="boardId")
-    private Board board;
+    @Column(nullable=false, length=30)
+    private String name;
 
-    @ManyToOne
-    @JoinColumn(name="userId")
-    private User user;
+
+//    @ManyToOne
+//    @JoinColumn(name="boardId")
+//    private Board board;
+//
+//    @OneToMany(mappedBy="user", fetch = FetchType.LAZY)
+//    @JoinColumn(name="userId")
+//    private User user;
 
 }
