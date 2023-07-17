@@ -14,12 +14,13 @@ import java.util.Collection;
 //@Getter //다른 레이어 세션에서 user 객체 내용을 꺼내 쓰기 위해
 @Data
 public class PrincipalDetail implements UserDetails {
+    private User user; //PrincipalDetail 는 User 객체를 들고있다를 컴포지션이라고함
+    private String email;
 
     public PrincipalDetail(User user){
         this.user = user;
     }
 
-    private User user; //PrincipalDetail 는 User 객체를 들고있다를 컴포지션이라고함
 
     @Override
     public String getPassword() {

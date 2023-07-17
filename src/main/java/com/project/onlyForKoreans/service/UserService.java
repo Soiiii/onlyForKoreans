@@ -47,15 +47,21 @@ public class UserService {
         String email = userdto.getEmail();
         // TODO: 패스워드 인코딩 하는거 추가
         String rawPassword = userdto.getPassword();
+        String encPassword = encoder.encode(rawPassword);
         String countryName = userdto.getCountry();
         String name = userdto.getName();
 
+        Country country = null;
         Optional<Country> countryObj = countryRepository.findByName(countryName);
-        Country country = countryObj.get();
-
+        if (countryObj.isPresent()) {
+            country = countryObj.get();
+            // 국가 정보를 사용하여 원하는 작업 수행
+        } else {
+            // 국가가 존재하지 않는 경우에 대한 처리
+        }
         User user = new User();
         user.setName(name);
-        user.setPassword(rawPassword);
+        user.setPassword(encPassword);
         user.setEmail(email);
         user.setRole(RoleType.USER);
         user.setCountry(country);
