@@ -72,14 +72,16 @@ public class UserService {
 
     }
 
-    @Transactional
-    public void login(User user){
-        String email = user.getEmail();
-        String password = user.getPassword();
-//        userRepository.findAllById(email);
-        System.out.println("email:" +email + "password:" + password);
 
-    }
+
+//    @Transactional
+//    public void login(User user){
+//        String email = user.getEmail();
+//        String password = user.getPassword();
+////        userRepository.findAllById(email);
+//        System.out.println("email:" +email + "password:" + password);
+//
+//    }
 
     public List<Country> findCountry(){
         System.out.println();

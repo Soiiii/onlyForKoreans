@@ -7,8 +7,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import javax.servlet.http.HttpSession;
-
 @Controller
 public class UserController {
     @Autowired
@@ -30,12 +28,6 @@ public class UserController {
     public String loginForm(){
         System.out.println("@@@@@loginform");
         return "user/loginForm";
-    }
-
-    @GetMapping("/logout")
-    public String logout(HttpSession session){
-        session.invalidate();
-        return "redirect:index";
     }
 
     @GetMapping("/user/updateForm")

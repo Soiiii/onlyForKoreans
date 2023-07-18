@@ -5,6 +5,7 @@ import com.project.onlyForKoreans.dto.UserDto;
 import com.project.onlyForKoreans.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -13,6 +14,9 @@ import org.springframework.web.bind.annotation.RestController;
 public class UserApiController {
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private AuthenticationManager authenticationManager;
 
 //    @PostMapping("/auth/joinProc")
 //    public ResponseDto<Integer> save(@RequestBody User user){

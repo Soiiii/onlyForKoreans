@@ -15,7 +15,7 @@ import java.util.Collection;
 @Data
 public class PrincipalDetail implements UserDetails {
     private User user; //PrincipalDetail 는 User 객체를 들고있다를 컴포지션이라고함
-    private String email;
+//    private String email;
 
     public PrincipalDetail(User user){
         this.user = user;
