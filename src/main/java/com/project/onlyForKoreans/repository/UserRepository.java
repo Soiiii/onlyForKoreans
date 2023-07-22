@@ -9,6 +9,6 @@ import java.util.Optional;
 public interface UserRepository extends JpaRepository<User, Integer> {
     @Override
     List<User> findAllById(Iterable<Integer> integers);
-    Optional<User> findByEmail (String email);
+    Optional<User> findByUsername (String username);
 
 }

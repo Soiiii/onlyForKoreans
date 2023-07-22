@@ -60,7 +60,7 @@ public class UserService {
             // 국가가 존재하지 않는 경우에 대한 처리
         }
         User user = new User();
-        user.setName(name);
+        user.setUsername(name);
         user.setPassword(encPassword);
         user.setEmail(email);
         user.setRole(RoleType.USER);

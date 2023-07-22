@@ -4,8 +4,8 @@
 <div class="container">
     <form action="/auth/loginProc" method="post">
       <div class="form-group">
-        <label for="email">Email:</label>
-        <input type="email" name="email" class="form-control" placeholder="Enter Email address" id="email">
+        <label for="username">Username:</label>
+        <input type="username" name="username" class="form-control" placeholder="Enter username" id="username">
       </div>
 
       <div class="form-group">
@@ -13,7 +13,7 @@
         <input type="password" name="password" class="form-control" placeholder="Enter your password" id="password">
       </div>
 
-        <button type="submit" id="btn-login" class="btn btn-primary">LOGIN</button>
+        <button id="btn-login" class="btn btn-primary">LOGIN</button>
 
         <hr>
     </form>

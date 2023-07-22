@@ -22,8 +22,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Bean // 스프링 IOC 컨테이너에 등록
     public BCryptPasswordEncoder encodePWD(){ //비밀번호 해쉬 암호화
-        String encPassword = new BCryptPasswordEncoder().encode("1234");
-        System.out.println("encPassword: " + encPassword);
+//        String encPassword = new BCryptPasswordEncoder().encode("1234");
+//        System.out.println("encPassword: " + encPassword);
         return new BCryptPasswordEncoder();
     }
 
@@ -57,8 +57,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authenticated()
                 .and()
                 .formLogin()
+//                .usernameParameter("email")
+//                .passwordParameter("password")
                 .loginPage("/auth/loginForm") //인증이 필요한 곳으로 요청이오면 자동으로 로그인 페이지 나오게 설정
-                .failureHandler(new CustomAuthenticationFailureHandler()) // 실패 시 처리할 핸들러
+//                .failureHandler(new CustomAuthenticationFailureHandler()) // 실패 시 처리할 핸들러
                 .loginProcessingUrl("/auth/loginProc") //스프링 시큐리티가 해당주소로 요청오는 로그인을 가로채서 대신 로그인
                 .defaultSuccessUrl("/"); //로그인 성공시 기본 페이지
 

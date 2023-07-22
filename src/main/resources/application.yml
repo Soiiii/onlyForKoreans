@@ -31,3 +31,7 @@ spring:
 jackson:
   serialization:
     fail-on-empty-beans=false: false
+
+logging:
+  level:
+    org.springframework.security: DEBUG
