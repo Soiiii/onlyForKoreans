@@ -15,6 +15,11 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    @GetMapping("/index")
+    public String index(){
+        return "index";
+    }
+
 
     @GetMapping("/auth/joinForm")
     public String joinForm(Model model){

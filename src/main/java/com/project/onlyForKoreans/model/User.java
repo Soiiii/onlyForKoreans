@@ -1,6 +1,7 @@
 package com.project.onlyForKoreans.model;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
@@ -12,6 +13,7 @@ import java.sql.Timestamp;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
+@Builder
 public class User  {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -8,6 +8,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 
 @Service //IOC
 public class PrincipalDetailService implements UserDetailsService {
@@ -21,13 +23,35 @@ public class PrincipalDetailService implements UserDetailsService {
     // username이 DB에 있는지만 확인해 주면됨
 
     //그 확인을 이 함수에서 처리
-    @Override
+/*    @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         User user = userRepository.findByEmail(email)
                 .orElseThrow(() ->{
                     return new UsernameNotFoundException("Not found");
                 });
 
+        return new PrincipalDetail(user);
+    }*/
+
+//    @Transactional(readOnly = true)
+    @Override
+    public UserDetails loadUserByUsername(String name) throws UsernameNotFoundException{
+        System.out.println("name:" + name);
+        Optional<User> optionalUser = userRepository.findByName(name);
+        System.out.println("optionalUser:"+optionalUser);
+        User user = optionalUser.orElseThrow(()-> new UsernameNotFoundException("Not found"));
+//
+//                        .orElseThrow(() ->{
+//                            System.out.println("WHTYYYY");
+//            return new UsernameNotFoundException("Not found");
+//        });
+
+        System.out.println("user:"+user);
+//        if (user == null) throw new UsernameNotFoundException(name);
+//                .orElseThrow(() ->{
+//                    System.out.println("not found?");
+//                    return new UsernameNotFoundException("Not found");
+//                });
         return new PrincipalDetail(user);
     }
 }

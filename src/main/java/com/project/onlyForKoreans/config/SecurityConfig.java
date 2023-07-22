@@ -10,7 +10,6 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @Configuration
 @EnableWebSecurity
@@ -20,13 +19,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private PrincipalDetailService principalDetailService;
 
+    /*
     @Bean // 스프링 IOC 컨테이너에 등록
     public BCryptPasswordEncoder encodePWD(){ //비밀번호 해쉬 암호화
         String encPassword = new BCryptPasswordEncoder().encode("1234");
         System.out.println("encPassword: " + encPassword);
         return new BCryptPasswordEncoder();
     }
-
+*/
     @Bean
     @Override
     public AuthenticationManager authenticationManagerBean() throws Exception {
@@ -43,7 +43,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         //principalDetailService를 넣어줘야 패드워드 비교를 할 수있음
         //principalDetailService가 로그인 요청
-        auth.userDetailsService(principalDetailService).passwordEncoder(encodePWD());
+
+//        auth.userDetailsService(principalDetailService).passwordEncoder(encodePWD());
+        auth.userDetailsService(principalDetailService);
+
     }
 
     @Override
@@ -51,7 +54,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .csrf().disable() //csrf 토큰 비활성화 (테스트시 걸어야함)
                 .authorizeRequests()
-                .antMatchers("/","/auth/**","/js/**","/css/**","/image/**","/dummy/**")
+                .antMatchers("/**", "/", "/index" ,"/auth/**","/js/**","/css/**","/image/**","/dummy/**")
                 .permitAll()
                 .anyRequest()
                 .authenticated()
@@ -60,7 +63,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .loginPage("/auth/loginForm") //인증이 필요한 곳으로 요청이오면 자동으로 로그인 페이지 나오게 설정
                 .failureHandler(new CustomAuthenticationFailureHandler()) // 실패 시 처리할 핸들러
                 .loginProcessingUrl("/auth/loginProc") //스프링 시큐리티가 해당주소로 요청오는 로그인을 가로채서 대신 로그인
-                .defaultSuccessUrl("/"); //로그인 성공시 기본 페이지
+                .defaultSuccessUrl("/index", true); //로그인 성공시 기본 페이지
 
 
                 /*

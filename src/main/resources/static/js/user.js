@@ -3,9 +3,9 @@ let index={
         $("#btn-save").on("click", ()=>{
             this.save();
         });
-//        $("#btn-login").on("click", ()=>{
-//            this.login();
-//        });
+        $("#btn-login").on("click", ()=>{
+            this.login();
+        });
         $("#btn-update").on("click", ()=>{
             this.update();
         });
@@ -34,25 +34,25 @@ let index={
         });
     },
 
-//    login:function(){
-//        let data={
-//            email:$("#email").val(),
-//            password:$("#password").val(),
-//        };
-//        console.log("data: ", data)
-//
-//        $.ajax({
-//            type: "POST",
-//            url: "/auth/loginProc",
-//            data: JSON.stringify(data),
-//            contentType:"application/json; charset=utf-8",
-//            dataType: "json"
-//        }).done(function(resp){
-//            location.href="/";
-//        }).fail(function(error){
-//            alert(JSON.stringify(error));
-//        });
-//    },
+    login:function(){
+        let data={
+            name:$("#name").val(),
+            password:$("#password").val(),
+        };
+        console.log("data: ", data)
+
+        $.ajax({
+            type: "POST",
+            url: "/auth/loginProc",
+            data: JSON.stringify(data),
+            contentType:"application/json; charset=utf-8",
+            dataType: "json"
+        }).done(function(resp){
+            location.href="/";
+        }).fail(function(error){
+            alert(JSON.stringify(error));
+        });
+    },
 
     update:function(){
 

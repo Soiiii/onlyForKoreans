@@ -7,7 +7,6 @@ import com.project.onlyForKoreans.model.User;
 import com.project.onlyForKoreans.repository.CountryRepository;
 import com.project.onlyForKoreans.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -19,8 +18,8 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
-    @Autowired
-    private BCryptPasswordEncoder encoder;
+//    @Autowired
+//    private BCryptPasswordEncoder encoder;
 
     @Autowired
     private CountryRepository countryRepository;
@@ -47,7 +46,7 @@ public class UserService {
         String email = userdto.getEmail();
         // TODO: 패스워드 인코딩 하는거 추가
         String rawPassword = userdto.getPassword();
-        String encPassword = encoder.encode(rawPassword);
+//        String encPassword = encoder.encode(rawPassword);
         String countryName = userdto.getCountry();
         String name = userdto.getName();
 
@@ -61,7 +60,9 @@ public class UserService {
         }
         User user = new User();
         user.setName(name);
-        user.setPassword(encPassword);
+//        user.setPassword(encPassword);
+        user.setPassword(rawPassword);
+
         user.setEmail(email);
         user.setRole(RoleType.USER);
         user.setCountry(country);

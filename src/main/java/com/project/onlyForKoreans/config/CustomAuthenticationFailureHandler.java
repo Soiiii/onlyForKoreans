@@ -10,10 +10,15 @@ import java.io.IOException;
 
 public class CustomAuthenticationFailureHandler implements AuthenticationFailureHandler {
 
+
     @Override
     public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response,
                                         AuthenticationException exception) throws IOException, ServletException {
-        response.sendRedirect("/auth/loginForm?error=true");
+        System.out.println("error error" +exception);
+        System.out.println("error error121" +response);
+        System.out.println("error request" +request);
+
+        response.sendRedirect("/auth/loginForm?error");
     }
 
 }
