@@ -19,5 +19,4 @@ public class CustomAuthenticationFailureHandler implements AuthenticationFailure
 
         response.sendRedirect("/auth/loginForm?error=true");
     }
-
 }

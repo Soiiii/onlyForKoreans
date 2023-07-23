@@ -15,12 +15,10 @@ import java.util.Collection;
 @Data
 public class PrincipalDetail implements UserDetails {
     private User user; //PrincipalDetail 는 User 객체를 들고있다를 컴포지션이라고함
-//    private String email;
 
     public PrincipalDetail(User user){
         this.user = user;
     }
-
 
     @Override
     public String getPassword() {
@@ -29,7 +27,7 @@ public class PrincipalDetail implements UserDetails {
 
     @Override
     public String getUsername() {
-        return user.getUsername();
+        return user.getEmail();
     }
 
     // 계정이 만료되지 않았는지 리턴 (true: 만료안됨, false: 만료됨)
@@ -55,7 +53,6 @@ public class PrincipalDetail implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
-
 
     // 계정이 갖고있는 권한 목록을 리턴(권한이 여러개 일수 있지만 우선은 한개)
     @Override

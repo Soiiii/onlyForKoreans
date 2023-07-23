@@ -28,7 +28,7 @@ public class User  {
 
     private int gender;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="countryId")
     private Country country;
 

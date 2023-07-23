@@ -57,10 +57,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authenticated()
                 .and()
                 .formLogin()
-//                .usernameParameter("email")
+                .usernameParameter("email")
 //                .passwordParameter("password")
                 .loginPage("/auth/loginForm") //인증이 필요한 곳으로 요청이오면 자동으로 로그인 페이지 나오게 설정
-//                .failureHandler(new CustomAuthenticationFailureHandler()) // 실패 시 처리할 핸들러
+                .failureHandler(new CustomAuthenticationFailureHandler()) // 실패 시 처리할 핸들러
                 .loginProcessingUrl("/auth/loginProc") //스프링 시큐리티가 해당주소로 요청오는 로그인을 가로채서 대신 로그인
                 .defaultSuccessUrl("/"); //로그인 성공시 기본 페이지
 
