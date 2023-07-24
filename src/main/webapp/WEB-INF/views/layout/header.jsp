@@ -62,8 +62,8 @@
               </div>
 
               <ul class="nav navbar-nav navbar-right">
-                <li><a href="/auth/loginForm"><span class="glyphicon glyphicon-user"></span> My Page</a></li>
-                <li><a href=/auth/logout><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+                <li><a href="/user/myPage"><span class="glyphicon glyphicon-user"></span> My Page</a></li>
+                <li><a href="/logout"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
               </ul>
 
             </c:otherwise>

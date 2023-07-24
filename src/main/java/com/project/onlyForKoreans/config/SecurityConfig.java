@@ -46,6 +46,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         auth.userDetailsService(principalDetailService).passwordEncoder(encodePWD());
     }
 
+    @Bean
+    public CustomAuthenticationFailureHandler customAuthenticationFailureHandler(){
+        return new CustomAuthenticationFailureHandler();
+    }
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
@@ -60,10 +65,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .usernameParameter("email")
 //                .passwordParameter("password")
                 .loginPage("/auth/loginForm") //인증이 필요한 곳으로 요청이오면 자동으로 로그인 페이지 나오게 설정
-                .failureHandler(new CustomAuthenticationFailureHandler()) // 실패 시 처리할 핸들러
+                .failureHandler(customAuthenticationFailureHandler()) // 실패 시 처리할 핸들러
                 .loginProcessingUrl("/auth/loginProc") //스프링 시큐리티가 해당주소로 요청오는 로그인을 가로채서 대신 로그인
-                .defaultSuccessUrl("/"); //로그인 성공시 기본 페이지
-
+                .defaultSuccessUrl("/") //로그인 성공시 기본 페이지
+                .permitAll()
+                .and()
+                .logout()
+                .logoutUrl("/logout")
+                .logoutSuccessUrl("/");
 
                 /*
                 .csrf().disable() //csrf 토큰 비활성화 (테스트시 걸어야함)

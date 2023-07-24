@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class UserController {
@@ -25,8 +26,13 @@ public class UserController {
     }
 
     @GetMapping("/auth/loginForm")
-    public String loginForm(){
+    public String loginForm(@RequestParam(value = "error", required = false) String error,
+                            @RequestParam(value = "exception", required = false) String exception,
+                            Model model){
         System.out.println("@@@@@loginform");
+        model.addAttribute("error", error);
+        model.addAttribute("exception", exception);
+        System.out.println("error?");
         return "user/loginForm";
     }
 

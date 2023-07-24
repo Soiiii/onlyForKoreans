@@ -16,7 +16,14 @@
         <button id="btn-login" class="btn btn-primary">LOGIN</button>
 
         <hr>
+
+    <span>
+        <c:if test="${error}">
+            <p id="valid" class="alert alert-danger">${exception}</p>
+        </c:if>
+    </span>
     </form>
+
             <a href="#"><h7> FORGOTTEN PASSWORD? </h7></a>
 
 </div>
