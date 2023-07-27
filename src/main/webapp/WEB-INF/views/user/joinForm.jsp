@@ -5,28 +5,37 @@
 
 <form>
   <div class="form-group">
-    <label for="email">Email address:</label>
-    <input type="email" class="form-control" placeholder="Enter your email" id="email">
+        <label for="email">Email address:</label>
+        <input type="email" class="form-control" placeholder="Enter your email" id="email"
+        value="${userDto.email}" required/>
+        <p id="valid_email"></p>
+        <span style="color: red">${valid_email}</span>
   </div>
 
   <div class="form-group">
-    <label for="password">Password:</label>
-    <input type="password" class="form-control" placeholder="Enter your password" id="password">
+        <label for="password">Password:</label>
+        <input type="password" class="form-control" placeholder="Enter your password" id="password"
+        value="${userDto.password}" />
+                <p id="valid_password"></p>
+        <span style="color: red">${valid_password}</span>
   </div>
 
   <div class="form-group">
-    <label for="country">Country:</label>
-        <select class="form-control" id="country">
-          <option>${object[0].name}</option>
-          <option>${object[1].name}</option>
-          <option>${object[2].name}</option>
-          <option>${object[3].name}</option>
-          <option>${object[4].name}</option>
-        </select>
+        <label for="country">Country:</label>
+            <select class="form-control" id="country">
+              <option>${object[0].name}</option>
+              <option>${object[1].name}</option>
+              <option>${object[2].name}</option>
+              <option>${object[3].name}</option>
+              <option>${object[4].name}</option>
+            </select>
+        <span style="color: red">${valid_country}</span>
   </div>
   <div class="form-group">
-    <label for="name">Username:</label>
-    <input type="text" class="form-control" placeholder="Enter Username" id="name">
+            <label for="name">Username:</label>
+            <input type="text" class="form-control" placeholder="Enter Username" id="name"
+            value="${userDto.name}" />
+            <span style="color: red">${valid_name}</span>
   </div>
 
 </form>

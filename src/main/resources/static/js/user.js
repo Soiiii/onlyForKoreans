@@ -27,8 +27,42 @@ let index={
             contentType:"application/json; charset=utf-8",
             dataType: "json"
         }).done(function(resp){
-            alert("회원가입 완료");
-            location.href="/";
+            if(resp.status === 200){
+              alert("회원가입 완료");
+              location.href="/";
+            } else{
+                console.log(resp.data);
+                console.log(resp.message);
+
+                  alert("회원가입 정보를 다시 확인해 주세요.")
+//                  if(resp.data.hasOwnProperty("valid_email"))
+                  if(resp.message.hasOwnProperty("valid_email"))
+
+                  {
+                    $("#valid_email").text(response.data.valid_email);
+                    $("#valid_email").css('color', 'red');
+                  }
+                 else{
+                   $("#valid_email").text("");
+                  }
+//                  if(resp.data.hasOwnProperty("valid_password"))
+                  if(resp.message.hasOwnProperty("valid_password"))
+                  {
+                    $("#valid_password").text(response.data.valid_password);
+                    $("#valid_password").css('color', 'red');
+                  }
+                  else{
+                    $("#valid_password").text("");
+                  }
+
+//                if(resp.data === 0){
+//                    let passwordError = resp.message;
+//                    $("#valid_password").text(passwordError).css("color", "red");
+//                }
+//                else{
+//                    alert("회원가입 중 오류가 발생하였습니다.")
+//                }
+           }
         }).fail(function(error){
             alert(JSON.stringify(error));
         });
