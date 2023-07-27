@@ -37,7 +37,8 @@
             value="${userDto.name}" />
             <span style="color: red">${valid_name}</span>
   </div>
-
+<br>
+<br>
 </form>
   <button id="btn-save" class="btn btn-primary">CREATE MY ACCOUNT</button>
 </div>

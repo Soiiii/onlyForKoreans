@@ -6,7 +6,6 @@ import com.project.onlyForKoreans.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -31,21 +30,23 @@ public class UserApiController {
 
 
     @PostMapping("/auth/joinProc")
-    public ResponseDto<Integer> save(@RequestBody @Valid UserDto userdto, Errors errors, Model model){
+    public ResponseDto<?> save(@Valid @RequestBody UserDto userdto, Errors errors){
         System.out.println("userdto:"+userdto);
         System.out.println("errors:" + errors);
         if(errors.hasErrors()){
 
-            model.addAttribute("userDto", userdto);
+//            model.addAttribute("userDto", userdto);
             Map<String, String> validatorResult = userService.validateHandling(errors);
             String errorMessages = validatorResult.get("valid_password");
             for (String key: validatorResult.keySet()) {
                 System.out.println("key:" + key);
                 System.out.println("validatorResult.get(key):"+validatorResult.get(key));
-                model.addAttribute(key, validatorResult.get(key));
+//                model.addAttribute(key, validatorResult.get(key));
             }
 //            return "user/joinForm";
-            return new ResponseDto<Integer>(HttpStatus.NOT_FOUND.value(), 0, errorMessages);
+//            return new ResponseDto<Integer>(HttpStatus.NOT_FOUND.value(), 0, errorMessages);
+            return new ResponseDto<>(HttpStatus.NOT_FOUND.value(), validatorResult);
+
 
         }
 

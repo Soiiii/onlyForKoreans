@@ -32,27 +32,32 @@ let index={
               location.href="/";
             } else{
                 console.log(resp.data);
-                console.log(resp.message);
-
-                  alert("회원가입 정보를 다시 확인해 주세요.")
-//                  if(resp.data.hasOwnProperty("valid_email"))
-                  if(resp.message.hasOwnProperty("valid_email"))
-
+//                  alert("회원가입 정보를 다시 확인해 주세요.")
+                  if(resp.data.hasOwnProperty("valid_email"))
+//                  if(resp.message.hasOwnProperty("valid_email"))
                   {
-                    $("#valid_email").text(response.data.valid_email);
+                    $("#valid_email").text(resp.data.valid_email);
                     $("#valid_email").css('color', 'red');
                   }
                  else{
                    $("#valid_email").text("");
                   }
-//                  if(resp.data.hasOwnProperty("valid_password"))
-                  if(resp.message.hasOwnProperty("valid_password"))
+                  if(resp.data.hasOwnProperty("valid_password"))
                   {
-                    $("#valid_password").text(response.data.valid_password);
+                    $("#valid_password").text(resp.data.valid_password);
                     $("#valid_password").css('color', 'red');
                   }
                   else{
                     $("#valid_password").text("");
+                  }
+                  if(resp.data.hasOwnProperty("valid_name"))
+                  {
+                    $("#valid_name").text(resp.data.valid_name);
+                    console.log("~~~@!@!@!@")
+                    $("#valid_name").css('color', 'red');
+                  }
+                  else{
+                    $("#valid_name").text("");
                   }
 
 //                if(resp.data === 0){
