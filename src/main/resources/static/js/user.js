@@ -50,11 +50,16 @@ let index={
                   else{
                     $("#valid_password").text("");
                   }
+                 console.log("resp.data.valid_name:" + resp.data.valid_name)
+
                   if(resp.data.hasOwnProperty("valid_name"))
                   {
+                  console.log("!!!!!!!!!!!!")
+
                     $("#valid_name").text(resp.data.valid_name);
-                    console.log("~~~@!@!@!@")
                     $("#valid_name").css('color', 'red');
+                  console.log("!!!!!!!!!!!!errrrrrororororo")
+
                   }
                   else{
                     $("#valid_name").text("");

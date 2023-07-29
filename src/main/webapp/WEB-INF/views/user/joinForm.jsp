@@ -17,7 +17,6 @@
         <input type="password" class="form-control" placeholder="Enter your password" id="password"
         value="${userDto.password}" />
                 <p id="valid_password"></p>
-        <span style="color: red">${valid_password}</span>
   </div>
 
   <div class="form-group">
@@ -33,10 +32,11 @@
   </div>
   <div class="form-group">
             <label for="name">Username:</label>
-            <input type="text" class="form-control" placeholder="Enter Username" id="name"
+            <input type="name" class="form-control" placeholder="Enter Username" id="name"
             value="${userDto.name}" />
-            <span style="color: red">${valid_name}</span>
+            <p id="valid_name"></p>
   </div>
+
 <br>
 <br>
 </form>
