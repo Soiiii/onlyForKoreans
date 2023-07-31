@@ -27,51 +27,47 @@ let index={
             contentType:"application/json; charset=utf-8",
             dataType: "json"
         }).done(function(resp){
+            //정상적 처리가 되면
             if(resp.status === 200){
               alert("회원가입 완료");
               location.href="/";
             } else{
+            //에러가 처리가 되면
                 console.log(resp.data);
-//                  alert("회원가입 정보를 다시 확인해 주세요.")
-                  if(resp.data.hasOwnProperty("valid_email"))
-//                  if(resp.message.hasOwnProperty("valid_email"))
+                  if(resp.message)
                   {
-                    $("#valid_email").text(resp.data.valid_email);
-                    $("#valid_email").css('color', 'red');
-                  }
-                 else{
-                   $("#valid_email").text("");
-                  }
-                  if(resp.data.hasOwnProperty("valid_password"))
-                  {
-                    $("#valid_password").text(resp.data.valid_password);
-                    $("#valid_password").css('color', 'red');
-                  }
-                  else{
-                    $("#valid_password").text("");
-                  }
-                 console.log("resp.data.valid_name:" + resp.data.valid_name)
-
-                  if(resp.data.hasOwnProperty("valid_name"))
-                  {
-                  console.log("!!!!!!!!!!!!")
-
-                    $("#valid_name").text(resp.data.valid_name);
-                    $("#valid_name").css('color', 'red');
-                  console.log("!!!!!!!!!!!!errrrrrororororo")
-
-                  }
-                  else{
-                    $("#valid_name").text("");
-                  }
-
-//                if(resp.data === 0){
-//                    let passwordError = resp.message;
-//                    $("#valid_password").text(passwordError).css("color", "red");
-//                }
-//                else{
-//                    alert("회원가입 중 오류가 발생하였습니다.")
-//                }
+                  //이메일 오류 처리
+                    if(resp.message.includes("이메일")){
+                        $("#valid_email").text(resp.message);
+                        $("#valid_email").css('color', 'red');
+                    }
+                    else{
+                        $("#valid_email").text("");
+                    }
+                  //비밀번호 오류 처리
+                    if(resp.message.includes("비밀번호")){
+                        $("#valid_password").text(resp.message);
+                        $("#valid_password").css('color', 'red');
+                    } else{
+                        $("#valid_password").text("");
+                    }
+                  //나라 오류 처리
+                    if(resp.message.includes("나라")){
+                        $("#valid_country").text(resp.message);
+                        $("#valid_country").css('color', 'red');
+                    }
+                    else{
+                        $("#valid_country").text("");
+                    }
+                  //닉네임 오류 처리
+                    if(resp.message.includes("닉네임")){
+                        $("#valid_name").text(resp.message);
+                        $("#valid_name").css('color', 'red');
+                    }
+                    else{
+                        $("#valid_name").text("");
+                    }
+               }
            }
         }).fail(function(error){
             alert(JSON.stringify(error));

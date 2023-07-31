@@ -6,6 +6,7 @@ import com.project.onlyForKoreans.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -30,28 +31,22 @@ public class UserApiController {
 
 
     @PostMapping("/auth/joinProc")
-    public ResponseDto<?> save(@Valid @RequestBody UserDto userdto, Errors errors){
-        System.out.println("userdto:"+userdto);
+    public ResponseDto<?> save(@Valid @RequestBody UserDto userdto, Errors errors, Model model){
+        System.out.println("userDto:" + userdto);
         System.out.println("errors:" + errors);
+        String errorMessages = null;
+        //에러가 날시에 에러 문구 표시
         if(errors.hasErrors()){
-
-//            model.addAttribute("userDto", userdto);
             Map<String, String> validatorResult = userService.validateHandling(errors);
-            String errorMessages = validatorResult.get("valid_password");
             for (String key: validatorResult.keySet()) {
+                errorMessages = validatorResult.get(key);
                 System.out.println("key:" + key);
                 System.out.println("validatorResult.get(key):"+validatorResult.get(key));
-//                model.addAttribute(key, validatorResult.get(key));
             }
-//            return "user/joinForm";
-//            return new ResponseDto<Integer>(HttpStatus.NOT_FOUND.value(), 0, errorMessages);
-            return new ResponseDto<>(HttpStatus.NOT_FOUND.value(), validatorResult);
-
-
+            //에러가 날시에 404에러와 함께 errorMessage 전송
+            return new ResponseDto<Integer>(HttpStatus.NOT_FOUND.value(), 0, errorMessages);
         }
-
         userService.join(userdto);
-//        return "index";
         return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);
 
     }

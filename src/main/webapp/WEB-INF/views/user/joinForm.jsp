@@ -9,14 +9,14 @@
         <input type="email" class="form-control" placeholder="Enter your email" id="email"
         value="${userDto.email}" required/>
         <p id="valid_email"></p>
-        <span style="color: red">${valid_email}</span>
   </div>
 
   <div class="form-group">
         <label for="password">Password:</label>
         <input type="password" class="form-control" placeholder="Enter your password" id="password"
-        value="${userDto.password}" />
-                <p id="valid_password"></p>
+        value="${userDto.password}" required/>
+        <p id="valid_password">${valid_password}</p>
+
   </div>
 
   <div class="form-group">
@@ -28,6 +28,7 @@
               <option>${object[3].name}</option>
               <option>${object[4].name}</option>
             </select>
+            <p id="valid_country"></p>
         <span style="color: red">${valid_country}</span>
   </div>
   <div class="form-group">

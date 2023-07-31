@@ -6,6 +6,30 @@
 <div class="container">
     <form>
           <div class="form-group">
+                <label for="country">Country:</label>
+                    <select class="form-control" id="country">
+                      <option>${object[0].name}</option>
+                      <option>${object[1].name}</option>
+                      <option>${object[2].name}</option>
+                      <option>${object[3].name}</option>
+                      <option>${object[4].name}</option>
+                    </select>
+          </div>
+
+          <div class="form-group">
+            <label for="category">Category</label>
+                    <select class="form-control" id="category">
+                      <option>${category[0].name}</option>
+                      <option>${category[1].name}</option>
+                      <option>${category[2].name}</option>
+                      <option>${category[3].name}</option>
+                      <option>${category[5].name}</option>
+                      <option>${category[6].name}</option>
+                      <option>${category[7].name}</option>
+                    </select>
+          </div>
+
+          <div class="form-group">
             <label for="title">제목</label>
             <input type="username" class="form-control" placeholder="Enter title" id="title">
           </div>

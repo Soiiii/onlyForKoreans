@@ -99,7 +99,6 @@ public class UserService {
 //    }
 
     public List<Country> findCountry(){
-        System.out.println();
         return countryRepository.findAll();
     }
 

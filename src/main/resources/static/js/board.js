@@ -13,6 +13,8 @@ let index={
 
     save:function(){
         let data={
+            country:$("#country").val(),
+            category:$("#category").val(),
             title:$("#title").val(),
             content:$("#content").val(),
         };
