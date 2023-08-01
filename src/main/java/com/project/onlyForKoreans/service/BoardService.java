@@ -30,10 +30,15 @@ public class BoardService {
     }
 
     @Transactional
-    public void write(Board board, User user, Country country){
+    public void write(Board board, User user, Country country, Category category){
+        System.out.println("@@Service");
+        System.out.println("board:" + board + " user:" +user + " country:" +country + " category:" +category);
+        board.setTitle(board.getTitle());
+        board.setContent(board.getContent());
         board.setCount(0);
         board.setUser(user);
         board.setCountry(country);
+        board.setCategory(category);
         boardRepository.save(board);
     }
 
