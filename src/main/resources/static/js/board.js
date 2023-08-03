@@ -16,7 +16,7 @@ let index={
             country:$("#country").val(),
             category:$("#category").val(),
             title:$("#title").val(),
-            content:$("#content").val(),
+            content: stripPTags($("#content").val()),
         };
         console.log("data: ", data)
 
@@ -71,6 +71,10 @@ let index={
     },
 
 
+}
+
+function stripPTags(html) {
+    return html.replace(/<\/?p[^>]*>/g, "");
 }
 
 index.init();

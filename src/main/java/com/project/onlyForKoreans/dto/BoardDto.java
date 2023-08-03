@@ -14,6 +14,9 @@ import lombok.NoArgsConstructor;
 @Builder
 public class BoardDto {
     private Board board;
+    private String title;
+    private String content;
+
     private Country country;
     private Category category;
 }

@@ -1,5 +1,6 @@
 package com.project.onlyForKoreans.service;
 
+import com.project.onlyForKoreans.dto.BoardDto;
 import com.project.onlyForKoreans.model.Board;
 import com.project.onlyForKoreans.model.Category;
 import com.project.onlyForKoreans.model.Country;
@@ -30,16 +31,29 @@ public class BoardService {
     }
 
     @Transactional
-    public void write(Board board, User user, Country country, Category category){
+    public Board write(BoardDto boardDto, User user, Country country, Category category){
         System.out.println("@@Service");
-        System.out.println("board:" + board + " user:" +user + " country:" +country + " category:" +category);
-        board.setTitle(board.getTitle());
-        board.setContent(board.getContent());
-        board.setCount(0);
-        board.setUser(user);
-        board.setCountry(country);
-        board.setCategory(category);
-        boardRepository.save(board);
+//        Country countryEntity = new Country(country.getName());
+//        System.out.println("countryEntity:"+countryEntity);
+//        countryRepository.save(country);
+
+//        Category categoryEntity = new Category(category.getName());
+//        System.out.println("categoryEntity:"+categoryEntity);
+
+//        categoryRepository.save(category);
+
+//        Optional<Category> category = categoryRepository.findById(scheduleDto.getCategory().getCategory_id());
+
+        Board board = Board.builder()
+            .title(boardDto.getTitle())
+            .content(boardDto.getContent())
+            .user(user)
+            .country(country)
+            .category(category)
+            .build();
+        System.out.println("board:"+board);
+        Board boardInfo = boardRepository.save(board);
+        return boardInfo;
     }
 
     public List<Country> findCountry(){
