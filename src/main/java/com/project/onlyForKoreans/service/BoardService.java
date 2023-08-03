@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class BoardService {
@@ -31,26 +32,46 @@ public class BoardService {
     }
 
     @Transactional
-    public Board write(BoardDto boardDto, User user, Country country, Category category){
+    public Board write(BoardDto boardDto, User user, Optional<Country> country, Optional<Category> category){
         System.out.println("@@Service");
+//        System.out.println("country.getId():"+country.getId()+ " " + country.getId());
+
+//        Optional<Country> existingCountry = countryRepository.findById(country.getId());
+//        Country countryEntity = existingCountry.orElse(country);
+//        System.out.println("countryEntity: " + countryEntity);
+
+//        Optional<Category> existingCategory = categoryRepository.findById(category.getId());
+//        Category categoryEntity = existingCategory.orElse(category);
+//        System.out.println("categoryEntity: " + categoryEntity);
+
+
+
 //        Country countryEntity = new Country(country.getName());
 //        System.out.println("countryEntity:"+countryEntity);
 //        countryRepository.save(country);
-
+//
 //        Category categoryEntity = new Category(category.getName());
 //        System.out.println("categoryEntity:"+categoryEntity);
 
 //        categoryRepository.save(category);
+//        Optional<Category> category = categoryRepository.findById((int) boardDto.getCategory().getId());
 
-//        Optional<Category> category = categoryRepository.findById(scheduleDto.getCategory().getCategory_id());
+//        Optional<Category> category = categoryRepository.findById(boardDto.getCategory().getId());
+//        Optional<Country> country = countryRepository.findById((int) boardDto.getCountry().getId());
+
+
+        System.out.println("category:" +category + " country:" + country);
 
         Board board = Board.builder()
             .title(boardDto.getTitle())
             .content(boardDto.getContent())
             .user(user)
-            .country(country)
-            .category(category)
-            .build();
+            .country(country.get())
+            .category(category.get())
+//                .country(countryEntity)
+//                .category(categoryEntity)
+
+                .build();
         System.out.println("board:"+board);
         Board boardInfo = boardRepository.save(board);
         return boardInfo;
