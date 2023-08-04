@@ -1,3 +1,4 @@
+
 let index={
     init: function(){
         $("#btn-save").on("click", ()=>{
@@ -16,7 +17,7 @@ let index={
             country:$("#country").val(),
             category:$("#category").val(),
             title:$("#title").val(),
-            content: stripPTags($("#content").val()),
+            content: $("#content").val(),
         };
         console.log("data: ", data)
 
@@ -71,10 +72,6 @@ let index={
     },
 
 
-}
 
-function stripPTags(html) {
-    return html.replace(/<\/?p[^>]*>/g, "");
 }
-
 index.init();

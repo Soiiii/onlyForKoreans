@@ -52,7 +52,7 @@ public class BoardService {
 //
 //        Category categoryEntity = new Category(category.getName());
 //        System.out.println("categoryEntity:"+categoryEntity);
-
+//
 //        categoryRepository.save(category);
 //        Optional<Category> category = categoryRepository.findById((int) boardDto.getCategory().getId());
 
@@ -68,10 +68,7 @@ public class BoardService {
             .user(user)
             .country(country.get())
             .category(category.get())
-//                .country(countryEntity)
-//                .category(categoryEntity)
-
-                .build();
+             .build();
         System.out.println("board:"+board);
         Board boardInfo = boardRepository.save(board);
         return boardInfo;
