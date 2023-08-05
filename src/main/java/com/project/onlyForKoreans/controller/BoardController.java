@@ -13,8 +13,10 @@ public class BoardController {
     private BoardService boardService;
 
     @GetMapping({"/"})
-    public String index()
+    public String index(Model model)
     {
+        System.out.println("boardService.list():" +boardService.list());
+        model.addAttribute("boards", boardService.list());
         return "index";
     }
 
@@ -78,6 +80,4 @@ public class BoardController {
     {
         return "/notice/issue";
     }
-
-
 }

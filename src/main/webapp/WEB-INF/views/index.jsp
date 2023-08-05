@@ -14,10 +14,11 @@
     <div class="col-sm-5">
         <h3> MOST POPULAR </h3>
         <hr>
-        <p>[카테고리] 제목1 view 3 comment 4</p>
-        <p>[카테고리] 제목2 view 3 comment 4</p>
-        <p>[카테고리] 제목3 view 3 comment 4</p>
-        <p>[카테고리] 제목4 view 3 comment 4</p>
+        <c:forEach var="board" items="${boards}">
+            <div>
+                <p>[${board.category.name}] ${board.title} view ${board.count} comment 3</p>
+            </div>
+        </c:forEach>
     </div>
   </div>
   <br>
@@ -62,6 +63,8 @@
   </div>
 
 
+
+<%--
 <c:forEach var="board" items="${boards.content}">
 <div class="card m-2">
     <div class="card-body">
@@ -71,6 +74,7 @@
     </div>
 </div>
 </c:forEach>
+
 
 <ul class="pagination justify-content-center">
     <c:choose>
@@ -89,4 +93,5 @@
             <li class="page-item"><a class="page-link" href="?page=${boards.number+1}">Next</a></li>
         </c:otherwise>
     </c:choose>
+    --%>
 </ul>

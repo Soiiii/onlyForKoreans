@@ -31,6 +31,7 @@ public class BoardService {
         boardRepository.deleteById(id);
     }
 
+    
     @Transactional
     public Board write(BoardDto boardDto, User user, Optional<Country> country, Optional<Category> category){
         System.out.println("@@Service");
@@ -80,5 +81,10 @@ public class BoardService {
 
     public List<Category> findCategory(){
         return categoryRepository.findAll();
+    }
+
+    public List<Board> list() {
+        System.out.println("@@@SERVICEHEREEE");
+        return boardRepository.findAll();
     }
 }

@@ -41,6 +41,10 @@
       </div>
 
       <div class="row">
+
+
+
+
         <div class="col-sm-6"><a href="/board/detail">
             <div class="well">
               <div class="title">
