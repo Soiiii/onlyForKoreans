@@ -16,7 +16,9 @@
         <hr>
         <c:forEach var="board" items="${boards}">
             <div>
-                <p>[${board.category.name}] ${board.title} view ${board.count} comment 3</p>
+                <a href="/board/${board.id}" class="">
+                    <p>[${board.category.name}] ${board.title} view ${board.count} comment 3</p>
+                </a>
             </div>
         </c:forEach>
     </div>

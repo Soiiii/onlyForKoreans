@@ -35,11 +35,11 @@
       <h4>나라 별 게시판</h4>
       <ul class="nav nav-pills nav-stacked">
         <li class="active"><a href="/board">전체</a></li>
-        <li><a href="/board/thailand">태국</a></li>
-        <li><a href="/board/vietnam">베트남</a></li>
-        <li><a href="/board/singapore">싱가포르</a></li>
-        <li><a href="/board/china">중국</a></li>
-        <li><a href="/board/japan">일본</a></li>
+        <li><a href="/board/Thailand">태국</a></li>
+        <li><a href="/board/Vietnam">베트남</a></li>
+        <li><a href="/board/Singapore">싱가포르</a></li>
+        <li><a href="/board/China">중국</a></li>
+        <li><a href="/board/Japan">일본</a></li>
       </ul><br>
     </div>
 

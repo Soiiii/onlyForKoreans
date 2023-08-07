@@ -35,7 +35,6 @@ public class BoardApiController {
 
         String countryName = boardDto.getCountry().getName();
         String categoryName = boardDto.getCategory().getName();
-
         Optional<Country> country = countryRepository.findByName(countryName);
         Optional<Category> category = categoryRepository.findByName(categoryName);
         System.out.println("country:" +country + " category:" +category);

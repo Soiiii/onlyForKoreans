@@ -9,6 +9,8 @@ import com.project.onlyForKoreans.repository.BoardRepository;
 import com.project.onlyForKoreans.repository.CategoryRepository;
 import com.project.onlyForKoreans.repository.CountryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -34,34 +36,8 @@ public class BoardService {
     
     @Transactional
     public Board write(BoardDto boardDto, User user, Optional<Country> country, Optional<Category> category){
-        System.out.println("@@Service");
-//        System.out.println("country.getId():"+country.getId()+ " " + country.getId());
-
-//        Optional<Country> existingCountry = countryRepository.findById(country.getId());
-//        Country countryEntity = existingCountry.orElse(country);
-//        System.out.println("countryEntity: " + countryEntity);
-
-//        Optional<Category> existingCategory = categoryRepository.findById(category.getId());
-//        Category categoryEntity = existingCategory.orElse(category);
-//        System.out.println("categoryEntity: " + categoryEntity);
-
-
-
-//        Country countryEntity = new Country(country.getName());
-//        System.out.println("countryEntity:"+countryEntity);
-//        countryRepository.save(country);
-//
-//        Category categoryEntity = new Category(category.getName());
-//        System.out.println("categoryEntity:"+categoryEntity);
-//
-//        categoryRepository.save(category);
-//        Optional<Category> category = categoryRepository.findById((int) boardDto.getCategory().getId());
-
-//        Optional<Category> category = categoryRepository.findById(boardDto.getCategory().getId());
-//        Optional<Country> country = countryRepository.findById((int) boardDto.getCountry().getId());
-
-
         System.out.println("category:" +category + " country:" + country);
+
 
         Board board = Board.builder()
             .title(boardDto.getTitle())
@@ -70,6 +46,14 @@ public class BoardService {
             .country(country.get())
             .category(category.get())
              .build();
+
+//        if (board.getCreate_at() == null) {
+//            System.out.println("??");
+//            board.setCreate_at(new Timestamp(System.currentTimeMillis()));
+//        }
+//        // Save or update the board entity in the database
+//        board.setUpdate_at(new Timestamp(System.currentTimeMillis()));
+
         System.out.println("board:"+board);
         Board boardInfo = boardRepository.save(board);
         return boardInfo;
@@ -82,9 +66,22 @@ public class BoardService {
     public List<Category> findCategory(){
         return categoryRepository.findAll();
     }
-
     public List<Board> list() {
-        System.out.println("@@@SERVICEHEREEE");
         return boardRepository.findAll();
     }
+
+    @Transactional(readOnly = true)
+    public Page<Board> list(Pageable pageable){
+        return boardRepository.findAll(pageable);
+    }
+
+    @Transactional(readOnly = true)
+    public Board details(Long id) {
+        return boardRepository.findById(id)
+                .orElseThrow(()->{
+                    return new IllegalArgumentException("글 상세보기 실패: 아이디 찾기 실패");
+                });
+    }
+
+
 }

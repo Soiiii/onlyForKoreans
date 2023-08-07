@@ -5,36 +5,25 @@
 
     <div class="col-sm-7">
 
+
+        <c:forEach var="board" items="${board}">
+            <div>
+                <a href="/board/${board.id}" class="">
+                    <p>[${board.category.name}] ${board.title} view ${board.count} </p>
+                </a>
+            </div>
+
+
       <div class="row">
         <div class="col-sm-12">
           <div class="panel panel-default text-left">
             <div class="panel-body">
               <p contenteditable="true"> Category</p>
-              <button type="button" class="btn btn-default btn-sm">
-                <span class="glyphicon glyphicon-thumbs-up"></span> 이야기
-              </button>
-              <button type="button" class="btn btn-default btn-sm">
-                <span class="glyphicon glyphicon-thumbs-up"></span> 연애/결혼
-              </button>
-              <button type="button" class="btn btn-default btn-sm">
-                <span class="glyphicon glyphicon-thumbs-up"></span> 투자
-              </button>
-              <button type="button" class="btn btn-default btn-sm">
-                <span class="glyphicon glyphicon-thumbs-up"></span> 취미
-              </button>
-              <button type="button" class="btn btn-default btn-sm">
-                <span class="glyphicon glyphicon-thumbs-up"></span> 운동
-              </button>
-              <button type="button" class="btn btn-default btn-sm">
-                <span class="glyphicon glyphicon-thumbs-up"></span> 여행
-              </button>
-              <button type="button" class="btn btn-default btn-sm">
-                <span class="glyphicon glyphicon-thumbs-up"></span> 패션
-              </button>
-              <button type="button" class="btn btn-default btn-sm">
-                <span class="glyphicon glyphicon-thumbs-up"></span> 회사
-              </button>
-
+                <c:forEach items="${category}" var="categoryName">
+                  <button type="button" class="btn btn-default btn-sm">
+                    <span class="glyphicon glyphicon-thumbs-up"></span> ${categoryName.name}
+                  </button>
+               </c:forEach>
             </div>
           </div>
         </div>
@@ -48,13 +37,13 @@
         <div class="col-sm-6"><a href="/board/detail">
             <div class="well">
               <div class="title">
-               <h7>제목:Hi</h7>
+               <h7>제목:${board.title}</h7>
               </div>
               <div class="country">
-               <p>베트남</p>
+               <p>${board.country.name}</p>
               </div>
               <div class="view">
-               <p>view: 3</p>
+               <p>view: ${board.count}</p>
               </div>
               <div class="comment">
                <p>comment: 3</p>
@@ -183,6 +172,8 @@
         </div>
       </div>
     </div>
+            </c:forEach>
+
    </div>
 <%@ include file="../layout/footer.jsp"%>
 
