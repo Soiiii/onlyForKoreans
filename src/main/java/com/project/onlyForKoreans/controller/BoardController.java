@@ -48,11 +48,12 @@ public class BoardController {
         return "board/detail";
     }
 
-//    @GetMapping({"/board/detail"})
-//    public String boardDetail()
-//    {
-//        return "/board/detail";
-//    }
+    //게시판 수정 페이지
+    @GetMapping("/board/{id}/updateForm")
+    public String updateForm(@PathVariable Long id, Model model){
+        model.addAttribute("board", boardService.details(id));
+        return "board/updateForm";
+    }
 
     @GetMapping({"/board/Thailand"})
     public String boardThailand()

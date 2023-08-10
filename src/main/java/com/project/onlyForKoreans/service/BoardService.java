@@ -28,12 +28,7 @@ public class BoardService {
     @Autowired
     private CategoryRepository categoryRepository;
 
-    @Transactional
-    public void delete(int id){
-        boardRepository.deleteById(id);
-    }
-
-    
+    // 글 작성
     @Transactional
     public Board write(BoardDto boardDto, User user, Optional<Country> country, Optional<Category> category){
         System.out.println("category:" +category + " country:" + country);
@@ -57,6 +52,22 @@ public class BoardService {
         System.out.println("board:"+board);
         Board boardInfo = boardRepository.save(board);
         return boardInfo;
+    }
+
+    // 글 삭제
+    @Transactional
+    public void delete(Long id){
+        boardRepository.deleteById(id);
+    }
+
+    // 글 수정
+    public void edit(int id, Board requestBoard){
+        Board board = boardRepository.findById(id)
+                .orElseThrow(()->{
+                    return new IllegalArgumentException("글 찾기 실패: 아이디 찾기 실패");
+                });
+        board.setTitle(requestBoard.getTitle());
+        board.setContent(requestBoard.getContent());
     }
 
     public List<Country> findCountry(){

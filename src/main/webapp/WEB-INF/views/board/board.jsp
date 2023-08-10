@@ -25,7 +25,7 @@
             <div class="row">
         </c:if>
         <div class="col-sm-6">
-            <a href="/board/detail">
+            <a href="/board/${board.id}">
                 <div class="well">
                     <div class="title">
                         <h7>제목:${board.title}</h7>
@@ -57,5 +57,5 @@
 
    </div>
 <%@ include file="../layout/footer.jsp"%>
-ㅎ
+
 </html>
