@@ -45,7 +45,7 @@ public class BoardApiController {
     }
 
     @PostMapping("/api/board/{id}/updateForm")
-    public ResponseDto<Integer> update(@PathVariable int id, @RequestBody Board board){
+    public ResponseDto<Integer> update(@PathVariable Long id, @RequestBody Board board){
         boardService.edit(id, board);
         return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);
     }

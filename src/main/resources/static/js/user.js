@@ -105,7 +105,7 @@ let index={
            };
 
            $.ajax({
-               type:"PUT",
+               type:"POST",
                url:"/user",
                data:JSON.stringify(data),//http body 데이터 //그냥 던지면 자바가 이해할 수없기 때문에 JSON.stringify에 data객체를 담아 전달
                contentType:"application/json; charset=utf-8", //body 데이터가 어떤 타입인지(MINE)

@@ -13,7 +13,6 @@
       <br>
       <br>
       <h5><a href=/board/${board.country.name}> ${board.country.name} </a> </h5>
-      <h2> ${board.title} </h2>
       <h5>
             <span class="glyphicon glyphicon-time"> </span>
             Post by ${board.user.username} , ${formattedDate}
@@ -22,7 +21,9 @@
     <form>
         <input type="hidden" id="id" value="${board.id}"/>
               <div class="form-group">
-                <input type="${board.title}" class="form-control" id="title">
+                <textarea class="form-control summernote" rows="5" id="title">${board.title}</textarea>
+
+                <input type="${board.title}" class="form-control" id="title">${board.title}</input>
               </div>
               <div class="form-group">
                 <textarea class="form-control summernote" rows="5" id="content">${board.content}</textarea>
