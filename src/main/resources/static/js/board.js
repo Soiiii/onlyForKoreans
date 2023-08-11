@@ -5,7 +5,7 @@ let index={
             this.save();
         });
         $("#btn-delete").on("click", ()=>{
-            this.deleteById();
+            this.deleteBoard();
         });
         $("#btn-update").on("click", ()=>{
             this.update();
@@ -35,11 +35,9 @@ let index={
         });
     },
 
-    deleteById:function(){
-        console.log("@@@@@");
+    deleteBoard:function(){
         let id = $("#id").val();
          console.log("deleteById called"); // 디버깅 메시지 추가
-         console.log(id); // 디버깅 메시지 추가
 
         $.ajax({
             type: "DELETE",

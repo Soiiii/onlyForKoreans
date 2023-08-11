@@ -2,7 +2,6 @@
 
 <%@ include file="../layout/header.jsp"%>
 <%@ include file="../layout/boardSidebar.jsp"%>
-
   <style>
     .row.content {height: 1500px}
     .sidenav {
@@ -32,12 +31,15 @@
       <h4> <small>POSTS</small> </h4>
       <hr>
       <button class="btn btn-secondary" onclick="history.back()"> 돌아가기 </button>
+      <input type="hidden" id="id" value="${board.id}"/>
       <c:if test="${board.user.id == principal.user.id}">
           <a href="/board/${board.id}/updateForm" class="btn btn-primary"> 수정 </button></a>
           <button id="btn-delete" class="btn btn-primary"> 삭제 </button>
       </c:if>
       <br>
       <br>
+                <button id="btn-update" class="btn btn-primary">수정 완료</button>
+
       <h5><a href=/board/${board.country.name}> ${board.country.name} </a> </h5>
       <h2> ${board.title} </h2>
       <h5>
@@ -96,3 +98,8 @@
 
 </body>
 </html>
+
+
+
+
+<script src="/js/board.js"></script>
