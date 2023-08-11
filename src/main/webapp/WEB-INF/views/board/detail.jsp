@@ -34,7 +34,7 @@
       <button class="btn btn-secondary" onclick="history.back()"> 돌아가기 </button>
       <c:if test="${board.user.id == principal.user.id}">
           <a href="/board/${board.id}/updateForm" class="btn btn-primary"> 수정 </button></a>
-          <button id="btn-delete" class="btn btn-dark"> 삭제 </button>
+          <button id="btn-delete" class="btn btn-primary"> 삭제 </button>
       </c:if>
       <br>
       <br>

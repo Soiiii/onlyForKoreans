@@ -36,11 +36,14 @@ let index={
     },
 
     deleteById:function(){
-        let id = $("#id").text();
+        console.log("@@@@@");
+        let id = $("#id").val();
+         console.log("deleteById called"); // 디버깅 메시지 추가
+         console.log(id); // 디버깅 메시지 추가
 
         $.ajax({
-            type: "PUT",
-            url: "/api/board",
+            type: "DELETE",
+            url: "/api/board/" + id,
             dataType: "json"
         }).done(function(resp){
             alert("삭제 완료");
@@ -62,7 +65,7 @@ let index={
 
         $.ajax({
             type: "POST",
-            url: "/api/board/" + id,
+            url: "/api/board/" + id + "/updateForm",
             data: JSON.stringify(data),
             contentType:"application/json; charset=utf-8",
             dataType: "json"

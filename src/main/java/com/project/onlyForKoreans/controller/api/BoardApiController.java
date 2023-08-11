@@ -44,16 +44,16 @@ public class BoardApiController {
         return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);
     }
 
+    // 글 수정
     @PostMapping("/api/board/{id}/updateForm")
     public ResponseDto<Integer> update(@PathVariable Long id, @RequestBody Board board){
         boardService.edit(id, board);
         return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);
     }
 
-
     // 글 삭제
-    @PostMapping("/api/board/{id}")
-    private ResponseDto<Integer> delete(@PathVariable Long id){
+    @DeleteMapping("/api/board/{id}")
+    private ResponseDto<Integer> deleteById(@PathVariable Long id){
         boardService.delete(id);
         return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);
     }
