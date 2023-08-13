@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <%@ include file="../layout/header.jsp"%>
 <%@ include file="../layout/boardSidebar.jsp"%>
@@ -43,7 +44,7 @@
                         <p>bookmark: 3</p>
                     </div>
                     <div class="date">
-                        <p>Date: ${board.create_at}</p>
+        <p>Date: <fmt:formatDate value="${board.create_at}" pattern="yyyy-MM-dd HH:mm" /></p>
                     </div>
                 </div>
             </a>
