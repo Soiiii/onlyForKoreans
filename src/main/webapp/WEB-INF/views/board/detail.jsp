@@ -40,7 +40,6 @@
       </c:if>
       <br>
       <br>
-                <button id="btn-update" class="btn btn-primary">수정 완료</button>
 
       <h5><a href=/board/${board.country.name}> ${board.country.name} </a> </h5>
       <h2> ${board.title} </h2>

@@ -29,7 +29,7 @@
             <a href="/board/${board.id}">
                 <div class="well">
                     <div class="title">
-                        <h7>제목:${board.title}</h7>
+                        <h5>${board.title}</h5>
                     </div>
                     <div class="country">
                         <p>${board.country.name}</p>
@@ -44,7 +44,7 @@
                         <p>bookmark: 3</p>
                     </div>
                     <div class="date">
-        <p>Date: <fmt:formatDate value="${board.create_at}" pattern="yyyy-MM-dd HH:mm" /></p>
+        <p><fmt:formatDate value="${board.create_at}" pattern="yyyy-MM-dd HH:mm" /></p>
                     </div>
                 </div>
             </a>
