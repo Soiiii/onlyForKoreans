@@ -7,6 +7,7 @@
 </sec:authorize>
 
 <!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
 <html lang="en">
 <head>
   <title>Bootstrap Example</title>

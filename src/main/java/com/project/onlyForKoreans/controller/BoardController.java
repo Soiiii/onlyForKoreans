@@ -1,11 +1,16 @@
 package com.project.onlyForKoreans.controller;
 
+import com.project.onlyForKoreans.model.Board;
 import com.project.onlyForKoreans.service.BoardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 public class BoardController {
@@ -25,6 +30,15 @@ public class BoardController {
     }
 
     //게시판 메인
+//    @GetMapping({"/board"})
+//    public String board(Model model)
+//    {
+//        model.addAttribute("board", boardService.list());
+//        model.addAttribute("category", boardService.findCategory());
+//        return "/board/board";
+//    }
+
+    //게시판 메인
     @GetMapping({"/board"})
     public String board(Model model)
     {
@@ -33,9 +47,28 @@ public class BoardController {
         return "/board/board";
     }
 
+    //게시판 카테고리 선택시 보여줄 페이지
+    @GetMapping("/board/{category}")
+    public String findByCategoryId(@RequestParam String category, Model model){
+//        if(categoryId.equals("이야기")){
+//            model.addAttribute("items", boardService.findCategory().get(0));
+//        } else if(categoryId.equals("연애")){
+//            model.addAttribute("items", boardService.findCategory().get(1));
+//        }
+//        model.addAttribute("board", boardService.findCategory());
+        List<Board> postsInCategory = boardService.list().stream()
+                .filter(board -> boardService.findCategory().equals(category))
+                .collect(Collectors.toList());
+
+        model.addAttribute("posts", postsInCategory);
+
+        return "/board/board";
+    }
+
+
     //글 저장
     @GetMapping("/board/saveForm")
-    public String saveForm(Model model){
+    public String saveForm(Model model) {
         model.addAttribute("object", boardService.findCountry());
         model.addAttribute("category", boardService.findCategory());
         return "board/saveForm";

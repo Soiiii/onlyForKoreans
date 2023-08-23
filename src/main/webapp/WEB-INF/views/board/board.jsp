@@ -10,11 +10,14 @@
                   <div class="panel panel-default text-left">
                     <div class="panel-body">
                       <p contenteditable="true"> Category</p>
+                        <a href="/board/${categoryId}">
                         <c:forEach items="${category}" var="categoryName">
                           <button type="button" class="btn btn-default btn-sm">
                             <span class="glyphicon glyphicon-thumbs-up"></span> ${categoryName.name}
                           </button>
                        </c:forEach>
+                       </a>
+                       <a th:href="@{/category?category=이야기}">이야기</a>
                     </div>
                   </div>
                 </div>
