@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -56,11 +57,12 @@ public class BoardController {
 //            model.addAttribute("items", boardService.findCategory().get(1));
 //        }
 //        model.addAttribute("board", boardService.findCategory());
-        List<Board> postsInCategory = boardService.list().stream()
-                .filter(board -> boardService.findCategory().equals(category))
+        System.out.println("hihihihihihi");
+        List<Board> boardsInCategory = boardService.list().stream()
+                .filter(board -> board.getCategory().equals(category))
                 .collect(Collectors.toList());
-
-        model.addAttribute("posts", postsInCategory);
+        System.out.println("postsInCategory:" +boardsInCategory);
+        model.addAttribute("boards", boardsInCategory);
 
         return "/board/board";
     }
@@ -87,6 +89,29 @@ public class BoardController {
         model.addAttribute("board", boardService.details(id));
         return "board/updateForm";
     }
+
+    @GetMapping("/category")
+    @ResponseBody
+    public String showPostsByCategory(@RequestParam String category) {
+        System.out.println("category:" + category);
+        List<Board> boardsInCategory = boardService.list().stream()
+                .filter(board -> board.getCategory().getName().equalsIgnoreCase(category))
+                .collect(Collectors.toList());
+        System.out.println("boardsInCategory:"+boardsInCategory);
+        // 필터링된 글 목록을 HTML로 변환하여 반환
+        StringBuilder htmlContent = new StringBuilder();
+        for (Board board : boardsInCategory) {
+            htmlContent.append("<div class='filtered-board'>");
+            htmlContent.append("<h3>").append(board.getTitle()).append("</h3>");
+            htmlContent.append("<p>").append(board.getContent()).append("</p>");
+            htmlContent.append("</div>");
+        }
+
+        return htmlContent.toString();
+    }
+
+
+
 
     @GetMapping({"/board/Thailand"})
     public String boardThailand()
