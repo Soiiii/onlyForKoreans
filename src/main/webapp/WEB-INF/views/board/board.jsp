@@ -10,6 +10,12 @@
                   <div class="panel panel-default text-left">
                     <div class="panel-body">
                       <p contenteditable="true"> Category</p>
+                        <a href="#" class="category-button-all">
+                          <button type="button" class="btn btn-default btn-sm">
+                             전체
+                          </button>
+                       </a>
+
                         <c:forEach items="${category}" var="categoryName">
                         <a href="#" class="category-button" data-category="${categoryName.name}">
                           <button type="button" class="btn btn-default btn-sm">
@@ -26,6 +32,8 @@
     <div id="board-list">
         <!-- This is where your filtered content will be displayed -->
     </div>
+
+    <div id="board-list-all">
     <c:forEach var="board" items="${board}" varStatus="status">
         <c:if test="${status.index % 2 == 0}">
             <div class="row">
@@ -58,6 +66,7 @@
             </div>
         </c:if>
     </c:forEach>
+    </div>
 
 </div>
 
@@ -77,6 +86,19 @@
                     data: { category: category },
                     success: function(data) {
                         $("#board-list").html(data);
+                    }
+                });
+            });
+        });
+
+        $(document).ready(function() {
+            $(".category-button-all").click(function() {
+                console.log("!!!!!");
+                $.ajax({
+                    url: "/category",
+                    data: { category: "all" },
+                    success: function(data) {
+                        $("#board-list-all").html(data);
                     }
                 });
             });

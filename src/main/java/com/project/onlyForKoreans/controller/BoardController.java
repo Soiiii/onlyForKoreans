@@ -48,26 +48,6 @@ public class BoardController {
         return "/board/board";
     }
 
-    //게시판 카테고리 선택시 보여줄 페이지
-    @GetMapping("/board/{category}")
-    public String findByCategoryId(@RequestParam String category, Model model){
-//        if(categoryId.equals("이야기")){
-//            model.addAttribute("items", boardService.findCategory().get(0));
-//        } else if(categoryId.equals("연애")){
-//            model.addAttribute("items", boardService.findCategory().get(1));
-//        }
-//        model.addAttribute("board", boardService.findCategory());
-        System.out.println("hihihihihihi");
-        List<Board> boardsInCategory = boardService.list().stream()
-                .filter(board -> board.getCategory().equals(category))
-                .collect(Collectors.toList());
-        System.out.println("postsInCategory:" +boardsInCategory);
-        model.addAttribute("boards", boardsInCategory);
-
-        return "/board/board";
-    }
-
-
     //글 저장
     @GetMapping("/board/saveForm")
     public String saveForm(Model model) {
@@ -94,19 +74,48 @@ public class BoardController {
     @ResponseBody
     public String showPostsByCategory(@RequestParam String category) {
         System.out.println("category:" + category);
-        List<Board> boardsInCategory = boardService.list().stream()
-                .filter(board -> board.getCategory().getName().equalsIgnoreCase(category))
-                .collect(Collectors.toList());
-        System.out.println("boardsInCategory:"+boardsInCategory);
-        // 필터링된 글 목록을 HTML로 변환하여 반환
         StringBuilder htmlContent = new StringBuilder();
-        for (Board board : boardsInCategory) {
-            htmlContent.append("<div class='filtered-board'>");
-            htmlContent.append("<h3>").append(board.getTitle()).append("</h3>");
-            htmlContent.append("<p>").append(board.getContent()).append("</p>");
-            htmlContent.append("</div>");
-        }
 
+        if(category.equals("all")){
+            for (Board board : boardService.list()) {
+                htmlContent.append("<div class='filtered-board'>");
+                htmlContent.append("<div class=\"col-sm-6\">");
+                htmlContent.append("<a href=\"/board/${board.id}\">");
+                htmlContent.append("<c:if test=\"${status.index % 2 == 0}\">");
+                htmlContent.append("<div class=\"row\">");
+                htmlContent.append("</c:if>");
+                htmlContent.append("<p>").append(board.getCategory().getName()).append("</p>");
+                htmlContent.append("<h3>").append(board.getTitle()).append("</h3>");
+                htmlContent.append("<p>").append(board.getContent()).append("</p>");
+                htmlContent.append("<p>View:").append(board.getCount()).append("</p>");
+                htmlContent.append("<p>Created:").append(board.getCreate_at()).append("</p>");
+                htmlContent.append("</a>");
+                htmlContent.append("</div>");
+                htmlContent.append("</div>");
+            }
+        } else{
+            List<Board> boardsInCategory = boardService.list().stream()
+                    .filter(board -> board.getCategory().getName().equalsIgnoreCase(category))
+                    .collect(Collectors.toList());
+            System.out.println("boardsInCategory:"+boardsInCategory);
+            // 필터링된 글 목록을 HTML로 변환하여 반환
+            for (Board board : boardsInCategory) {
+                htmlContent.append("<div class='filtered-board'>");
+                htmlContent.append("<div class=\"col-sm-6\">");
+                htmlContent.append("<a href=\"/board/${board.id}\">");
+                htmlContent.append("<c:if test=\"${status.index % 2 == 0}\">");
+                htmlContent.append("<div class=\"row\">");
+                htmlContent.append("</c:if>");
+                htmlContent.append("<p>").append(board.getCategory().getName()).append("</p>");
+                htmlContent.append("<h3>").append(board.getTitle()).append("</h3>");
+                htmlContent.append("<p>").append(board.getContent()).append("</p>");
+                htmlContent.append("<p>View:").append(board.getCount()).append("</p>");
+                htmlContent.append("<p>Created:").append(board.getCreate_at()).append("</p>");
+                htmlContent.append("</a>");
+                htmlContent.append("</div>");
+                htmlContent.append("</div>");
+            }
+        }
         return htmlContent.toString();
     }
 
