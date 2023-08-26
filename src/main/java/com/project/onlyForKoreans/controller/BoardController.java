@@ -80,7 +80,7 @@ public class BoardController {
             for (Board board : boardService.list()) {
                 htmlContent.append("<div class='filtered-board'>");
                 htmlContent.append("<div class=\"col-sm-6\">");
-                htmlContent.append("<a href=\"/board/${board.id}\">");
+                htmlContent.append("<a href='/board/" + board.getId() + "'>");
                 htmlContent.append("<c:if test=\"${status.index % 2 == 0}\">");
                 htmlContent.append("<div class=\"row\">");
                 htmlContent.append("</c:if>");
@@ -102,7 +102,7 @@ public class BoardController {
             for (Board board : boardsInCategory) {
                 htmlContent.append("<div class='filtered-board'>");
                 htmlContent.append("<div class=\"col-sm-6\">");
-                htmlContent.append("<a href=\"/board/${board.id}\">");
+                htmlContent.append("<a href='/board/" + board.getId() + "'>");
                 htmlContent.append("<c:if test=\"${status.index % 2 == 0}\">");
                 htmlContent.append("<div class=\"row\">");
                 htmlContent.append("</c:if>");

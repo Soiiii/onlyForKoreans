@@ -35,11 +35,12 @@
 
     <div id="board-list-all">
     <c:forEach var="board" items="${board}" varStatus="status">
+        <!--
         <c:if test="${status.index % 2 == 0}">
             <div class="row">
         </c:if>
         <div class="col-sm-6">
-            <a href="/board/${board.id}">
+            <a href='/board/${board.id}'>
                 <div class="well">
                     <div class="title">
                         <h5>${board.title}</h5>
@@ -65,6 +66,7 @@
         <c:if test="${status.index % 2 != 0 || status.last}">
             </div>
         </c:if>
+            -->
     </c:forEach>
     </div>
 
