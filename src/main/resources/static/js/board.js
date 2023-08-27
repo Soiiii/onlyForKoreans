@@ -10,8 +10,32 @@ let index={
         $("#btn-update").on("click", ()=>{
             this.update();
         });
+        /*
+        $(".list-button").on("click", ()=>{
+            this.listButton();
+        });
+        */
     },
+    /*
+    listButton:function(){
+        console.log("@@@@@@@@@");
 
+        var category = $(this).data("category");
+        var country = $(this).data("country");
+
+        console.log("category:" + category);
+        console.log("country:" + country);
+
+        $.ajax({
+            url: "/category",
+            data: { category: category, country: country },
+
+            success: function(data) {
+                $("#board-list").html(data);
+            }
+        });
+    },
+*/
     save:function(){
         let data={
             country:$("#country").val(),

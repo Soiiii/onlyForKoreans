@@ -45,6 +45,7 @@ public class BoardController {
     {
         model.addAttribute("board", boardService.list());
         model.addAttribute("category", boardService.findCategory());
+        model.addAttribute("country", boardService.findCountry());
         return "/board/board";
     }
 
@@ -72,51 +73,51 @@ public class BoardController {
 
     @GetMapping("/category")
     @ResponseBody
-    public String showPostsByCategory(@RequestParam String category) {
+    public String showPostsByCategory(@RequestParam String category, @RequestParam String country, Model model) {
         System.out.println("category:" + category);
-        StringBuilder htmlContent = new StringBuilder();
+        System.out.println("country:" + country);
+        System.out.println(!category.equals(null));
+        System.out.println(category == null);
+        System.out.println(category.isEmpty());
 
-        if(category.equals("all")){
-            for (Board board : boardService.list()) {
-                htmlContent.append("<div class='filtered-board'>");
-                htmlContent.append("<div class=\"col-sm-6\">");
-                htmlContent.append("<a href='/board/" + board.getId() + "'>");
-                htmlContent.append("<c:if test=\"${status.index % 2 == 0}\">");
-                htmlContent.append("<div class=\"row\">");
-                htmlContent.append("</c:if>");
-                htmlContent.append("<p>").append(board.getCategory().getName()).append("</p>");
-                htmlContent.append("<h3>").append(board.getTitle()).append("</h3>");
-                htmlContent.append("<p>").append(board.getContent()).append("</p>");
-                htmlContent.append("<p>View:").append(board.getCount()).append("</p>");
-                htmlContent.append("<p>Created:").append(board.getCreate_at()).append("</p>");
-                htmlContent.append("</a>");
-                htmlContent.append("</div>");
-                htmlContent.append("</div>");
-            }
-        } else{
+        // category, country 값이 null일때 (전체 리스트값 출력)
+        if(category.isEmpty() && country.isEmpty()){
+            model.addAttribute("object", boardService.list());
+        } else if(!category.isEmpty() && country.isEmpty()){
+            // 필터링된 글 목록을 HTML로 변환하여 반환
             List<Board> boardsInCategory = boardService.list().stream()
                     .filter(board -> board.getCategory().getName().equalsIgnoreCase(category))
                     .collect(Collectors.toList());
             System.out.println("boardsInCategory:"+boardsInCategory);
             // 필터링된 글 목록을 HTML로 변환하여 반환
-            for (Board board : boardsInCategory) {
-                htmlContent.append("<div class='filtered-board'>");
-                htmlContent.append("<div class=\"col-sm-6\">");
-                htmlContent.append("<a href='/board/" + board.getId() + "'>");
-                htmlContent.append("<c:if test=\"${status.index % 2 == 0}\">");
-                htmlContent.append("<div class=\"row\">");
-                htmlContent.append("</c:if>");
-                htmlContent.append("<p>").append(board.getCategory().getName()).append("</p>");
-                htmlContent.append("<h3>").append(board.getTitle()).append("</h3>");
-                htmlContent.append("<p>").append(board.getContent()).append("</p>");
-                htmlContent.append("<p>View:").append(board.getCount()).append("</p>");
-                htmlContent.append("<p>Created:").append(board.getCreate_at()).append("</p>");
-                htmlContent.append("</a>");
-                htmlContent.append("</div>");
-                htmlContent.append("</div>");
-            }
+            model.addAttribute("object", boardsInCategory);
+
+//            for (Board board : boardsInCategory) {
+//                htmlContent.append("<div class='filtered-board'>");
+//                htmlContent.append("<div class=\"col-sm-6\">");
+//                htmlContent.append("<a href='/board/" + board.getId() + "'>");
+//                htmlContent.append("<c:if test=\"${status.index % 2 == 0}\">");
+//                htmlContent.append("<div class=\"row\">");
+//                htmlContent.append("</c:if>");
+//                htmlContent.append("<p>").append(board.getCategory().getName()).append("</p>");
+//                htmlContent.append("<h3>").append(board.getTitle()).append("</h3>");
+//                htmlContent.append("<p>").append(board.getContent()).append("</p>");
+//                htmlContent.append("<p>View:").append(board.getCount()).append("</p>");
+//                htmlContent.append("<p>Created:").append(board.getCreate_at()).append("</p>");
+//                htmlContent.append("</a>");
+//                htmlContent.append("</div>");
+//                htmlContent.append("</div>");
+//            }
+        } else{
+            List<Board> boardsInCategory = boardService.list().stream()
+                    .filter(board -> board.getCountry().getName().equalsIgnoreCase(country))
+                    .collect(Collectors.toList());
+            System.out.println("boardsInCountry:"+boardsInCategory);
+            // 필터링된 글 목록을 HTML로 변환하여 반환
+            model.addAttribute("object", boardsInCategory);
+
         }
-        return htmlContent.toString();
+        return "/board/board";
     }
 
 
