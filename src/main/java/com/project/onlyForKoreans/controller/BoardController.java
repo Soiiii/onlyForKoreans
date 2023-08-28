@@ -1,6 +1,7 @@
 package com.project.onlyForKoreans.controller;
 
 import com.project.onlyForKoreans.model.Board;
+import com.project.onlyForKoreans.repository.BoardRepository;
 import com.project.onlyForKoreans.service.BoardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -8,16 +9,17 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Controller
 public class BoardController {
 
     @Autowired
     private BoardService boardService;
+
+    @Autowired
+    private BoardRepository boardRepository;
 
     //메인페이지
     @GetMapping({"/"})
@@ -72,26 +74,21 @@ public class BoardController {
     }
 
     @GetMapping("/category")
-    @ResponseBody
-    public String showPostsByCategory(@RequestParam String category, @RequestParam String country, Model model) {
+//    @ResponseBody
+    public String showPostsByCategory(@RequestParam(required = false) Long category, @RequestParam(required = false) Long country, Model model) {
         System.out.println("category:" + category);
         System.out.println("country:" + country);
-        System.out.println(!category.equals(null));
-        System.out.println(category == null);
-        System.out.println(category.isEmpty());
+        List<Board> boardsList = boardRepository.findFilteredBoards(category, country);
 
         // category, country 값이 null일때 (전체 리스트값 출력)
-        if(category.isEmpty() && country.isEmpty()){
-            model.addAttribute("object", boardService.list());
-        } else if(!category.isEmpty() && country.isEmpty()){
-            // 필터링된 글 목록을 HTML로 변환하여 반환
-            List<Board> boardsInCategory = boardService.list().stream()
-                    .filter(board -> board.getCategory().getName().equalsIgnoreCase(category))
-                    .collect(Collectors.toList());
-            System.out.println("boardsInCategory:"+boardsInCategory);
-            // 필터링된 글 목록을 HTML로 변환하여 반환
-            model.addAttribute("object", boardsInCategory);
-
+//        if(category.isEmpty() && country.isEmpty()){
+            // 전체 리스트 출력
+//            boardsList = boardService.list();
+//        } else if(!category.isEmpty() && country.isEmpty()){
+            // category 필터링
+//            boardsList = boardService.list().stream()
+//                    .filter(board -> board.getCategory().getName().equalsIgnoreCase(category))
+//                    .collect(Collectors.toList());
 //            for (Board board : boardsInCategory) {
 //                htmlContent.append("<div class='filtered-board'>");
 //                htmlContent.append("<div class=\"col-sm-6\">");
@@ -108,15 +105,18 @@ public class BoardController {
 //                htmlContent.append("</div>");
 //                htmlContent.append("</div>");
 //            }
-        } else{
-            List<Board> boardsInCategory = boardService.list().stream()
-                    .filter(board -> board.getCountry().getName().equalsIgnoreCase(country))
-                    .collect(Collectors.toList());
-            System.out.println("boardsInCountry:"+boardsInCategory);
-            // 필터링된 글 목록을 HTML로 변환하여 반환
-            model.addAttribute("object", boardsInCategory);
+//        }
+//        else if(category.isEmpty() && !country.isEmpty()){
+            // country 필터링
+//            boardsList = boardService.();
+//            boardsList = boardService.list().stream()
+//                    .filter(board -> board.getCountry().getName().equalsIgnoreCase(country))
+//                    .collect(Collectors.toList());
+//        }
 
-        }
+        System.out.println("boardsList:"+boardsList);
+        // 필터링된 글 목록을 HTML로 변환하여 반환
+        model.addAttribute("object", boardsList);
         return "/board/board";
     }
 

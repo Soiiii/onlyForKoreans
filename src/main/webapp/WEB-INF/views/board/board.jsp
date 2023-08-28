@@ -47,7 +47,7 @@
                     </button>
                  </a>
                 <c:forEach items="${country}" var="countryName">
-                    <a href="#" class="list-button" data-country="${countryName.name}" data-category="${categoryName.name}" >
+                    <a href="#" class="list-button" data-country="${countryName.id}" data-category="${categoryName.id}" >
                       <button type="button" class="btn">
                         ${countryName.name}
                       </button>
@@ -71,7 +71,7 @@
                        </a>
 
                         <c:forEach items="${category}" var="categoryName">
-                        <a href="#" class="list-button" data-category="${categoryName.name}" data-country="${countryName.name}">
+                        <a href="#" class="list-button" data-category="${categoryName.id}" data-country="${countryName.id}">
                           <button type="button" class="btn btn-default btn-sm">
                             <span class="glyphicon glyphicon-thumbs-up"></span> ${categoryName.name}
                           </button>
@@ -82,6 +82,44 @@
                 </div>
               </div>
 
+    <div id="new-board-list">
+    <c:forEach var="object" items="${object}" varStatus="status">
+        <c:if test="${status.index % 2 == 0}">
+            <div class="row">
+        </c:if>
+        <div class="col-sm-6">
+            <a href='/board/${object.id}'>
+                <div class="well">
+                    <div class="title">
+                        <h5>${object.title}</h5>
+                    </div>
+                    <div class="country">
+                        <p>${object.country.name}</p>
+                    </div>
+                    <div class="view">
+                        <p>view: ${object.count}</p>
+                    </div>
+                    <div class="comment">
+                        <p>comment: 3</p>
+                    </div>
+                    <div class="bookmark">
+                        <p>bookmark: 3</p>
+                    </div>
+                    <div class="date">
+                    <p>
+                        <fmt:formatDate value="${object.create_at}" pattern="yyyy-MM-dd HH:mm" />
+                    </p>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <c:if test="${status.index % 2 != 0 || status.last}">
+            </div>
+        </c:if>
+    </c:forEach>
+    </div>
+
+<!--
     <div id="board-list">
     <c:forEach var="board" items="${board}" varStatus="status">
         <c:if test="${status.index % 2 == 0}">
@@ -118,6 +156,7 @@
         </c:if>
     </c:forEach>
     </div>
+-->
 
 </div>
 
@@ -138,15 +177,16 @@
                 $.ajax({
                     url: "/category",
                     data: { category: category, country: country },
-                    //data: { category: category },
 
                     success: function(data) {
-                        $("#board-list").html(data);
+                        $("#new-board-list").empty(); // 기존 데이터 초기화
+
+                        $("#new-board-list").html(data);
                     }
                 });
             });
         });
-
+/*
         $(document).ready(function() {
             $(".category-button-all").click(function() {
                 console.log("!!!!!");
@@ -154,11 +194,13 @@
                     url: "/category",
                     data: { category: "all" },
                     success: function(data) {
+                        $("#board-list").empty(); // 기존 데이터 초기화
                         $("#board-list-all").html(data);
                     }
                 });
             });
         });
+*/
     </script>
 
 

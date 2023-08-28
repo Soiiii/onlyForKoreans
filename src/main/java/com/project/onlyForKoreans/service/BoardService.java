@@ -73,7 +73,7 @@ public class BoardService {
         boardRepository.save(board);
     }
 
-    public List<Country> findCountry(){
+    public List<Country> findCountry() {
         return countryRepository.findAll();
     }
 
