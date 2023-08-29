@@ -82,41 +82,41 @@
                 </div>
               </div>
 
-    <div id="new-board-list">
-    <c:forEach var="object" items="${object}" varStatus="status">
-        <c:if test="${status.index % 2 == 0}">
-            <div class="row">
-        </c:if>
-        <div class="col-sm-6">
-            <a href='/board/${object.id}'>
-                <div class="well">
-                    <div class="title">
-                        <h5>${object.title}</h5>
+    <div id="new-board-list-container">
+        <c:forEach var="object" items="${boardsList}" varStatus="status">
+            <c:if test="${status.index % 2 == 0}">
+                <div class="row">
+            </c:if>
+            <div class="col-sm-6">
+                <a href='/board/${object.id}'>
+                    <div class="well">
+                        <div class="title">
+                            <h5>${object.title}</h5>
+                        </div>
+                        <div class="country">
+                            <p>${object.country.name}</p>
+                        </div>
+                        <div class="view">
+                            <p>view: ${object.count}</p>
+                        </div>
+                        <div class="comment">
+                            <p>comment: 3</p>
+                        </div>
+                        <div class="bookmark">
+                            <p>bookmark: 3</p>
+                        </div>
+                        <div class="date">
+                        <p>
+                            <fmt:formatDate value="${object.create_at}" pattern="yyyy-MM-dd HH:mm" />
+                        </p>
+                        </div>
                     </div>
-                    <div class="country">
-                        <p>${object.country.name}</p>
-                    </div>
-                    <div class="view">
-                        <p>view: ${object.count}</p>
-                    </div>
-                    <div class="comment">
-                        <p>comment: 3</p>
-                    </div>
-                    <div class="bookmark">
-                        <p>bookmark: 3</p>
-                    </div>
-                    <div class="date">
-                    <p>
-                        <fmt:formatDate value="${object.create_at}" pattern="yyyy-MM-dd HH:mm" />
-                    </p>
-                    </div>
-                </div>
-            </a>
-        </div>
-        <c:if test="${status.index % 2 != 0 || status.last}">
+                </a>
             </div>
-        </c:if>
-    </c:forEach>
+            <c:if test="${status.index % 2 != 0 || status.last}">
+                </div>
+            </c:if>
+        </c:forEach>
     </div>
 
 <!--
@@ -179,9 +179,9 @@
                     data: { category: category, country: country },
 
                     success: function(data) {
-                        $("#new-board-list").empty(); // 기존 데이터 초기화
-
-                        $("#new-board-list").html(data);
+                        var extractedData = $(data).find("#new-board-list-container").html();
+                        $("#new-board-list-container").html(extractedData);
+                        console.log(extractedData);
                     }
                 });
             });
@@ -195,7 +195,7 @@
                     data: { category: "all" },
                     success: function(data) {
                         $("#board-list").empty(); // 기존 데이터 초기화
-                        $("#board-list-all").html(data);
+                        $("#board-list").app(data);
                     }
                 });
             });
@@ -205,4 +205,3 @@
 
 
 </html>
-<script src="/js/board.js"></script>

@@ -116,8 +116,8 @@ public class BoardController {
 
         System.out.println("boardsList:"+boardsList);
         // 필터링된 글 목록을 HTML로 변환하여 반환
-        model.addAttribute("object", boardsList);
-        return "/board/board";
+        model.addAttribute("boardsList", boardsList);
+        return "board/board";
     }
 
 
