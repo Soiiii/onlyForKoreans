@@ -11,6 +11,9 @@ public interface BoardRepository extends JpaRepository<Board, Integer> {
     @Query("SELECT b FROM Board b WHERE (:country IS NULL AND b.category.id = :category) OR (:category IS NULL AND b.country.id = :country)")
     List<Board> findFilteredBoards(Long category, Long country);
 
+    @Query("SELECT b FROM Board b WHERE (:country IS NULL OR b.country.id = :country)")
+    List<Board> findFilteredBoardsCountry(Long country);
+
     Optional<Board> findById(Long id);
     void deleteById(Long id);
 }

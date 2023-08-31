@@ -126,6 +126,28 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
         $(document).ready(function() {
+            function fetchFilteredData(category, country) {
+                $.ajax({
+                    url: "/category",
+                    data: { category: category, country: country },
+                    success: function(data) {
+                        var extractedData = $(data).find("#new-board-list-container").html();
+                        $("#new-board-list-container").html(extractedData);
+                    }
+                });
+            }
+            // Initial page load: Fetch the entire board list
+            fetchFilteredData(null, null);
+
+            // Click event handler for filter buttons
+            $(".list-button").click(function() {
+                var category = $(this).data("category");
+                var country = $(this).data("country");
+                fetchFilteredData(category, country);
+            });
+
+
+/*
             $(".list-button").click(function() {
                 console.log("@@@@@@@@@");
                 var category = $(this).data("category");
@@ -145,6 +167,7 @@
                     }
                 });
             });
+*/
         });
     </script>
 </html>

@@ -10,6 +10,7 @@ let index={
         $("#btn-update").on("click", ()=>{
             this.update();
         });
+
         /*
         $(".list-button").on("click", ()=>{
             this.listButton();

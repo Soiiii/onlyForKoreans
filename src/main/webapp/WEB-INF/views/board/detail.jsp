@@ -3,7 +3,6 @@
 <fmt:formatDate value="${board.create_at}" pattern="yyyy-MM-dd HH:mm" var="formattedDate" />
 
 <%@ include file="../layout/header.jsp"%>
-<%@ include file="../layout/boardSidebar.jsp"%>
   <style>
     .row.content {height: 1500px}
     .sidenav {
@@ -24,10 +23,70 @@
     }
   </style>
 
+
 <body>
 
-<div class="container-fluid">
-  <div class="row content">
+    <div class="container-fluid">
+      <div class="row content">
+        <div class="col-sm-3 sidebar">
+          <h4>나라 별 게시판</h4>
+             <ul class="nav nav-pills nav-stacked">
+              <li>
+                 <a href="/board" class="list-button" data-country="" >
+                    <button type="button buttonSide" class="btn">
+                       전체
+                    </button>
+                 </a>
+                <c:forEach items="${country}" var="countryName">
+                    <a href="#" class="list-button" data-country="${countryName.id}">
+                      <button type="button" class="btn">
+                        ${countryName.name}
+                      </button>
+                   </a>
+               </c:forEach>
+              </li>
+          </ul>
+          <br>
+        </div>
+
+<!--
+    <div id="new-board-list-container">
+        <c:forEach var="object" items="${boardsList}" varStatus="status">
+            <c:if test="${status.index % 2 == 0}">
+                <div class="row">
+            </c:if>
+            <div class="col-sm-6">
+                <a href='/board/${object.id}'>
+                    <div class="well">
+                        <div class="title">
+                            <h5>${object.title}</h5>
+                        </div>
+                        <div class="country">
+                            <p>${object.country.name}</p>
+                        </div>
+                        <div class="view">
+                            <p>view: ${object.count}</p>
+                        </div>
+                        <div class="comment">
+                            <p>comment: 3</p>
+                        </div>
+                        <div class="bookmark">
+                            <p>bookmark: 3</p>
+                        </div>
+                        <div class="date">
+                        <p>
+                            <fmt:formatDate value="${object.create_at}" pattern="yyyy-MM-dd HH:mm" />
+                        </p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <c:if test="${status.index % 2 != 0 || status.last}">
+                </div>
+            </c:if>
+        </c:forEach>
+    </div>
+-->
 
     <div class="col-sm-9">
       <h4> <small>POSTS</small> </h4>
@@ -98,6 +157,28 @@
 <%@ include file="../layout/footer.jsp"%>
 
 </body>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+        $(document).ready(function() {
+            function fetchFilteredData(country) {
+                $.ajax({
+                    url: "/category",
+                    data: {country: country },
+                    success: function(data) {
+                        var extractedData = $(data).find("#new-board-list-container").html();
+                        $("#new-board-list-container").html(extractedData);
+                    }
+                });
+            }
+
+            // Click event handler for filter buttons
+            $(".list-button").click(function() {
+                var country = $(this).data("country");
+                fetchFilteredData(country);
+            });
+        });
+    </script>
+
 </html>
 
 

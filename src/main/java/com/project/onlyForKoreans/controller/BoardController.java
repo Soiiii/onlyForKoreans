@@ -1,6 +1,7 @@
 package com.project.onlyForKoreans.controller;
 
 import com.project.onlyForKoreans.model.Board;
+import com.project.onlyForKoreans.model.Country;
 import com.project.onlyForKoreans.repository.BoardRepository;
 import com.project.onlyForKoreans.service.BoardService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +11,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -62,8 +62,12 @@ public class BoardController {
 
     //게시판 상세 페이지
     @GetMapping("/board/{id}")
-    public String findById(@PathVariable Long id, Model model){
+    public String findById(@PathVariable Long id, @RequestParam(required = false) Long country, Model model){
         model.addAttribute("board", boardService.details(id));
+
+        List<Country> countryList = boardService.findCountry();
+        model.addAttribute("country", countryList);
+
         return "board/detail";
     }
 
@@ -73,13 +77,35 @@ public class BoardController {
         model.addAttribute("board", boardService.details(id));
         return "board/updateForm";
     }
+    @GetMapping("/category/country")
+//    @ResponseBody
+    public String showPostsByCountry(@RequestParam(required = false) Long country, Model model) {
+        System.out.println("country:" + country);
+        List<Board> boardsList;
+
+        // category, country 값이 null일때 (전체 리스트값 출력)
+        if(country == null){
+            //전체 리스트 출력
+            boardsList = boardService.list();
+            System.out.println("All boardsList:" + boardsList);
+        } else {
+            boardsList = boardRepository.findFilteredBoardsCountry(country);
+            System.out.println("Selected boardsList:" + boardsList);
+        }
+
+        System.out.println("boardsList:"+boardsList);
+        // 필터링된 글 목록을 HTML로 변환하여 반환
+        model.addAttribute("boardsList", boardsList);
+        return "board/board";
+    }
+
 
     @GetMapping("/category")
 //    @ResponseBody
     public String showPostsByCategory(@RequestParam(required = false) Long category, @RequestParam(required = false) Long country, Model model) {
         System.out.println("category:" + category);
         System.out.println("country:" + country);
-        List<Board> boardsList = new ArrayList<>();
+        List<Board> boardsList;
 
         // category, country 값이 null일때 (전체 리스트값 출력)
         if(category == null && country == null){
