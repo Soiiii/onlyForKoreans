@@ -32,8 +32,6 @@ public class BoardService {
     @Transactional
     public Board write(BoardDto boardDto, User user, Optional<Country> country, Optional<Category> category){
         System.out.println("category:" +category + " country:" + country);
-
-
         Board board = Board.builder()
             .title(boardDto.getTitle())
             .content(boardDto.getContent())
@@ -97,5 +95,10 @@ public class BoardService {
                 });
     }
 
-
+    @Transactional
+    public void updateCount(Long id, BoardDto boardDto){
+        Board board = boardRepository.findById(id).orElseThrow(()->
+                new IllegalStateException("해당 게시물이 존재하지 않습니다."));
+        board.setCount(board.getCount());
+    }
 }

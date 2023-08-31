@@ -41,7 +41,7 @@
           <h4>나라 별 게시판</h4>
              <ul class="nav nav-pills nav-stacked">
               <li>
-                  <a href="#" class="list-button" data-country="all">
+                  <a href="#" class="list-button" data-country="" data-category="">
                     <button type="button buttonSide" class="btn">
                        전체
                     </button>
@@ -64,11 +64,11 @@
                   <div class="panel panel-default text-left">
                     <div class="panel-body">
                       <p contenteditable="true"> Category</p>
-                        <a href="#" class="category-button-all">
-                          <button type="button" class="btn btn-default btn-sm">
-                             전체
-                          </button>
-                       </a>
+                         <a href="#" class="list-button" data-country="" data-category="">
+                            <button type="button" class="btn btn-default btn-sm">
+                               전체
+                            </button>
+                         </a>
 
                         <c:forEach items="${category}" var="categoryName">
                         <a href="#" class="list-button" data-category="${categoryName.id}" data-country="${countryName.id}">
@@ -118,46 +118,6 @@
             </c:if>
         </c:forEach>
     </div>
-
-<!--
-    <div id="board-list">
-    <c:forEach var="board" items="${board}" varStatus="status">
-        <c:if test="${status.index % 2 == 0}">
-            <div class="row">
-        </c:if>
-        <div class="col-sm-6">
-            <a href='/board/${board.id}'>
-                <div class="well">
-                    <div class="title">
-                        <h5>${board.title}</h5>
-                    </div>
-                    <div class="country">
-                        <p>${board.country.name}</p>
-                    </div>
-                    <div class="view">
-                        <p>view: ${board.count}</p>
-                    </div>
-                    <div class="comment">
-                        <p>comment: 3</p>
-                    </div>
-                    <div class="bookmark">
-                        <p>bookmark: 3</p>
-                    </div>
-                    <div class="date">
-                    <p>
-                        <fmt:formatDate value="${board.create_at}" pattern="yyyy-MM-dd HH:mm" />
-                    </p>
-                    </div>
-                </div>
-            </a>
-        </div>
-        <c:if test="${status.index % 2 != 0 || status.last}">
-            </div>
-        </c:if>
-    </c:forEach>
-    </div>
--->
-
 </div>
 
    </div>
@@ -186,22 +146,5 @@
                 });
             });
         });
-/*
-        $(document).ready(function() {
-            $(".category-button-all").click(function() {
-                console.log("!!!!!");
-                $.ajax({
-                    url: "/category",
-                    data: { category: "all" },
-                    success: function(data) {
-                        $("#board-list").empty(); // 기존 데이터 초기화
-                        $("#board-list").app(data);
-                    }
-                });
-            });
-        });
-*/
     </script>
-
-
 </html>

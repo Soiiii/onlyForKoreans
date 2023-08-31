@@ -19,4 +19,6 @@ public class BoardDto {
 
     private Country country;
     private Category category;
+
+
 }

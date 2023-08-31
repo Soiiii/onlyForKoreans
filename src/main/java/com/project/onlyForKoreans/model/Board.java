@@ -58,4 +58,8 @@ public class Board {
     @CreationTimestamp
     private Timestamp create_at;
     private Timestamp update_at;
+
+//    public void updateCount(int count){
+//        this.count = count;
+//    }
 }

@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -78,41 +79,17 @@ public class BoardController {
     public String showPostsByCategory(@RequestParam(required = false) Long category, @RequestParam(required = false) Long country, Model model) {
         System.out.println("category:" + category);
         System.out.println("country:" + country);
-        List<Board> boardsList = boardRepository.findFilteredBoards(category, country);
+        List<Board> boardsList = new ArrayList<>();
 
         // category, country 값이 null일때 (전체 리스트값 출력)
-//        if(category.isEmpty() && country.isEmpty()){
-            // 전체 리스트 출력
-//            boardsList = boardService.list();
-//        } else if(!category.isEmpty() && country.isEmpty()){
-            // category 필터링
-//            boardsList = boardService.list().stream()
-//                    .filter(board -> board.getCategory().getName().equalsIgnoreCase(category))
-//                    .collect(Collectors.toList());
-//            for (Board board : boardsInCategory) {
-//                htmlContent.append("<div class='filtered-board'>");
-//                htmlContent.append("<div class=\"col-sm-6\">");
-//                htmlContent.append("<a href='/board/" + board.getId() + "'>");
-//                htmlContent.append("<c:if test=\"${status.index % 2 == 0}\">");
-//                htmlContent.append("<div class=\"row\">");
-//                htmlContent.append("</c:if>");
-//                htmlContent.append("<p>").append(board.getCategory().getName()).append("</p>");
-//                htmlContent.append("<h3>").append(board.getTitle()).append("</h3>");
-//                htmlContent.append("<p>").append(board.getContent()).append("</p>");
-//                htmlContent.append("<p>View:").append(board.getCount()).append("</p>");
-//                htmlContent.append("<p>Created:").append(board.getCreate_at()).append("</p>");
-//                htmlContent.append("</a>");
-//                htmlContent.append("</div>");
-//                htmlContent.append("</div>");
-//            }
-//        }
-//        else if(category.isEmpty() && !country.isEmpty()){
-            // country 필터링
-//            boardsList = boardService.();
-//            boardsList = boardService.list().stream()
-//                    .filter(board -> board.getCountry().getName().equalsIgnoreCase(country))
-//                    .collect(Collectors.toList());
-//        }
+        if(category == null && country == null){
+             //전체 리스트 출력
+            boardsList = boardService.list();
+            System.out.println("All boardsList:" + boardsList);
+        } else {
+            boardsList = boardRepository.findFilteredBoards(category, country);
+            System.out.println("Selected boardsList:" + boardsList);
+        }
 
         System.out.println("boardsList:"+boardsList);
         // 필터링된 글 목록을 HTML로 변환하여 반환
