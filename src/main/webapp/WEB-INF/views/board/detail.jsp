@@ -3,17 +3,26 @@
 <fmt:formatDate value="${board.create_at}" pattern="yyyy-MM-dd HH:mm" var="formattedDate" />
 
 <%@ include file="../layout/header.jsp"%>
+
   <style>
-    .row.content {height: 1500px}
-    .sidenav {
+    /* Set height of the grid so .sidenav can be 100% (adjust if needed) */
+    .row.content {
+        height: 1500px
+    }
+
+    /* Set gray background color and 100% height */
+    .sidebar {
       background-color: #f1f1f1;
       height: 100%;
     }
+
+    /* Set black background color, white text and some padding */
     footer {
       background-color: #555;
       color: white;
       padding: 15px;
     }
+
     @media screen and (max-width: 767px) {
       .sidenav {
         height: auto;
@@ -21,6 +30,12 @@
       }
       .row.content {height: auto;}
     }
+
+    /* 삭제, 수정 버튼 */
+    .btn-primary{
+        float: right;
+    }
+
   </style>
 
 
@@ -32,13 +47,13 @@
           <h4>나라 별 게시판</h4>
              <ul class="nav nav-pills nav-stacked">
               <li>
-                 <a href="/board" class="list-button" data-country="" >
+                  <a href="#" class="list-button" data-country="" data-category="">
                     <button type="button buttonSide" class="btn">
                        전체
                     </button>
                  </a>
                 <c:forEach items="${country}" var="countryName">
-                    <a href="#" class="list-button" data-country="${countryName.id}">
+                    <a href="#" class="list-button" data-country="${countryName.id}" data-category="${categoryName.id}" >
                       <button type="button" class="btn">
                         ${countryName.name}
                       </button>
@@ -49,48 +64,35 @@
           <br>
         </div>
 
-<!--
-    <div id="new-board-list-container">
-        <c:forEach var="object" items="${boardsList}" varStatus="status">
-            <c:if test="${status.index % 2 == 0}">
-                <div class="row">
-            </c:if>
-            <div class="col-sm-6">
-                <a href='/board/${object.id}'>
-                    <div class="well">
-                        <div class="title">
-                            <h5>${object.title}</h5>
-                        </div>
-                        <div class="country">
-                            <p>${object.country.name}</p>
-                        </div>
-                        <div class="view">
-                            <p>view: ${object.count}</p>
-                        </div>
-                        <div class="comment">
-                            <p>comment: 3</p>
-                        </div>
-                        <div class="bookmark">
-                            <p>bookmark: 3</p>
-                        </div>
-                        <div class="date">
-                        <p>
-                            <fmt:formatDate value="${object.create_at}" pattern="yyyy-MM-dd HH:mm" />
-                        </p>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <c:if test="${status.index % 2 != 0 || status.last}">
-                </div>
-            </c:if>
-        </c:forEach>
-    </div>
--->
 
-    <div class="col-sm-9">
-      <h4> <small>POSTS</small> </h4>
+    <div class="col-sm-7">
+      <div class="row">
+        <div class="col-sm-11">
+          <div class="panel panel-default text-left">
+            <div class="panel-body">
+              <p contenteditable="true"> Category</p>
+                 <a href="#" class="list-button" data-country="" data-category="">
+                    <button type="button" class="btn btn-default btn-sm">
+                       전체
+                    </button>
+                 </a>
+
+                <c:forEach items="${category}" var="categoryName">
+                <a href="#" class="list-button" data-category="${categoryName.id}" data-country="${countryName.id}">
+                  <button type="button" class="btn btn-default btn-sm">
+                    <span class="glyphicon glyphicon-thumbs-up"></span> ${categoryName.name}
+                  </button>
+               </a>
+               </c:forEach>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    <div class="col-sm-12">
       <hr>
+
       <button class="btn btn-secondary" onclick="history.back()"> 돌아가기 </button>
       <input type="hidden" id="id" value="${board.id}"/>
       <c:if test="${board.user.id == principal.user.id}">
@@ -152,6 +154,10 @@
       </div>
     </div>
   </div>
+
+
+</div>
+
 </div>
 
 <%@ include file="../layout/footer.jsp"%>
@@ -166,7 +172,7 @@
                     data: {country: country },
                     success: function(data) {
                         var extractedData = $(data).find("#new-board-list-container").html();
-                        $("#new-board-list-container").html(extractedData);
+                        $(".col-sm-12").html(extractedData);
                     }
                 });
             }

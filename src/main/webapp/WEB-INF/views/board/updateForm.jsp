@@ -4,7 +4,31 @@
 <%@ include file="../layout/boardSidebar.jsp"%>
 
 <body>
-<div class="container-fluid">
+
+    <div class="container-fluid">
+      <div class="row content">
+        <div class="col-sm-3 sidebar">
+          <h4>나라 별 게시판</h4>
+             <ul class="nav nav-pills nav-stacked">
+              <li>
+                  <a href="#" class="list-button" data-country="" data-category="">
+                    <button type="button buttonSide" class="btn">
+                       전체
+                    </button>
+                 </a>
+                <c:forEach items="${country}" var="countryName">
+                    <a href="#" class="list-button" data-country="${countryName.id}" data-category="${categoryName.id}" >
+                      <button type="button" class="btn">
+                        ${countryName.name}
+                      </button>
+                   </a>
+               </c:forEach>
+              </li>
+          </ul>
+          <br>
+        </div>
+
+        <div class="container-fluid">
   <div class="row content">
       <div class="col-sm-9">
         <h4> <small>POSTS</small> </h4>

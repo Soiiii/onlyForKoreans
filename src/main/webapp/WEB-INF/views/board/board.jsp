@@ -31,6 +31,10 @@
       }
       .row.content {height: auto;}
     }
+
+    .new-board-list-container{
+
+    }
   </style>
 
 <body>
@@ -60,7 +64,7 @@
 
     <div class="col-sm-7">
               <div class="row">
-                <div class="col-sm-12">
+                <div class="col-sm-11">
                   <div class="panel panel-default text-left">
                     <div class="panel-body">
                       <p contenteditable="true"> Category</p>
