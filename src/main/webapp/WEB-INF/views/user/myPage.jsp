@@ -49,19 +49,19 @@
 
     <div class="col-sm-9">
       <h4><small>내가 작성한 글</small></h4>
-      <hr>
-          <h2>내가 썼다</h2>
-          <h5><span class="glyphicon glyphicon-time"></span> Post by John Doe, Sep 24, 2015.</h5>
+
     </div>
     <div class="col-sm-9">
-      <hr>
-          <h2>안뇽</h2>
-          <h5><span class="glyphicon glyphicon-time"></span> Post by John Doe, Sep 24, 2015.</h5>
-      <hr>
+      <c:forEach items="${board}" var="boardList">
+          <hr>
+          <h2>${boardList.title}</h2>
+          <h2>${boardList.content}</h2>
+          <h5><span class="glyphicon glyphicon-time"></span> Post by ${boardList.user.username}, ${boardList.user.create_at}.</h5>
+          <hr>
     </div>
   </div>
 </div>
-
+</c:forEach>
 <%@ include file="../layout/footer.jsp"%>
 
 </body>

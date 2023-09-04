@@ -32,9 +32,6 @@
       .row.content {height: auto;}
     }
 
-    .new-board-list-container{
-
-    }
   </style>
 
 <body>

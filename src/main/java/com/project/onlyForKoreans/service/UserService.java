@@ -4,6 +4,7 @@ import com.project.onlyForKoreans.dto.UserDto;
 import com.project.onlyForKoreans.model.Country;
 import com.project.onlyForKoreans.model.RoleType;
 import com.project.onlyForKoreans.model.User;
+import com.project.onlyForKoreans.repository.BoardRepository;
 import com.project.onlyForKoreans.repository.CountryRepository;
 import com.project.onlyForKoreans.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +30,8 @@ public class UserService {
     @Autowired
     private CountryRepository countryRepository;
 
+    @Autowired
+    private BoardRepository boardRepository;
 //    @Transactional
 //    public void join(User user){
 //        String rawPassword = user.getPassword();
@@ -101,5 +104,6 @@ public class UserService {
     public List<Country> findCountry(){
         return countryRepository.findAll();
     }
+
 
 }

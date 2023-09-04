@@ -1,8 +1,11 @@
 package com.project.onlyForKoreans.controller;
 
+import com.project.onlyForKoreans.config.auth.PrincipalDetail;
+import com.project.onlyForKoreans.repository.BoardRepository;
 import com.project.onlyForKoreans.repository.UserRepository;
 import com.project.onlyForKoreans.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,6 +19,8 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private BoardRepository boardRepository;
 
     @GetMapping("/auth/joinForm")
     public String joinForm(Model model){
@@ -42,7 +47,15 @@ public class UserController {
     }
 
     @GetMapping("/user/myPage")
-    public String myPage(){
+    public String myPage(PrincipalDetail detail, Model model){
+        PrincipalDetail user = (PrincipalDetail) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        System.out.println("user:" + user);
+        int userId = (int) user.getUser().getId();
+        System.out.println("user.getUser().getId():" + user.getUser().getId());
+        System.out.println("userId:" + userId);
+
+        model.addAttribute("board", boardRepository.findFilteredBoardsUser(user.getUser().getId()));
+        System.out.println("userRepository.findById(user.getUser().getId())"+boardRepository.findFilteredBoardsUser(user.getUser().getId()));
         return "user/myPage";
     }
     @GetMapping("/user/bookmark")
