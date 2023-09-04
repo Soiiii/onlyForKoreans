@@ -49,19 +49,21 @@
 
     <div class="col-sm-9">
       <h4><small>내가 작성한 글</small></h4>
-
     </div>
+
     <div class="col-sm-9">
       <c:forEach items="${board}" var="boardList">
+        <a href=/board/${boardList.id}>
           <hr>
-          <h2>${boardList.title}</h2>
-          <h2>${boardList.content}</h2>
+          <h4>${boardList.title}</h4>
+          <h5>${boardList.content}</h5>
           <h5><span class="glyphicon glyphicon-time"></span> Post by ${boardList.user.username}, ${boardList.user.create_at}.</h5>
           <hr>
+        </a>
+      </c:forEach>
     </div>
   </div>
 </div>
-</c:forEach>
 <%@ include file="../layout/footer.jsp"%>
 
 </body>
