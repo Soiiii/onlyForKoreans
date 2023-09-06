@@ -49,17 +49,16 @@ public class UserController {
     @GetMapping("/user/myPage")
     public String myPage(PrincipalDetail detail, Model model){
         PrincipalDetail user = (PrincipalDetail) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        System.out.println("user:" + user);
-        int userId = (int) user.getUser().getId();
-        System.out.println("user.getUser().getId():" + user.getUser().getId());
-        System.out.println("userId:" + userId);
 
         model.addAttribute("board", boardRepository.findFilteredBoardsUser(user.getUser().getId()));
         System.out.println("userRepository.findById(user.getUser().getId())"+boardRepository.findFilteredBoardsUser(user.getUser().getId()));
         return "user/myPage";
     }
     @GetMapping("/user/bookmark")
-    public String bookmark(){
+    public String bookmark(Model model){
+        PrincipalDetail user = (PrincipalDetail) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        model.addAttribute("user", userRepository.findById(user.getUser().getId()));
         return "user/bookmark";
     }
     @GetMapping("/user/updateUser")

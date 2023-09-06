@@ -106,4 +106,10 @@ public class UserService {
     }
 
 
+    public void updateUser(User user) {
+        System.out.println("@@@@@SERvice");
+        System.out.println("user:" +user.getId());
+        System.out.println("user:" +user.getEmail());
+        System.out.println("user:" +user.getUsername());
+    }
 }

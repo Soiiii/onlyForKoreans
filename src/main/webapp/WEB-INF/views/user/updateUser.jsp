@@ -55,8 +55,8 @@
     <form>
           <input type="hidden" id="id" value="${principal.user.id}" />
           <div class="col-sm-7">
-            <label for="name">Username:</label>
-            <input type="text" value="${principal.user.name}" class="form-control" placeholder="Enter Username" id="name" readonly>
+            <label for="username">Username:</label>
+            <input type="text" value="${principal.user.username}" class="form-control" placeholder="Enter Username" id="username" readonly>
           <br>
           </div>
 
@@ -84,6 +84,7 @@
   </div>
 
 </div>
+<script src="/js/user.js"></script>
 
 <%@ include file="../layout/footer.jsp"%>
 

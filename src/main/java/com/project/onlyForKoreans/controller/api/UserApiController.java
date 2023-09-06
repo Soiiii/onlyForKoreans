@@ -2,6 +2,7 @@ package com.project.onlyForKoreans.controller.api;
 
 import com.project.onlyForKoreans.dto.ResponseDto;
 import com.project.onlyForKoreans.dto.UserDto;
+import com.project.onlyForKoreans.model.User;
 import com.project.onlyForKoreans.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -30,6 +31,7 @@ public class UserApiController {
 //    }
 
 
+
     @PostMapping("/auth/joinProc")
     public ResponseDto<?> save(@Valid @RequestBody UserDto userdto, Errors errors, Model model){
         System.out.println("userDto:" + userdto);
@@ -50,6 +52,14 @@ public class UserApiController {
         return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);
 
     }
+
+    @PostMapping("/updateUser")
+    public ResponseDto<Integer> updateUser(@RequestBody User user){
+        System.out.println("user:" + user);
+        userService.updateUser(user);
+        return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);
+    }
+
 
     //    @PostMapping("/auth/joinProc")
 //    public ResponseDto<Integer> save(@RequestBody @Valid UserDto userdto, Errors errors, Model model){
