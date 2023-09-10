@@ -2,7 +2,6 @@ package com.project.onlyForKoreans.controller.api;
 
 import com.project.onlyForKoreans.dto.ResponseDto;
 import com.project.onlyForKoreans.dto.UserDto;
-import com.project.onlyForKoreans.model.User;
 import com.project.onlyForKoreans.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -31,19 +30,18 @@ public class UserApiController {
 //    }
 
 
-
     @PostMapping("/auth/joinProc")
-    public ResponseDto<?> save(@Valid @RequestBody UserDto userdto, Errors errors, Model model){
+    public ResponseDto<?> save(@Valid @RequestBody UserDto userdto, Errors errors, Model model) {
         System.out.println("userDto:" + userdto);
         System.out.println("errors:" + errors);
         String errorMessages = null;
         //에러가 날시에 에러 문구 표시
-        if(errors.hasErrors()){
+        if (errors.hasErrors()) {
             Map<String, String> validatorResult = userService.validateHandling(errors);
-            for (String key: validatorResult.keySet()) {
+            for (String key : validatorResult.keySet()) {
                 errorMessages = validatorResult.get(key);
                 System.out.println("key:" + key);
-                System.out.println("validatorResult.get(key):"+validatorResult.get(key));
+                System.out.println("validatorResult.get(key):" + validatorResult.get(key));
             }
             //에러가 날시에 404에러와 함께 errorMessage 전송
             return new ResponseDto<Integer>(HttpStatus.NOT_FOUND.value(), 0, errorMessages);
@@ -54,11 +52,27 @@ public class UserApiController {
     }
 
     @PostMapping("/updateUser")
-    public ResponseDto<Integer> updateUser(@RequestBody User user){
-        System.out.println("user:" + user);
-        userService.updateUser(user);
+    public ResponseDto<Integer> updateUser(@Valid @RequestBody UserDto userdto, Errors errors) {
+        System.out.println("userDto:" + userdto);
+        System.out.println("errors:" + errors);
         return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);
+
     }
+
+
+
+//    // 회원 수정 기능
+//    @PostMapping("/updateUser")
+//    public ResponseDto<Integer> updateUser(@RequestBody User user){
+//        System.out.println("user:" + user);
+//        if(user.getPassword() == null){
+//            return new ResponseDto<Integer>(HttpStatus.NO_CONTENT.value(), 2);
+//        } else{
+//            userService.updateUser(user);
+//        }
+//        System.out.println("@#@#@#@??");
+//        return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);
+//    }
 
 
     //    @PostMapping("/auth/joinProc")

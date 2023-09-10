@@ -62,8 +62,23 @@
 
           <div class="col-sm-7">
             <label for="email">Email address:</label>
-            <input type="email"  value="${principal.user.email}" class="form-control" placeholder="Enter email" id="email">
+            <input type="email"  value="${principal.user.email}" class="form-control" placeholder="Enter email" id="email" readonly>
           <br>
+          </div>
+
+          <div class="col-sm-7">
+          <div class="form-group">
+                <label for="country">Country:</label>
+                    <select class="form-control" id="country" value="${principal.user.country}">
+                        <option value="${object[0].name}" ${principal.user.country.name == object[0].name ? "selected" : ""}>${object[0].name}</option>
+                        <option value="${object[1].name}" ${principal.user.country.name == object[1].name ? "selected" : ""}>${object[1].name}</option>
+                        <option value="${object[2].name}" ${principal.user.country.name == object[2].name ? "selected" : ""}>${object[2].name}</option>
+                        <option value="${object[3].name}" ${principal.user.country.name == object[3].name ? "selected" : ""}>${object[3].name}</option>
+                        <option value="${object[4].name}" ${principal.user.country.name == object[4].name ? "selected" : ""}>${object[4].name}</option>
+                    </select>
+                    <p id="valid_country"></p>
+                <span style="color: red">${valid_country}</span>
+          </div>
           </div>
 
           <div class="col-sm-7">
@@ -87,6 +102,8 @@
 <script src="/js/user.js"></script>
 
 <%@ include file="../layout/footer.jsp"%>
+
+
 
 </body>
 </html>

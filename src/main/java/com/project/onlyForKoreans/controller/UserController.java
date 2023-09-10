@@ -62,7 +62,8 @@ public class UserController {
         return "user/bookmark";
     }
     @GetMapping("/user/updateUser")
-    public String updateUser(){
+    public String updateUser(Model model){
+        model.addAttribute("object", userService.findCountry());
         return "user/updateUser";
     }
 

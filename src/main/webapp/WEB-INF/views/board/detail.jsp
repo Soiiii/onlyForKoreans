@@ -99,10 +99,16 @@
           <br>
 
           <h5><a href=/board/${board.country.name}> ${board.country.name} </a> </h5>
+          <button type="button" class="heart" style="color:pink;">
+                      <i class="bi bi-bookmark-heart-fill"></i> Bookmark
+          </button>
+
           <h2> ${board.title} </h2>
           <h5>
                 <span class="glyphicon glyphicon-time"> </span>
                 Post by ${board.user.username} , ${formattedDate}
+                <i class="bi bi-bookmark-heart"></i> ${board.book_num}
+
           </h5>
           <h5>
                 <span class="label label-success"> ${board.category.name} </span>

@@ -107,9 +107,14 @@ public class UserService {
 
 
     public void updateUser(User user) {
-        System.out.println("@@@@@SERvice");
-        System.out.println("user:" +user.getId());
-        System.out.println("user:" +user.getEmail());
-        System.out.println("user:" +user.getUsername());
+        User originUser = userRepository.findById(user.getId())
+                        .orElseThrow(()->{
+                            return new IllegalArgumentException("해당 아이디 찾기 실패");
+                        });
+        String originPassword = user.getPassword();
+        String encPassword = encoder.encode(originPassword);
+        originUser.setPassword(encPassword);
+
+        userRepository.save(originUser);
     }
 }

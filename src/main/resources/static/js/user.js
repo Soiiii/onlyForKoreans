@@ -101,7 +101,8 @@ let index={
                 id : $("#id").val(),
                 name: $("#username").val(),
                 password: $("#password").val(),
-                email: $("#email").val()
+                email: $("#email").val(),
+                country: $("#country").val()
            };
 
            $.ajax({
@@ -112,15 +113,19 @@ let index={
                dataType:"json" // 요청을 서버로해서 응답이 왔을때 기본적으로 모든것이 문자열(생긴 Json이라면) => javascript object로 변경
            //회원가입 수행을 요청
            }).done(function(resp){
-
+                console.log(resp)
                 //회원가입이 정상적으로 성공하는 실행 하는 함수
-//                alert("회원수정이 완료 되었습니다.");
-                //console.log(resp);
-//                location.href="/";
+                if (resp.status === 200) {
+                    alert("회원수정이 완료되었습니다.");
+                    location.href = "/"; // 홈페이지로 이동하거나 원하는 페이지로 리디렉션할 수 있습니다.
+                } else {
+                    alert("회원수정에 실패했습니다. 오류 메시지: " + resp.data);
+                }
            }).fail(function(error){
                 //회원가입에 실패하면 실행하는 함수
-                alert(JSON.stringify(error));
+                alert("회원수정에 실패했습니다. 오류 메시지: " + JSON.stringify(error));
            });
+          event.preventDefault();
     },
 }
 
