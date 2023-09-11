@@ -83,7 +83,10 @@
 
           <div class="col-sm-7">
             <label for="password">Password:</label>
-            <input type="password" class="form-control" placeholder="Enter password" id="password">
+            <input type="password" class="form-control" placeholder="Enter password" id="password"
+            value="${userDto.password}" required/>
+            <p id="valid_password">${valid_password}</p>
+
           <br>
           <br>
           </div>

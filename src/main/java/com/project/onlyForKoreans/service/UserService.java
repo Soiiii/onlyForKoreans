@@ -106,13 +106,19 @@ public class UserService {
     }
 
 
-    public void updateUser(User user) {
-        User originUser = userRepository.findById(user.getId())
+    public void updateUser(UserDto userDto) {
+        User originUser = userRepository.findByEmail(userDto.getEmail())
                         .orElseThrow(()->{
                             return new IllegalArgumentException("해당 아이디 찾기 실패");
                         });
-        String originPassword = user.getPassword();
+
+        System.out.println("originUser:"+originUser);
+        String originPassword = userDto.getPassword();
         String encPassword = encoder.encode(originPassword);
+
+        Optional<Country> countryObj = countryRepository.findByName(userDto.getCountry());
+
+        originUser.setCountry(countryObj.get());
         originUser.setPassword(encPassword);
 
         userRepository.save(originUser);

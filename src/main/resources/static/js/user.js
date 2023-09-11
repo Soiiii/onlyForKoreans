@@ -119,12 +119,19 @@ let index={
                     alert("회원수정이 완료되었습니다.");
                     location.href = "/"; // 홈페이지로 이동하거나 원하는 페이지로 리디렉션할 수 있습니다.
                 } else {
-                    alert("회원수정에 실패했습니다. 오류 메시지: " + resp.data);
+                  //비밀번호 오류 처리
+                    if(resp.message.includes("비밀번호")){
+                        $("#valid_password").text(resp.message);
+                        $("#valid_password").css('color', 'red');
+                    } else{
+                        $("#valid_password").text("");
+                    }
                 }
-           }).fail(function(error){
-                //회원가입에 실패하면 실행하는 함수
-                alert("회원수정에 실패했습니다. 오류 메시지: " + JSON.stringify(error));
            });
+//           .fail(function(error){
+//                //회원가입에 실패하면 실행하는 함수
+//                alert("회원수정에 실패했습니다. 오류 메시지: " + JSON.stringify(error));
+//           });
           event.preventDefault();
     },
 }

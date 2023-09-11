@@ -55,6 +55,25 @@ public class UserApiController {
     public ResponseDto<Integer> updateUser(@Valid @RequestBody UserDto userdto, Errors errors) {
         System.out.println("userDto:" + userdto);
         System.out.println("errors:" + errors);
+
+        String errorMessages = null;
+        //에러가 날시에 에러 문구 표시
+        if (errors.hasErrors()) {
+            Map<String, String> validatorResult = userService.validateHandling(errors);
+            for (String key : validatorResult.keySet()) {
+                errorMessages = validatorResult.get(key);
+                System.out.println("key:" + key);
+                System.out.println("validatorResult.get(key):" + validatorResult.get(key));
+            }
+            //에러가 날시에 404에러와 함께 errorMessage 전송
+            return new ResponseDto<Integer>(HttpStatus.NOT_FOUND.value(), 0, errorMessages);
+        }
+
+        if(userdto.getPassword() == null){
+            return new ResponseDto<Integer>(HttpStatus.NO_CONTENT.value(), 2);
+        } else{
+            userService.updateUser(userdto);
+        }
         return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);
 
     }
