@@ -63,7 +63,12 @@ public class UserController {
     }
     @GetMapping("/user/updateUser")
     public String updateUser(Model model){
+        PrincipalDetail user = (PrincipalDetail) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        userService.findCounryId(user);
+
+        System.out.println("user:" +user);
         model.addAttribute("object", userService.findCountry());
+
         return "user/updateUser";
     }
 

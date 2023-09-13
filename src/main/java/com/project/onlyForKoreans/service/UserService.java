@@ -1,5 +1,6 @@
 package com.project.onlyForKoreans.service;
 
+import com.project.onlyForKoreans.config.auth.PrincipalDetail;
 import com.project.onlyForKoreans.dto.UserDto;
 import com.project.onlyForKoreans.model.Country;
 import com.project.onlyForKoreans.model.RoleType;
@@ -103,6 +104,20 @@ public class UserService {
 
     public List<Country> findCountry(){
         return countryRepository.findAll();
+    }
+
+    // User country update시에 principalDetail의 user.country를 함께 수정해줌
+    // DB와 값 동기화가 바로 안됨
+    public void findCounryId(PrincipalDetail user){
+        Optional<User> dataUser = userRepository.findById(user.getUser().getId());
+
+        System.out.println("dataUser.get().getCountry():" + dataUser.get().getCountry());
+        user.getUser().setCountry(dataUser.get().getCountry());
+
+        // Clear the authentication cache
+//        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+//        authentication.setAuthenticated(false);
+//        SecurityContextHolder.getContext().setAuthentication(null);
     }
 
 

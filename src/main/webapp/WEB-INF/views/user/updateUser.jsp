@@ -69,7 +69,7 @@
           <div class="col-sm-7">
           <div class="form-group">
                 <label for="country">Country:</label>
-                    <select class="form-control" id="country" value="${principal.user.country}">
+                    <select class="form-control" id="country" value="${principal.user.country.name}">
                         <option value="${object[0].name}" ${principal.user.country.name == object[0].name ? "selected" : ""}>${object[0].name}</option>
                         <option value="${object[1].name}" ${principal.user.country.name == object[1].name ? "selected" : ""}>${object[1].name}</option>
                         <option value="${object[2].name}" ${principal.user.country.name == object[2].name ? "selected" : ""}>${object[2].name}</option>
