@@ -10,6 +10,9 @@ let index={
         $("#btn-update").on("click", ()=>{
             this.update();
         });
+        $("#btn-bookmark").on("click", ()=>{
+            this.bookmark();
+        });
 
         /*
         $(".list-button").on("click", ()=>{
@@ -99,6 +102,25 @@ let index={
             alert(JSON.stringify(error));
         });
     },
+
+    bookmark:function(){
+        let data = {
+            count: $("#count").val(),
+            id: $("#id").val(),
+            title:$("#title").val(),
+        }
+        console.log("count:", count)
+
+        $.ajax({
+            type: "POST",
+            url: "/api/board/bookmark",
+            data: JSON.stringify(data),
+            contentType:"application/json; charset=utf-8",
+            dataType: "json"
+        });
+
+
+    }
 
 
 

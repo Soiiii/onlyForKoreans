@@ -58,4 +58,12 @@ public class BoardApiController {
         return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);
     }
 
+    @PostMapping("/api/board/bookmark")
+    public ResponseDto<Integer> bookmark(@RequestBody BoardDto boardDto){
+        System.out.println("bookmark:" + boardDto);
+
+        System.out.println("bookmark:" + boardDto.getBookmark());
+        return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);
+    }
+
 }

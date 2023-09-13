@@ -92,15 +92,15 @@
           <button class="btn btn-secondary" onclick="history.back()"> 돌아가기 </button>
           <input type="hidden" id="id" value="${board.id}"/>
               <c:if test="${board.user.id == principal.user.id}">
-                  <a href="/board/${board.id}/updateForm" class="btn btn-primary"> 수정 </button></a>
-                  <button id="btn-delete" class="btn btn-primary"> 삭제 </button>
+                  <a href="/board/${board.id}/updateForm" class="btn btn-primary"> Update </button></a>
+                  <button id="btn-delete" class="btn btn-primary"> Delete </button>
               </c:if>
           <br>
           <br>
 
           <h5><a href=/board/${board.country.name}> ${board.country.name} </a> </h5>
-          <button type="button" class="heart" style="color:pink;">
-                      <i class="bi bi-bookmark-heart-fill"></i> Bookmark
+          <button id="btn-bookmark" type="button" class="heart" style="border:none; background-color:white;">
+                      <i class="bi bi-bookmark-heart-fill" style="color: green; border:none; background-color:white;"></i> Bookmark
           </button>
 
           <h2> ${board.title} </h2>
