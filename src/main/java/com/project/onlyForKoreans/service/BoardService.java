@@ -1,13 +1,8 @@
 package com.project.onlyForKoreans.service;
 
 import com.project.onlyForKoreans.dto.BoardDto;
-import com.project.onlyForKoreans.model.Board;
-import com.project.onlyForKoreans.model.Category;
-import com.project.onlyForKoreans.model.Country;
-import com.project.onlyForKoreans.model.User;
-import com.project.onlyForKoreans.repository.BoardRepository;
-import com.project.onlyForKoreans.repository.CategoryRepository;
-import com.project.onlyForKoreans.repository.CountryRepository;
+import com.project.onlyForKoreans.model.*;
+import com.project.onlyForKoreans.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -27,6 +22,12 @@ public class BoardService {
 
     @Autowired
     private CategoryRepository categoryRepository;
+
+    @Autowired
+    private BookmarkRepository bookmarkRepository;
+
+    @Autowired
+    private UserRepository userRepository;
 
     // 글 작성
     @Transactional
@@ -69,6 +70,31 @@ public class BoardService {
 
         System.out.println(board);
         boardRepository.save(board);
+    }
+
+    //북마크 등록
+    public void addBookmark(Long boardId, Long userId){
+        System.out.println("boardId :" + boardId);
+        System.out.println("userId :" + userId);
+        System.out.println("!@@@@@Service");
+
+        Board board = boardRepository.findById(boardId)
+                .orElseThrow(()->{
+                    return new IllegalArgumentException("글 찾기 실패: Fail to find board id");
+                });
+
+        User user = userRepository.findById(userId)
+                .orElseThrow(()->{
+                      return new IllegalArgumentException("회원 찾기 실패: Fail to find user id");
+                });
+
+//        System.out.println("board:" + board);
+//        System.out.println("user:" +user);
+        Bookmark bookmark = new Bookmark();
+        bookmark.setBoard(board);
+        bookmark.setUser(user);
+
+        bookmarkRepository.save(bookmark);
     }
 
     public List<Country> findCountry() {

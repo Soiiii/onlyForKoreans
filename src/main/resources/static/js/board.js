@@ -117,8 +117,14 @@ let index={
             data: JSON.stringify(data),
             contentType:"application/json; charset=utf-8",
             dataType: "json"
-        });
-
+        })
+//        .done(function(resp){
+//            alert("즐겨찾기 완료");
+//            location.href="/board/" + board_id;
+//        }).fail(function(error){
+//            alert(JSON.stringify(error));
+//        })
+        ;
 
     }
 
