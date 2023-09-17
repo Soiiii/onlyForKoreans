@@ -105,11 +105,11 @@ let index={
 
     bookmark:function(){
         let data = {
-            count: $("#count").val(),
-            id: $("#id").val(),
-            title:$("#title").val(),
+            book_num: $("#book_num").val(),
+            board_id: $("#board_id").val(),
+            user_id: $("#user_id").val(),
         }
-        console.log("count:", count)
+        console.log("data:", data)
 
         $.ajax({
             type: "POST",

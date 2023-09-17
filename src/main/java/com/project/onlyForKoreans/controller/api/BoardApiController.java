@@ -2,6 +2,7 @@ package com.project.onlyForKoreans.controller.api;
 
 import com.project.onlyForKoreans.config.auth.PrincipalDetail;
 import com.project.onlyForKoreans.dto.BoardDto;
+import com.project.onlyForKoreans.dto.BookmarkDto;
 import com.project.onlyForKoreans.dto.ResponseDto;
 import com.project.onlyForKoreans.model.Board;
 import com.project.onlyForKoreans.model.Category;
@@ -58,11 +59,10 @@ public class BoardApiController {
         return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);
     }
 
+    //북마크 추가, 삭제, 조회
     @PostMapping("/api/board/bookmark")
-    public ResponseDto<Integer> bookmark(@RequestBody BoardDto boardDto){
-        System.out.println("bookmark:" + boardDto);
-
-        System.out.println("bookmark:" + boardDto.getBookmark());
+    public ResponseDto<Integer> bookmark(@RequestBody BookmarkDto bookmarkDto){
+        System.out.println("bookmark:" + bookmarkDto);
         return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);
     }
 

@@ -2,8 +2,7 @@ package com.project.onlyForKoreans.dto;
 
 import com.project.onlyForKoreans.model.Board;
 import com.project.onlyForKoreans.model.Bookmark;
-import com.project.onlyForKoreans.model.Category;
-import com.project.onlyForKoreans.model.Country;
+import com.project.onlyForKoreans.model.User;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -13,15 +12,12 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class BoardDto {
+public class BookmarkDto {
     private Board board;
-    private String title;
-    private String content;
-//    private int book_num;
-
-    private Country country;
-    private Category category;
+    private User user;
     private Bookmark bookmark;
 
-
+    private Long user_id;
+    private Long board_id;
+    private Long book_num;
 }

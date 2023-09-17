@@ -90,7 +90,11 @@
           <hr>
 
           <button class="btn btn-secondary" onclick="history.back()"> 돌아가기 </button>
-          <input type="hidden" id="id" value="${board.id}"/>
+          <input type="hidden" id="board_id" value="${board.id}"/>
+          <input type="hidden" id="book_num" value="${board.book_num}"/>
+          <input type="hidden" id="user_id" value="${board.user.id}"/>
+          ${principal.user.id}
+
               <c:if test="${board.user.id == principal.user.id}">
                   <a href="/board/${board.id}/updateForm" class="btn btn-primary"> Update </button></a>
                   <button id="btn-delete" class="btn btn-primary"> Delete </button>
@@ -107,7 +111,7 @@
           <h5>
                 <span class="glyphicon glyphicon-time"> </span>
                 Post by ${board.user.username} , ${formattedDate}
-                <i class="bi bi-bookmark-heart"></i> ${board.book_num}
+                <i class="bi bi-bookmark-heart">${board.book_num}</i>
 
           </h5>
           <h5>
