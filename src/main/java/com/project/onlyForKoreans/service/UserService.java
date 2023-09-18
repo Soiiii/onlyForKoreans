@@ -75,7 +75,6 @@ public class UserService {
         user.setCountry(country);
         userRepository.save(user);
 
-        System.out.println("RawPassword:" +rawPassword);
 //        System.out.println("EncPassword:" +encPassword);
 
     }
@@ -111,7 +110,6 @@ public class UserService {
     public void findCounryId(PrincipalDetail user){
         Optional<User> dataUser = userRepository.findById(user.getUser().getId());
 
-        System.out.println("dataUser.get().getCountry():" + dataUser.get().getCountry());
         user.getUser().setCountry(dataUser.get().getCountry());
 
         // Clear the authentication cache
@@ -127,7 +125,6 @@ public class UserService {
                             return new IllegalArgumentException("해당 아이디 찾기 실패");
                         });
 
-        System.out.println("originUser:"+originUser);
         String originPassword = userDto.getPassword();
         String encPassword = encoder.encode(originPassword);
 

@@ -32,7 +32,7 @@ public class BoardService {
     // 글 작성
     @Transactional
     public Board write(BoardDto boardDto, User user, Optional<Country> country, Optional<Category> category){
-        System.out.println("category:" +category + " country:" + country);
+//        System.out.println("category:" +category + " country:" + country);
         Board board = Board.builder()
             .title(boardDto.getTitle())
             .content(boardDto.getContent())
@@ -48,7 +48,7 @@ public class BoardService {
 //        // Save or update the board entity in the database
 //        board.setUpdate_at(new Timestamp(System.currentTimeMillis()));
 
-        System.out.println("board:"+board);
+//        System.out.println("board:"+board);
         Board boardInfo = boardRepository.save(board);
         return boardInfo;
     }
@@ -68,16 +68,11 @@ public class BoardService {
         board.setTitle(requestBoard.getTitle());
         board.setContent(requestBoard.getContent());
 
-        System.out.println(board);
         boardRepository.save(board);
     }
 
     //북마크 등록
     public void addBookmark(Long boardId, Long userId){
-        System.out.println("boardId :" + boardId);
-        System.out.println("userId :" + userId);
-        System.out.println("!@@@@@Service");
-
         Board board = boardRepository.findById(boardId)
                 .orElseThrow(()->{
                     return new IllegalArgumentException("글 찾기 실패: Fail to find board id");
@@ -88,14 +83,33 @@ public class BoardService {
                       return new IllegalArgumentException("회원 찾기 실패: Fail to find user id");
                 });
 
-//        System.out.println("board:" + board);
-//        System.out.println("user:" +user);
         Bookmark bookmark = new Bookmark();
         bookmark.setBoard(board);
         bookmark.setUser(user);
 
+        if(bookmarkRepository.findUserAndBoard(boardId, userId).isEmpty()){
+            // 북마크에 값이 없다면 저장
+            addBookmark(bookmark);
+        } else{
+            //북마크에 값이 이미 있다면 삭제
+//            bookmarkRepository.deleteByBoardAndUser(boardId, userId);
+            deleteBookmark(boardId, userId);
+
+        }
+    }
+
+    // 즐겨찾기 삭제
+    @Transactional
+    public void deleteBookmark(Long boardId, Long userId){
+        bookmarkRepository.deleteByBoardAndUser(boardId, userId);
+    }
+
+    //즐겨찾기 등록
+    @Transactional
+    public void addBookmark(Bookmark bookmark){
         bookmarkRepository.save(bookmark);
     }
+
 
     public List<Country> findCountry() {
         return countryRepository.findAll();

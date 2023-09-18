@@ -26,7 +26,6 @@ public class BoardController {
     public String index(Model model)
 //    public String index(Model model, @PageableDefault(size=3, sort="id", direction= Sort.Direction.DESC) Pageable pageable)
     {
-        System.out.println("boardService.list():" +boardService.list());
         model.addAttribute("boards", boardService.list());
 //        model.addAttribute("boards", boardService.list(pageable));
         return "index";
@@ -45,21 +44,16 @@ public class BoardController {
     // Client에서 버튼을 클릭할시 보여질 해당되는 리스트
     @GetMapping("/category")
     public String showPostsByCategory(@RequestParam(required = false) Long category, @RequestParam(required = false) Long country, Model model) {
-        System.out.println("category:" + category);
-        System.out.println("country:" + country);
         List<Board> boardsList;
 
         // category, country 값이 null일때 (전체 리스트값 출력)
         if(category == null && country == null){
             //전체 리스트 출력
             boardsList = boardService.list();
-            System.out.println("All boardsList:" + boardsList);
         } else {
             boardsList = boardRepository.findFilteredBoards(category, country);
-            System.out.println("Selected boardsList:" + boardsList);
         }
 
-        System.out.println("boardsList:"+boardsList);
         // 필터링된 글 목록을 HTML로 변환하여 반환
         model.addAttribute("boardsList", boardsList);
         return "board/board";

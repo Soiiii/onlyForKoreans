@@ -25,7 +25,6 @@ public class UserController {
     @GetMapping("/auth/joinForm")
     public String joinForm(Model model){
         model.addAttribute("object", userService.findCountry());
-        System.out.println("country 종류: " + userService.findCountry());
 
         return "user/joinForm";
     }
@@ -34,10 +33,8 @@ public class UserController {
     public String loginForm(@RequestParam(value = "error", required = false) String error,
                             @RequestParam(value = "exception", required = false) String exception,
                             Model model){
-        System.out.println("@@@@@loginform");
         model.addAttribute("error", error);
         model.addAttribute("exception", exception);
-        System.out.println("error?");
         return "user/loginForm";
     }
 
@@ -51,7 +48,6 @@ public class UserController {
         PrincipalDetail user = (PrincipalDetail) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
         model.addAttribute("board", boardRepository.findFilteredBoardsUser(user.getUser().getId()));
-        System.out.println("userRepository.findById(user.getUser().getId())"+boardRepository.findFilteredBoardsUser(user.getUser().getId()));
         return "user/myPage";
     }
     @GetMapping("/user/bookmark")
@@ -66,7 +62,6 @@ public class UserController {
         PrincipalDetail user = (PrincipalDetail) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         userService.findCounryId(user);
 
-        System.out.println("user:" +user);
         model.addAttribute("object", userService.findCountry());
 
         return "user/updateUser";

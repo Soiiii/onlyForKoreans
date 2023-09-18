@@ -32,13 +32,10 @@ public class BoardApiController {
     @PostMapping("/api/board")
     private ResponseDto<Integer> save (@RequestBody BoardDto boardDto,
                                        @AuthenticationPrincipal PrincipalDetail principal){
-        System.out.println("@@Controller");
-
         String countryName = boardDto.getCountry().getName();
         String categoryName = boardDto.getCategory().getName();
         Optional<Country> country = countryRepository.findByName(countryName);
-        Optional<Category> category = categoryRepository.findByName(categoryName);System.out.println("country:" +country + " category:" +category);
-        System.out.println("boardDto:" + boardDto);
+        Optional<Category> category = categoryRepository.findByName(categoryName);
 
         boardService.write(boardDto, principal.getUser(), country, category);
 
@@ -62,7 +59,6 @@ public class BoardApiController {
     //북마크 추가, 삭제, 조회
     @PostMapping("/api/board/bookmark")
     public ResponseDto<Integer> bookmark(@RequestBody BookmarkDto bookmarkDto){
-        System.out.println("bookmark:" + bookmarkDto);
         boardService.addBookmark(bookmarkDto.getBoard_id(), bookmarkDto.getUser_id());
         return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);
     }
