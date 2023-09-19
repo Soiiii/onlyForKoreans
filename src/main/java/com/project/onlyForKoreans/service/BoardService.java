@@ -90,23 +90,25 @@ public class BoardService {
         if(bookmarkRepository.findUserAndBoard(boardId, userId).isEmpty()){
             // 북마크에 값이 없다면 저장
             addBookmark(bookmark);
-        } else{
+        }
+//        else{
             //북마크에 값이 이미 있다면 삭제
 //            bookmarkRepository.deleteByBoardAndUser(boardId, userId);
-            deleteBookmark(boardId, userId);
-
-        }
+//            deleteBookmark(boardId, userId);
+//        }
     }
 
-    // 즐겨찾기 삭제
+    //즐겨찾기 삭제
     @Transactional
     public void deleteBookmark(Long boardId, Long userId){
+        System.out.println("delete");
         bookmarkRepository.deleteByBoardAndUser(boardId, userId);
     }
 
     //즐겨찾기 등록
     @Transactional
     public void addBookmark(Bookmark bookmark){
+        System.out.println("add");
         bookmarkRepository.save(bookmark);
     }
 

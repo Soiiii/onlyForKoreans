@@ -12,7 +12,7 @@ public interface BookmarkRepository extends JpaRepository<Bookmark, Integer> {
     List<Bookmark> findUserAndBoard(Long board, Long user);
 
     @Modifying
-    @Query("DELETE FROM Bookmark b WHERE b.board.id = :board AND b.user.id = :user")
+    @Query("DELETE FROM Bookmark WHERE board.id = :board AND user.id = :user")
     void deleteByBoardAndUser(Long board, Long user);
 
 }
