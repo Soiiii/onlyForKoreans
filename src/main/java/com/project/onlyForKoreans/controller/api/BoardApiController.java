@@ -52,9 +52,19 @@ public class BoardApiController {
     // 글 삭제
     @DeleteMapping("/api/board/{id}")
     private ResponseDto<Integer> deleteById(@PathVariable Long id){
+
         boardService.delete(id);
         return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);
     }
+
+    //북마크 추가
+    @PostMapping("/api/board/bookmark")
+    public ResponseDto<Integer> bookmark(@RequestBody BookmarkDto bookmarkDto){
+        System.out.println("controller");
+        boardService.bookmarkBoth(bookmarkDto.getBoard_id(), bookmarkDto.getUser_id());
+        return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);
+    }
+
 
     //북마크 추가
     @PostMapping("/api/board/bookmark/add")

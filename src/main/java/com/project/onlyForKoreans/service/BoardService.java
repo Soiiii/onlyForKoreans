@@ -71,6 +71,34 @@ public class BoardService {
         boardRepository.save(board);
     }
 
+
+    //북마크 등록, 삭제
+    public String bookmarkBoth(Long boardId, Long userId) {
+        System.out.println("Service");
+        Board board = boardRepository.findById(boardId)
+                .orElseThrow(()->{
+                    return new IllegalArgumentException("글 상세보기 실패: 아이디 찾기 실패");
+                });
+        User user = userRepository.findById(userId)
+                .orElseThrow(()->{
+                    return new IllegalArgumentException("유저 찾기 실패: 아이디 찾기 실패");
+                });
+        Bookmark bookmark = new Bookmark();
+        bookmark.setBoard(board);
+        bookmark.setUser(user);
+
+        if(bookmarkRepository.findUserAndBoard(boardId, userId).isEmpty()){
+            System.out.println("add bookmark");
+            addBookmark(bookmark);
+        } else{
+            deleteBookmark(boardId, userId);
+
+        }
+        return null;
+//        Bookmark bookmark = bookmarkRepository.
+    }
+
+
     //북마크 등록
     public void addBookmark(Long boardId, Long userId){
         Board board = boardRepository.findById(boardId)
@@ -143,4 +171,16 @@ public class BoardService {
                 new IllegalStateException("해당 게시물이 존재하지 않습니다."));
         board.setCount(board.getCount());
     }
+
+    public String bookmark(Long id) {
+            Board board = boardRepository.findById(id)
+                .orElseThrow(()->{
+                    return new IllegalArgumentException("글 상세보기 실패: 아이디 찾기 실패");
+                });
+
+        return null;
+//        Bookmark bookmark = bookmarkRepository.
+    }
+
+
 }

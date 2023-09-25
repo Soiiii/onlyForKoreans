@@ -73,6 +73,7 @@ public class BoardController {
         model.addAttribute("board", boardService.details(id));
         model.addAttribute("country", boardService.findCountry());
         model.addAttribute("category", boardService.findCategory());
+        model.addAttribute("bookmarkYN", boardService.bookmark(id));
 
         return "board/detail";
     }
@@ -104,39 +105,36 @@ public class BoardController {
 //        model.addAttribute("boardsList", boardsList);
 //        return "board/board";
 //    }
-
-
-
-
-    @GetMapping({"/board/Thailand"})
-    public String boardThailand()
-    {
-        return "/board/Thailand";
-    }
-
-    @GetMapping({"/board/Vietnam"})
-    public String boardVietnam()
-    {
-        return "/board/Vietnam";
-    }
-
-    @GetMapping({"/board/Singapore"})
-    public String boardSingapore()
-    {
-        return "/board/Singapore";
-    }
-
-    @GetMapping({"/board/China"})
-    public String boardChina()
-    {
-        return "/board/China";
-    }
-
-    @GetMapping({"/board/Japan"})
-    public String boardJapan()
-    {
-        return "/board/Japan";
-    }
+//
+//    @GetMapping({"/board/Thailand"})
+//    public String boardThailand()
+//    {
+//        return "/board/Thailand";
+//    }
+//
+//    @GetMapping({"/board/Vietnam"})
+//    public String boardVietnam()
+//    {
+//        return "/board/Vietnam";
+//    }
+//
+//    @GetMapping({"/board/Singapore"})
+//    public String boardSingapore()
+//    {
+//        return "/board/Singapore";
+//    }
+//
+//    @GetMapping({"/board/China"})
+//    public String boardChina()
+//    {
+//        return "/board/China";
+//    }
+//
+//    @GetMapping({"/board/Japan"})
+//    public String boardJapan()
+//    {
+//        return "/board/Japan";
+//    }
 
     @GetMapping({"/notice"})
     public String notice()
