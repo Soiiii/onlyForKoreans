@@ -93,7 +93,6 @@
           <input type="hidden" id="board_id" value="${board.id}"/>
           <input type="hidden" id="book_num" value="${board.book_num}"/>
           <input type="hidden" id="user_id" value="${board.user.id}"/>
-          ${principal.user.id}
 
               <c:if test="${board.user.id == principal.user.id}">
                   <a href="/board/${board.id}/updateForm" class="btn btn-primary"> Update </button></a>

@@ -57,7 +57,7 @@ public class BoardApiController {
         return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);
     }
 
-    //북마크 추가
+    //북마크 추가, 삭제 기능
     @PostMapping("/api/board/bookmark")
     public ResponseDto<Integer> bookmark(@RequestBody BookmarkDto bookmarkDto){
         System.out.println("controller");
@@ -66,19 +66,19 @@ public class BoardApiController {
     }
 
 
-    //북마크 추가
-    @PostMapping("/api/board/bookmark/add")
-    public ResponseDto<Integer> bookmarkAdd(@RequestBody BookmarkDto bookmarkDto){
-        boardService.addBookmark(bookmarkDto.getBoard_id(), bookmarkDto.getUser_id());
-        return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);
-    }
+    //북마크 추가 기능
+//    @PostMapping("/api/board/bookmark/add")
+//    public ResponseDto<Integer> bookmarkAdd(@RequestBody BookmarkDto bookmarkDto){
+//        boardService.addBookmark(bookmarkDto.getBoard_id(), bookmarkDto.getUser_id());
+//        return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);
+//    }
 
-    //북마크 삭제
-    @PostMapping("/api/board/bookmark/delete")
-    public ResponseDto<Integer> bookmarkDelete(@RequestBody BookmarkDto bookmarkDto){
-        boardService.deleteBookmark(bookmarkDto.getBoard_id(), bookmarkDto.getUser_id());
-        return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);
-    }
+    //북마크 삭제 기능
+//    @PostMapping("/api/board/bookmark/delete")
+//    public ResponseDto<Integer> bookmarkDelete(@RequestBody BookmarkDto bookmarkDto){
+//        boardService.deleteBookmark(bookmarkDto.getBoard_id(), bookmarkDto.getUser_id());
+//        return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);
+//    }
 
 
 }
