@@ -73,7 +73,7 @@ public class BoardService {
 
 
     //북마크 등록, 삭제
-    public String bookmarkBoth(Long boardId, Long userId) {
+    public int bookmarkBoth(Long boardId, Long userId) {
         System.out.println("Service");
         Board board = boardRepository.findById(boardId)
                 .orElseThrow(()->{
@@ -87,14 +87,16 @@ public class BoardService {
         bookmark.setBoard(board);
         bookmark.setUser(user);
 
+        int status ;
+
         if(bookmarkRepository.findUserAndBoard(boardId, userId).isEmpty()){
-            System.out.println("add bookmark");
             addBookmark(bookmark);
+            status = 1;
         } else{
             deleteBookmark(boardId, userId);
-
+            status = 0;
         }
-        return null;
+        return status;
 //        Bookmark bookmark = bookmarkRepository.
     }
 

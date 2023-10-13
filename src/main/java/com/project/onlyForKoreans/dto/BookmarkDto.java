@@ -17,4 +17,5 @@ public class BookmarkDto {
     private Long user_id;
     private Long board_id;
     private Long book_num;
+    private int status;
 }

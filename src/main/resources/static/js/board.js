@@ -119,8 +119,13 @@ let index={
             dataType: "json"
         })
         .done(function(resp){
-            alert("즐겨찾기 완료");
-            console.log($("#board_id").val());
+            alert(resp.data);
+            if(resp.data == 1){
+                alert("즐겨찾기 완료");
+            } else if(resp.data ==0){
+                alert("즐겨찾기 취소 완료");
+            }
+
             location.href="/board/" + document.getElementById("board_id").value;
         }).fail(function(error){
             alert(JSON.stringify(error));
