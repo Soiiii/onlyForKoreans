@@ -2,23 +2,20 @@ package com.project.onlyForKoreans.service;
 
 import com.project.onlyForKoreans.config.auth.PrincipalDetail;
 import com.project.onlyForKoreans.dto.UserDto;
-import com.project.onlyForKoreans.model.Country;
-import com.project.onlyForKoreans.model.RoleType;
-import com.project.onlyForKoreans.model.User;
+import com.project.onlyForKoreans.model.*;
 import com.project.onlyForKoreans.repository.BoardRepository;
+import com.project.onlyForKoreans.repository.BookmarkRepository;
 import com.project.onlyForKoreans.repository.CountryRepository;
 import com.project.onlyForKoreans.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.Errors;
 import org.springframework.validation.FieldError;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 public class UserService {
@@ -33,6 +30,9 @@ public class UserService {
 
     @Autowired
     private BoardRepository boardRepository;
+
+    @Autowired
+    private BookmarkRepository bookmarkRepository;
 //    @Transactional
 //    public void join(User user){
 //        String rawPassword = user.getPassword();
@@ -134,5 +134,23 @@ public class UserService {
         originUser.setPassword(encPassword);
 
         userRepository.save(originUser);
+    }
+
+    public List<Board> findBookmark() {
+        PrincipalDetail user = (PrincipalDetail) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        Long userId = user.getUser().getId();
+
+        List<Bookmark> bookmarkListFromQuery = bookmarkRepository.findUser(userId);
+        List<Board> boardList = new ArrayList<>();
+
+        if(bookmarkListFromQuery != null){
+            for (Bookmark bookmark: bookmarkListFromQuery) {
+                Board board = bookmark.getBoard();
+                if(board != null){
+                    boardList.add(board);
+                }
+            }
+        }
+        return boardList;
     }
 }

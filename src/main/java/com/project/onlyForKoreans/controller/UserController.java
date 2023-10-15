@@ -14,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -62,23 +63,24 @@ public class UserController {
     @GetMapping("/user/bookmark")
     public String bookmark(Model model){
         PrincipalDetail user = (PrincipalDetail) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-//        model.addAttribute("user", userRepository.findById(user.getUser().getId()));
         Long userId = user.getUser().getId();
 
         List<Bookmark> bookmarkListFromQuery = bookmarkRepository.findUser(userId);
+        List<Board> boardList = new ArrayList<>();
+
         System.out.println("bookmarkListFromQuery:" + bookmarkListFromQuery);
         System.out.println("bookmarkListFromQuery.get(0).getBoard():" +bookmarkListFromQuery.get(0).getBoard());
         System.out.println("bookmarkListFromQuery.get(1).getBoard():" +bookmarkListFromQuery.get(1).getBoard());
-        Board board = null;
-        for (int i=0; i<bookmarkListFromQuery.size(); i++)
-            board = bookmarkListFromQuery.get(i).getBoard();
-//            List<Board> boardList = board.setBookmarkList();
-//        Optional<Bookmark> bookmarkList = bookmarkRepository.findByUser(userId);
 
-//        System.out.println("bookmarkList:"+bookmarkList);
-        for (int i=0; i<bookmarkListFromQuery.size(); i++)
-            model.addAttribute("bookmark", bookmarkListFromQuery.get(i).getBoard());
+        for (int ii=0; ii<bookmarkListFromQuery.size(); ii++){
+            bookmarkListFromQuery.get(ii).getBoard();
+            boardList.add(bookmarkListFromQuery.get(ii).getBoard());
+        }
 
+        System.out.println("bookmarkList:"+boardList);
+
+
+        model.addAttribute("bookmark", userService.findBookmark());
         return "user/bookmark";
     }
 
@@ -88,7 +90,6 @@ public class UserController {
         userService.findCounryId(user);
 
         model.addAttribute("object", userService.findCountry());
-
         return "user/updateUser";
     }
 

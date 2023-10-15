@@ -50,56 +50,29 @@
     <div class="col-sm-9">
       <h4><small>BOOKMARK</small></h4>
       <hr>
-asdfadf
-${bookmark}
     </div>
-  <div class="row">
-    <div class="col-sm-4">
-        <div class="well">
-          <div class="title">
-           <h7>제목:Hi</h7>
-          </div>
-          <div class="country">
-           <p>베트남</p>
-          </div>
-          <div class="view">
-           <p>view: 3</p>
-          </div>
-          <div class="comment">
-           <p>comment: 3</p>
-          </div>
-          <div class="bookmark">
-           <p>bookmark: 3</p>
-          </div>
-          <div class="date">
-           <p>Date: 2023/07/02</p>
-          </div>
-        </div>
-    </div>
-    <div class="col-sm-4">
-        <div class="well">
-          <div class="title">
-           <h7>제목:Hi</h7>
-          </div>
-          <div class="country">
-           <p>베트남</p>
-          </div>
-          <div class="view">
-           <p>view: 3</p>
-          </div>
-          <div class="comment">
-           <p>comment: 3</p>
-          </div>
-          <div class="bookmark">
-           <p>bookmark: 3</p>
-          </div>
-          <div class="date">
-           <p>Date: 2023/07/02</p>
-          </div>
-        </div>
-    </div>
-  </div>
 
+  <c:forEach items="${bookmark}" var="bookmarkList">
+    <a href=/board/${bookmarkList.id}>
+      <div class="row">
+        <div class="col-sm-4">
+            <div class="well">
+              <div class="title">
+               <h7>제목 : ${bookmarkList.title}</h7>
+              </div>
+              <div class="country">
+               <p>${bookmarkList.country.name}</p>
+              </div>
+              <div class="content">
+               <p>${bookmarkList.content}</p>
+              </div>
+              <div class="date">
+               <p>${bookmarkList.create_at}</p>
+            </div>
+        </div>
+      </div>
+    </a>
+  </c:forEach>
 
 </div>
 
