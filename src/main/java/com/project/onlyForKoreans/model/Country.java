@@ -39,4 +39,12 @@ public class Country {
 //    @JoinColumn(name="userId")
 //    private User user;
 
+
+    @Override
+    public String toString() {
+        return "Country{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
+    }
 }

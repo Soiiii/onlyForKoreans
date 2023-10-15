@@ -32,16 +32,12 @@ public class UserApiController {
 
     @PostMapping("/auth/joinProc")
     public ResponseDto<?> save(@Valid @RequestBody UserDto userdto, Errors errors, Model model) {
-        System.out.println("userDto:" + userdto);
-        System.out.println("errors:" + errors);
         String errorMessages = null;
         //에러가 날시에 에러 문구 표시
         if (errors.hasErrors()) {
             Map<String, String> validatorResult = userService.validateHandling(errors);
             for (String key : validatorResult.keySet()) {
                 errorMessages = validatorResult.get(key);
-                System.out.println("key:" + key);
-                System.out.println("validatorResult.get(key):" + validatorResult.get(key));
             }
             //에러가 날시에 404에러와 함께 errorMessage 전송
             return new ResponseDto<Integer>(HttpStatus.NOT_FOUND.value(), 0, errorMessages);
@@ -53,17 +49,12 @@ public class UserApiController {
 
     @PostMapping("/updateUser")
     public ResponseDto<Integer> updateUser(@Valid @RequestBody UserDto userdto, Errors errors) {
-        System.out.println("userDto:" + userdto);
-        System.out.println("errors:" + errors);
-
         String errorMessages = null;
         //에러가 날시에 에러 문구 표시
         if (errors.hasErrors()) {
             Map<String, String> validatorResult = userService.validateHandling(errors);
             for (String key : validatorResult.keySet()) {
                 errorMessages = validatorResult.get(key);
-                System.out.println("key:" + key);
-                System.out.println("validatorResult.get(key):" + validatorResult.get(key));
             }
             //에러가 날시에 404에러와 함께 errorMessage 전송
             return new ResponseDto<Integer>(HttpStatus.NOT_FOUND.value(), 0, errorMessages);

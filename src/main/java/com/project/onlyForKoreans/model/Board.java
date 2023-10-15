@@ -62,4 +62,19 @@ public class Board {
 //    public void updateCount(int count){
 //        this.count = count;
 //    }
+
+
+    @Override
+    public String toString() {
+        return "Board{" +
+                "id=" + id +
+                ", book_num=" + book_num +
+                ", status=" + status +
+                ", title='" + title + '\'' +
+                ", content='" + content + '\'' +
+                ", count=" + count +
+                ", create_at=" + create_at +
+                ", update_at=" + update_at +
+                '}';
+    }
 }

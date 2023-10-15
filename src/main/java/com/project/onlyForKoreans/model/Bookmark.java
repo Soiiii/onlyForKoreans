@@ -24,4 +24,11 @@ public class Bookmark {
     @ManyToOne
     @JoinColumn(name="userId")
     private User user;
+
+    @Override
+    public String toString() {
+        return "Bookmark{" +
+                "id=" + id +
+                '}';
+    }
 }

@@ -40,4 +40,17 @@ public class User  {
     @CreationTimestamp
     private Timestamp create_at;
 
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", gender=" + gender +
+                ", status=" + status +
+                ", role=" + role +
+                ", create_at=" + create_at +
+                '}';
+    }
 }

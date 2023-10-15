@@ -102,36 +102,35 @@ public class BoardService {
 
 
     //북마크 등록
-    public void addBookmark(Long boardId, Long userId){
-        Board board = boardRepository.findById(boardId)
-                .orElseThrow(()->{
-                    return new IllegalArgumentException("글 찾기 실패: Fail to find board id");
-                });
-
-        User user = userRepository.findById(userId)
-                .orElseThrow(()->{
-                      return new IllegalArgumentException("회원 찾기 실패: Fail to find user id");
-                });
-
-        Bookmark bookmark = new Bookmark();
-        bookmark.setBoard(board);
-        bookmark.setUser(user);
-
-        if(bookmarkRepository.findUserAndBoard(boardId, userId).isEmpty()){
-            // 북마크에 값이 없다면 저장
-            addBookmark(bookmark);
-        }
+//    public void addBookmark(Long boardId, Long userId){
+//        Board board = boardRepository.findById(boardId)
+//                .orElseThrow(()->{
+//                    return new IllegalArgumentException("글 찾기 실패: Fail to find board id");
+//                });
+//
+//        User user = userRepository.findById(userId)
+//                .orElseThrow(()->{
+//                      return new IllegalArgumentException("회원 찾기 실패: Fail to find user id");
+//                });
+//
+//        Bookmark bookmark = new Bookmark();
+//        bookmark.setBoard(board);
+//        bookmark.setUser(user);
+//
+//        if(bookmarkRepository.findUserAndBoard(boardId, userId).isEmpty()){
+//            // 북마크에 값이 없다면 저장
+//            addBookmark(bookmark);
+//        }
 //        else{
             //북마크에 값이 이미 있다면 삭제
 //            bookmarkRepository.deleteByBoardAndUser(boardId, userId);
 //            deleteBookmark(boardId, userId);
 //        }
-    }
+//    }
 
     //즐겨찾기 삭제
     @Transactional
     public void deleteBookmark(Long boardId, Long userId){
-        System.out.println("delete");
         bookmarkRepository.deleteByBoardAndUser(boardId, userId);
     }
 

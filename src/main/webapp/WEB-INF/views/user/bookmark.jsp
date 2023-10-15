@@ -42,7 +42,7 @@
       <h4>MY PAGE</h4>
       <ul class="nav nav-pills nav-stacked">
         <li><a href="/user/updateUser">회원정보 수정</a></li>
-      </ul><br>
+      </ul><br>ß
 
     </div>
 
@@ -50,6 +50,8 @@
     <div class="col-sm-9">
       <h4><small>BOOKMARK</small></h4>
       <hr>
+asdfadf
+${bookmark}
     </div>
   <div class="row">
     <div class="col-sm-4">
