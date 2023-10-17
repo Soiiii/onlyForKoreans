@@ -38,23 +38,26 @@
       <ul class="nav nav-pills nav-stacked">
         <li><a href="/user/myPage">내가 작성한 글</a></li>
         <li class="active"><a href="/user/bookmark">BOOKMARK</a></li>
-      </ul><br>
+      </ul>
+      <br>
       <h4>MY PAGE</h4>
       <ul class="nav nav-pills nav-stacked">
         <li><a href="/user/updateUser">회원정보 수정</a></li>
-      </ul><br>ß
+      </ul><br>
 
     </div>
-
 
     <div class="col-sm-9">
       <h4><small>BOOKMARK</small></h4>
       <hr>
     </div>
 
-  <c:forEach items="${bookmark}" var="bookmarkList">
+<div id="new-board-list-container">
+  <c:forEach items="${bookmark}" var="bookmarkList" varStatus="status">
+    <c:if test="${status.index % 2 == 0}">
+        <div class="row">
+    </c:if>
     <a href=/board/${bookmarkList.id}>
-      <div class="row">
         <div class="col-sm-4">
             <div class="well">
               <div class="title">
@@ -72,8 +75,11 @@
         </div>
       </div>
     </a>
+    <c:if test="${status.index % 2 != 0 || status.last}">
+    </c:if>
   </c:forEach>
 
+</div>
 </div>
 
 <%@ include file="../layout/footer.jsp"%>
