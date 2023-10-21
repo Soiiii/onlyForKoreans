@@ -1,8 +1,6 @@
 package com.project.onlyForKoreans.controller;
 
 import com.project.onlyForKoreans.config.auth.PrincipalDetail;
-import com.project.onlyForKoreans.model.Board;
-import com.project.onlyForKoreans.model.Bookmark;
 import com.project.onlyForKoreans.repository.BoardRepository;
 import com.project.onlyForKoreans.repository.BookmarkRepository;
 import com.project.onlyForKoreans.repository.UserRepository;
@@ -13,9 +11,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @Controller
 public class UserController {
@@ -62,24 +57,6 @@ public class UserController {
 
     @GetMapping("/user/bookmark")
     public String bookmark(Model model){
-        PrincipalDetail user = (PrincipalDetail) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        Long userId = user.getUser().getId();
-
-        List<Bookmark> bookmarkListFromQuery = bookmarkRepository.findUser(userId);
-        List<Board> boardList = new ArrayList<>();
-
-        System.out.println("bookmarkListFromQuery:" + bookmarkListFromQuery);
-        System.out.println("bookmarkListFromQuery.get(0).getBoard():" +bookmarkListFromQuery.get(0).getBoard());
-        System.out.println("bookmarkListFromQuery.get(1).getBoard():" +bookmarkListFromQuery.get(1).getBoard());
-
-        for (int ii=0; ii<bookmarkListFromQuery.size(); ii++){
-            bookmarkListFromQuery.get(ii).getBoard();
-            boardList.add(bookmarkListFromQuery.get(ii).getBoard());
-        }
-
-        System.out.println("bookmarkList:"+boardList);
-
-
         model.addAttribute("bookmark", userService.findBookmark());
         return "user/bookmark";
     }
