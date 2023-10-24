@@ -74,7 +74,6 @@ public class BoardService {
 
     //북마크 등록, 삭제
     public int bookmarkBoth(Long boardId, Long userId) {
-        System.out.println("Service");
         Board board = boardRepository.findById(boardId)
                 .orElseThrow(()->{
                     return new IllegalArgumentException("글 상세보기 실패: 아이디 찾기 실패");
@@ -97,36 +96,7 @@ public class BoardService {
             status = 0;
         }
         return status;
-//        Bookmark bookmark = bookmarkRepository.
     }
-
-
-    //북마크 등록
-//    public void addBookmark(Long boardId, Long userId){
-//        Board board = boardRepository.findById(boardId)
-//                .orElseThrow(()->{
-//                    return new IllegalArgumentException("글 찾기 실패: Fail to find board id");
-//                });
-//
-//        User user = userRepository.findById(userId)
-//                .orElseThrow(()->{
-//                      return new IllegalArgumentException("회원 찾기 실패: Fail to find user id");
-//                });
-//
-//        Bookmark bookmark = new Bookmark();
-//        bookmark.setBoard(board);
-//        bookmark.setUser(user);
-//
-//        if(bookmarkRepository.findUserAndBoard(boardId, userId).isEmpty()){
-//            // 북마크에 값이 없다면 저장
-//            addBookmark(bookmark);
-//        }
-//        else{
-            //북마크에 값이 이미 있다면 삭제
-//            bookmarkRepository.deleteByBoardAndUser(boardId, userId);
-//            deleteBookmark(boardId, userId);
-//        }
-//    }
 
     //즐겨찾기 삭제
     @Transactional
@@ -137,10 +107,8 @@ public class BoardService {
     //즐겨찾기 등록
     @Transactional
     public void addBookmark(Bookmark bookmark){
-        System.out.println("add");
         bookmarkRepository.save(bookmark);
     }
-
 
     public List<Country> findCountry() {
         return countryRepository.findAll();
@@ -178,9 +146,7 @@ public class BoardService {
                 .orElseThrow(()->{
                     return new IllegalArgumentException("글 상세보기 실패: 아이디 찾기 실패");
                 });
-
         return null;
-//        Bookmark bookmark = bookmarkRepository.
     }
 
 

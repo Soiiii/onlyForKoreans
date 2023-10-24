@@ -3,6 +3,7 @@ package com.project.onlyForKoreans.controller;
 import com.project.onlyForKoreans.model.Board;
 import com.project.onlyForKoreans.repository.BoardRepository;
 import com.project.onlyForKoreans.service.BoardService;
+import com.project.onlyForKoreans.service.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,6 +21,9 @@ public class BoardController {
 
     @Autowired
     private BoardRepository boardRepository;
+
+    @Autowired
+    private CommentService commentService;
 
     //메인페이지
     @GetMapping({"/"})
@@ -74,7 +78,7 @@ public class BoardController {
         model.addAttribute("country", boardService.findCountry());
         model.addAttribute("category", boardService.findCategory());
         model.addAttribute("bookmarkYN", boardService.bookmark(id));
-
+        model.addAttribute("comment", commentService.findComment(id));
         return "board/detail";
     }
 
@@ -84,6 +88,7 @@ public class BoardController {
         model.addAttribute("board", boardService.details(id));
         return "board/updateForm";
     }
+
 //
 //    @GetMapping("/category/country")
 //    public String showPostsByCountry(@RequestParam(required = false) Long country, Model model) {

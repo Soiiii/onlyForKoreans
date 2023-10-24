@@ -13,7 +13,9 @@ let index={
         $("#btn-bookmark").on("click", ()=>{
             this.bookmark();
         });
-
+        $("#btn-comment").on("click", ()=>{
+            this.comment();
+        });
         /*
         $(".list-button").on("click", ()=>{
             this.listButton();
@@ -132,6 +134,32 @@ let index={
         })
         ;
 
+    },
+
+    comment:function(){
+        let data = {
+            content: $("#content").val(),
+            board_id: $("#board_id").val(),
+            user_id: $("#user_id").val(),
+        }
+        console.log('data:', data)
+
+        $.ajax({
+            type: "POST",
+            url: "/api/comment",
+            data: JSON.stringify(data),
+            contentType:"application/json; charset=utf-8",
+            dataType: "json"
+        })
+        .done(function(resp){
+            if(resp.data == 1){
+                alert("댓글 작성 완료");
+            } else if(resp.data == 0){
+                alert("댓글을 입력해주세요");
+            }
+        }).fail(function(error){
+            alert(JSON.stringify(error));
+        });
     }
 
 

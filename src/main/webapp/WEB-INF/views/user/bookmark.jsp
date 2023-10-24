@@ -1,26 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="java.util.StringTokenizer" %>
 
-<%!
-  public String truncateText(String text, int wordLimit) {
-    StringTokenizer tokenizer = new StringTokenizer(text);
-    StringBuilder truncatedText = new StringBuilder();
-    int words = 0;
-
-    while (tokenizer.hasMoreTokens() && words < wordLimit) {
-      truncatedText.append(tokenizer.nextToken()).append(" ");
-      words++;
-    }
-
-    if (tokenizer.hasMoreTokens()) {
-      truncatedText.append("..."); // Add "..." if there are more words
-    }
-
-    return truncatedText.toString();
-  }
-%>
-
-
 <%@ include file="../layout/header.jsp"%>
 
   <style>

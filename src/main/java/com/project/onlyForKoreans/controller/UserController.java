@@ -61,6 +61,13 @@ public class UserController {
         return "user/bookmark";
     }
 
+    @GetMapping("/user/comment")
+    public String comment(Model model){
+//        model.addAttribute("bookmark", userService.findBookmark());
+        return "user/comment";
+    }
+
+
     @GetMapping("/user/updateUser")
     public String updateUser(Model model){
         PrincipalDetail user = (PrincipalDetail) SecurityContextHolder.getContext().getAuthentication().getPrincipal();

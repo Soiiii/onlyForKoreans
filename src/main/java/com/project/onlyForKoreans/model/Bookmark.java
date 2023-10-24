@@ -4,6 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 
@@ -19,10 +21,12 @@ public class Bookmark {
 
     @ManyToOne
     @JoinColumn(name="boardId")
+    @OnDelete(action= OnDeleteAction.CASCADE)
     private Board board;
 
     @ManyToOne
     @JoinColumn(name="userId")
+    @OnDelete(action= OnDeleteAction.CASCADE)
     private User user;
 
     @Override

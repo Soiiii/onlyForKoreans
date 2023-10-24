@@ -5,6 +5,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
@@ -19,7 +21,8 @@ public class Comment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(nullable = false, length = 200)
+    @Column(nullable = false)
+    @Lob
     private String content;
 
     @CreationTimestamp
@@ -27,5 +30,11 @@ public class Comment {
 
     @ManyToOne
     @JoinColumn(name="boardId")
+    @OnDelete(action= OnDeleteAction.CASCADE)
     private Board board;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="userId")
+    @OnDelete(action= OnDeleteAction.CASCADE)
+    private User user;
 }

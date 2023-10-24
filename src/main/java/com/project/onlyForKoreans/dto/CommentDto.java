@@ -9,9 +9,11 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class BookmarkDto {
-    private Long user_id;
+public class CommentDto {
+//    private Comment comment;
+//    private Board board;
+
+    private String content;
     private Long board_id;
-    private Long book_num;
-    private int status;
+    private Long user_id;
 }
