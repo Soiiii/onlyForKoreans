@@ -22,7 +22,9 @@ public class CommentApiController {
     @PostMapping("/api/comment")
     private ResponseDto<Integer> save (@RequestBody CommentDto commentDto){
         String content = commentDto.getContent();
-        if(content == null){
+        System.out.println("content:"+content);
+        // 빈값이 들어오면 알림창
+        if(content.equals("")){
             return new ResponseDto<Integer>(HttpStatus.NO_CONTENT.value(), 0);
         }
 

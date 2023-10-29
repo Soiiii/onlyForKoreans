@@ -79,6 +79,7 @@ public class BoardController {
         model.addAttribute("category", boardService.findCategory());
         model.addAttribute("bookmarkYN", boardService.bookmark(id));
         model.addAttribute("comment", commentService.findComment(id));
+        model.addAttribute("commentTotal", commentService.findComment(id).size());
         return "board/detail";
     }
 

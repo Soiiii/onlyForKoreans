@@ -130,17 +130,15 @@
           </form>
           <br><br>
 
-          <p><span class="badge">${board.count}</span> Comments:</p><br>
+          <p><span class="badge">${commentTotal}</span> Comments: </p><br>
             <c:forEach items="${comment}" var="comment">
               <div class="row">
-                <div class="col-sm-2 text-center">
-                </div>
-
                     <div class="col-sm-10">
-                      <h4>${comment} <small>${comment.create_at}</small></h4>
+                      <h4>${comment.user.username} <small>${comment.create_at}</small></h4>
                       <p>${comment.content}</p>
                       <br>
-                  <p><span class="badge">1</span> Comment:</p><br>
+<%--
+                   <p><span class="badge">1</span> Comment:</p><br>
                   <div class="row">
                     <div class="col-sm-2 text-center">
                     </div>
@@ -150,26 +148,12 @@
                       <br>
                     </div>
                   </div>
-
+--%>
                     </div>
                     <div class="col-sm-2 text-center">
-                </div>
-                <div class="col-sm-10">
-                  <h4>John Row <small>Sep 25, 2015, 8:25 PM</small></h4>
-                  <p>I am so happy for you man! Finally. I am looking forward to read about your trendy life. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                  <br>
-                  <p><span class="badge">1</span> Comment:</p><br>
-                  <div class="row">
-                    <div class="col-sm-2 text-center">
-                    </div>
-                    <div class="col-xs-10">
-                      <h4>Nested Bro <small>Sep 25, 2015, 8:28 PM</small></h4>
-                      <p>Me too! WOW!</p>
-                      <br>
-                    </div>
-                  </div>
                 </div>
               </div>
+            </c:forEach>
         </div>
       </div>
       </div>
