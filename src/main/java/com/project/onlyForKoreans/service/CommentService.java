@@ -34,7 +34,6 @@ public class CommentService {
 
     @Transactional
     public void write(Long boardId, Long userId, String content) {
-        System.out.println("service");
         Comment comment = new Comment();
         Optional<User> user = userRepository.findById(userId);
         Optional<Board> board = boardRepository.findById(boardId);
@@ -48,5 +47,12 @@ public class CommentService {
     public List<Comment> findComment(Long id) {
         List<Comment> commentList = commentRepository.findCommentAll(id);
         return commentList;
+    }
+
+    public void editComment(Long commentNo, String content) {
+        System.out.println("service");
+        Optional<Comment> comment = commentRepository.findById(commentNo);
+        comment.get().setContent(content);
+        commentRepository.save(comment.get());
     }
 }

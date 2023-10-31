@@ -134,20 +134,23 @@
             <c:forEach items="${comment}" var="comment">
               <div class="row">
                     <div class="col-sm-10">
-                      <h4>${comment.user.username} <small>${comment.create_at}</small></h4>
+                      <h4>${comment.user.username} <small>${comment.create_at}</small>
+                          <button id="btn-comment-edit" type="button" class="btn btn-success">Edit</button>
+                      </h4>
                       <p>${comment.content}</p>
                       <br>
-<%--
-                   <p><span class="badge">1</span> Comment:</p><br>
-                  <div class="row">
-                    <div class="col-sm-2 text-center">
-                    </div>
-                    <div class="col-xs-10">
-                      <h4>Nested Bro <small>Sep 25, 2015, 8:28 PM</small></h4>
-                      <p>Me too! WOW!</p>
-                      <br>
-                    </div>
-                  </div>
+
+    <%--
+                           <p><span class="badge">1</span> Comment:</p><br>
+                          <div class="row">
+                            <div class="col-sm-2 text-center">
+                            </div>
+                            <div class="col-xs-10">
+                              <h4>Nested Bro <small>Sep 25, 2015, 8:28 PM</small></h4>
+                              <p>Me too! WOW!</p>
+                              <br>
+                            </div>
+                          </div>
 --%>
                     </div>
                     <div class="col-sm-2 text-center">

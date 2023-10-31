@@ -13,6 +13,7 @@ public class CommentDto {
 //    private Comment comment;
 //    private Board board;
 
+    private Long commentNo;
     private String content;
     private Long board_id;
     private Long user_id;

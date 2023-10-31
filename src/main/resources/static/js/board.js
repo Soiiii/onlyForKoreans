@@ -16,6 +16,9 @@ let index={
         $("#btn-comment").on("click", ()=>{
             this.comment();
         });
+        $("#btn-comment-edit").on("click", ()=>{
+            this.commentEdit();
+        });
         /*
         $(".list-button").on("click", ()=>{
             this.listButton();
@@ -154,6 +157,8 @@ let index={
         .done(function(resp){
             if(resp.data == 1){
                 alert("댓글 작성 완료");
+                // Reload the page on success
+                location.reload();
             } else if(resp.data == 0){
                 alert("댓글을 입력해주세요");
             }
@@ -162,6 +167,30 @@ let index={
         });
     }
 
+    commentEdit:function(){
+        let data = {
+            content: $("#content").val(),
+            commentNo: $("#commentNo").val(),
+        }
+        console.log('data:', data)
+
+        $.ajax({
+            type: "POST",
+            url: "/api/comment/edit",
+            data: JSON.stringify(data),
+            contentType:"application/json; charset=utf-8",
+            dataType: "json"
+        })
+        .done(function(resp){
+            if(resp.data == 1){
+                alert("댓글 수정 완료");
+                // Reload the page on success
+                location.reload();
+            }
+        }).fail(function(error){
+            alert(JSON.stringify(error));
+        });
+    }
 
 
 }

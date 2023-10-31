@@ -35,4 +35,14 @@ public class CommentApiController {
 
         return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);
     }
+
+    //댓글 수정
+    @PostMapping("/api/comment/edit")
+    private ResponseDto<Integer> editComment (@RequestBody CommentDto commentDto) {
+        Long commentNo = commentDto.getCommentNo();
+        String content = commentDto.getContent();
+        commentService.editComment(commentNo, content);
+
+        return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);
+    }
 }
