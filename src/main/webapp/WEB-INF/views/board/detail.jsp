@@ -94,7 +94,6 @@
           <input type="hidden" id="book_num" value="${board.book_num}"/>
           <input type="hidden" id="user_id" value="${board.user.id}"/>
 
-
               <c:if test="${board.user.id == principal.user.id}">
                   <a href="/board/${board.id}/updateForm" class="btn btn-primary"> Update </button></a>
                   <button id="btn-delete" class="btn btn-primary"> Delete </button>
@@ -131,11 +130,16 @@
           <br><br>
 
           <p><span class="badge">${commentTotal}</span> Comments: </p><br>
-            <c:forEach items="${comment}" var="comment">
+            <c:forEach items="${comment}" var="comment" varStatus="loop">
               <div class="row">
                     <div class="col-sm-10">
                       <h4>${comment.user.username} <small>${comment.create_at}</small>
-                          <button id="btn-comment-edit" type="button" class="btn btn-success">Edit</button>
+                      <input type="hidden" id="content${loop.index}" value="${comment.content}"/>
+                      <input type="hidden" id="commentId${loop.index}" value="${comment.id}"/>
+                      <button id="btn-comment-edit${loop.index}" type="button" class="btn btn-success">수정</button>
+
+<%--                      <input type="hidden" id="content" value="${comment.id}"/>
+                           <button id="btn-comment-edit" type="button" class="btn btn-success"> Edit </button> --%>
                       </h4>
                       <p>${comment.content}</p>
                       <br>

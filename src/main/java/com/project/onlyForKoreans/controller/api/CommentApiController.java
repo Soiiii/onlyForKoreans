@@ -39,9 +39,9 @@ public class CommentApiController {
     //댓글 수정
     @PostMapping("/api/comment/edit")
     private ResponseDto<Integer> editComment (@RequestBody CommentDto commentDto) {
-        Long commentNo = commentDto.getCommentNo();
+        Long commentId = commentDto.getCommentId();
         String content = commentDto.getContent();
-        commentService.editComment(commentNo, content);
+        commentService.editComment(commentId, content);
 
         return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);
     }

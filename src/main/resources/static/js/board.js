@@ -165,12 +165,14 @@ let index={
         }).fail(function(error){
             alert(JSON.stringify(error));
         });
-    }
+    },
 
     commentEdit:function(){
         let data = {
-            content: $("#content").val(),
-            commentNo: $("#commentNo").val(),
+//            content: $("#content").val(),
+//            commentNo: $("#commentId").val(),
+            content: content,
+            commentId: commentId
         }
         console.log('data:', data)
 
