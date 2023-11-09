@@ -134,28 +134,16 @@
               <div class="row">
                     <div class="col-sm-10">
                       <h4>${comment.user.username} <small>${comment.create_at}</small>
+                      <p id="commentText${loop.index}">${comment.content}</p>
+                        <input type="text" id="commentEditInput${loop.index}" style="display: none;" />
+
                       <input type="hidden" id="content${loop.index}" value="${comment.content}"/>
                       <input type="hidden" id="commentId${loop.index}" value="${comment.id}"/>
-                      <button id="btn-comment-edit${loop.index}" type="button" class="btn btn-success">수정</button>
-
-<%--                      <input type="hidden" id="content" value="${comment.id}"/>
-                           <button id="btn-comment-edit" type="button" class="btn btn-success"> Edit </button> --%>
+                        <button id="btn-comment-edit${loop.index}" type="button" class="btn btn-success" onclick="toggleEdit(${loop.index})">Edit</button>
+                        <button id="btn-comment-save${loop.index}" type="button" class="btn btn-primary" style="display: none;" onclick="saveComment(${loop.index})">Save</button>
                       </h4>
                       <p>${comment.content}</p>
                       <br>
-
-    <%--
-                           <p><span class="badge">1</span> Comment:</p><br>
-                          <div class="row">
-                            <div class="col-sm-2 text-center">
-                            </div>
-                            <div class="col-xs-10">
-                              <h4>Nested Bro <small>Sep 25, 2015, 8:28 PM</small></h4>
-                              <p>Me too! WOW!</p>
-                              <br>
-                            </div>
-                          </div>
---%>
                     </div>
                     <div class="col-sm-2 text-center">
                 </div>
@@ -200,3 +188,4 @@
 
 
 <script src="/js/board.js"></script>
+<script src="/js/comment.js"></script>
