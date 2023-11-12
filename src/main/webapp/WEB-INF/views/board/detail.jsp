@@ -119,31 +119,38 @@
           <br>
           <p> ${board.content} </p>
           <hr>
-          <h4>Leave a Comment:</h4>
 
-          <form role="form">
+            <h4>Leave a Comment:</h4>
+
+            <form role="form">
             <div class="form-group">
-              <textarea class="form-control" id="content" rows="3" required></textarea>
+                <textarea class="form-control" id="content" rows="3" required>
+                  <c:if test="${principal.user.id eq null}">
+                    작성하려면 로그인이 필요합니다
+                  </c:if>
+                </textarea>
             </div>
             <button id="btn-comment" type="button" class="btn btn-success">Submit</button>
-          </form>
+            </form>
+
           <br><br>
 
           <p><span class="badge">${commentTotal}</span> Comments: </p><br>
             <c:forEach items="${comment}" var="comment" varStatus="loop">
               <div class="row">
                     <div class="col-sm-10">
-                      <h4>${comment.user.username} <small>${comment.create_at}</small>
-                      <p id="commentText${loop.index}">${comment.content}</p>
+                        <h5>${comment.user.username}
+                          <c:if test="${comment.user.id == principal.user.id}">
+                        <input type="hidden" id="content${loop.index}" value="${comment.content}"/>
+                        <input type="hidden" id="commentId${loop.index}" value="${comment.id}"/>
+                        <button id="btn-comment-edit${loop.index}" type="button" class="btn btn-success" style="float:right;" onclick="toggleEdit(${loop.index})">Edit</button>
+                        <button id="btn-comment-save${loop.index}" type="button" class="btn btn-primary" style="display: none; float:right;" onclick="saveComment(${loop.index})">Save</button>
+                         </c:if>
+                        </h5>
+                      <h5 id="commentText${loop.index}">${comment.content}</h5>
                         <input type="text" id="commentEditInput${loop.index}" style="display: none;" />
-
-                      <input type="hidden" id="content${loop.index}" value="${comment.content}"/>
-                      <input type="hidden" id="commentId${loop.index}" value="${comment.id}"/>
-                        <button id="btn-comment-edit${loop.index}" type="button" class="btn btn-success" onclick="toggleEdit(${loop.index})">Edit</button>
-                        <button id="btn-comment-save${loop.index}" type="button" class="btn btn-primary" style="display: none;" onclick="saveComment(${loop.index})">Save</button>
-                      </h4>
-                      <p>${comment.content}</p>
-                      <br>
+                      <span class="glyphicon glyphicon-time"> </span> <small>${comment.create_at}</small>
+                      <hr>
                     </div>
                     <div class="col-sm-2 text-center">
                 </div>

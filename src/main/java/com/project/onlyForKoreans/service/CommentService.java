@@ -50,7 +50,6 @@ public class CommentService {
     }
 
     public void editComment(Long commentNo, String content) {
-        System.out.println("service");
         Optional<Comment> comment = commentRepository.findById(commentNo);
         comment.get().setContent(content);
         commentRepository.save(comment.get());
