@@ -24,15 +24,15 @@ public class CommentApiController {
     @PostMapping("/api/comment")
     private ResponseDto<Integer> save (@RequestBody CommentDto commentDto){
         String content = commentDto.getContent();
-        System.out.println("content:"+content);
         // 빈값이 들어오면 알림창
         if(content.equals("")){
             return new ResponseDto<Integer>(HttpStatus.NO_CONTENT.value(), 0);
         }
 
-        PrincipalDetail user = (PrincipalDetail) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-
         Long boardId = commentDto.getBoard_id();
+
+        // spring security의 아이디를 가져옴
+        PrincipalDetail user = (PrincipalDetail) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         Long userId = user.getUser().getId();
 
         commentService.write(boardId, userId, content);
@@ -43,11 +43,20 @@ public class CommentApiController {
     //댓글 수정
     @PostMapping("/api/comment/edit")
     private ResponseDto<Integer> editComment (@RequestBody CommentDto commentDto) {
-        System.out.println("commentDto:"+commentDto);
         Long commentId = commentDto.getCommentId();
         String content = commentDto.getContent();
         commentService.editComment(commentId, content);
 
         return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);
     }
+
+    //댓글 삭제
+    @PostMapping("/api/comment/delete")
+    private ResponseDto<Integer> deleteComment (@RequestBody CommentDto commentDto) {
+        System.out.println("commentDto:" + commentDto);
+        Long commentId = commentDto.getCommentId();
+        commentService.deleteComment(commentId);
+        return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);
+    }
+
 }

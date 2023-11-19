@@ -119,18 +119,14 @@
           <br>
           <p> ${board.content} </p>
           <hr>
-
             <h4>Leave a Comment:</h4>
 
             <form role="form">
             <div class="form-group">
-                <textarea class="form-control" id="content" rows="3" required>
-                  <c:if test="${principal.user.id eq null}">
-                    작성하려면 로그인이 필요합니다
-                  </c:if>
-                </textarea>
+            <textarea class="form-control" id="content" rows="3" required <c:if test="${principal.user.id eq null}">disabled</c:if>>
+<c:if test="${principal.user.id eq null}">작성하려면 로그인이 필요합니다</c:if></textarea>
             </div>
-            <button id="btn-comment" type="button" class="btn btn-success">Submit</button>
+            <button id="btn-comment" type="button" class="btn btn-success" <c:if test="${principal.user.id eq null}">disabled</c:if>>Submit</button>
             </form>
 
           <br><br>
@@ -144,11 +140,12 @@
                         <input type="hidden" id="content${loop.index}" value="${comment.content}"/>
                         <input type="hidden" id="commentId${loop.index}" value="${comment.id}"/>
                         <button id="btn-comment-edit${loop.index}" type="button" class="btn btn-success" style="float:right;" onclick="toggleEdit(${loop.index})">Edit</button>
+                        <button id="btn-comment-delete{loop.index}" type="button" class="btn btn-success" style="float:right;" onclick="deleteComment(${loop.index})">Delete</button>
                         <button id="btn-comment-save${loop.index}" type="button" class="btn btn-primary" style="display: none; float:right;" onclick="saveComment(${loop.index})">Save</button>
                          </c:if>
                         </h5>
                       <h5 id="commentText${loop.index}">${comment.content}</h5>
-                        <input type="text" id="commentEditInput${loop.index}" style="display: none;" />
+                        <textarea id="commentEditInput${loop.index}" style="display: none;"></textarea>
                       <span class="glyphicon glyphicon-time"> </span> <small>${comment.create_at}</small>
                       <hr>
                     </div>

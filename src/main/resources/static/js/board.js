@@ -1,36 +1,3 @@
-function commentEdit(commentIndex) {
-    // Rest of your JavaScript code
-    console.log('commentIndex:' + commentIndex)
-    $(document).ready(function() {
-        // 수정 버튼의 클릭 이벤트 핸들러
-        $("[id^=btn-comment-edit]").click(function() {
-            // 버튼의 ID에서 고유한 인덱스를 추출
-            var index = $(this).attr("id").replace("btn-comment-edit", "");
-            console.log('index:'+index)
-            // 해당 댓글과 그 ID에 액세스하기 위해 인덱스 사용
-            var commentId = $("#commentId" + index).val();
-            console.log('commentId:'+commentId)
-
-
-            // 해당 댓글에 대한 수정 작업을 수행
-            // 댓글 내용을 수정하는 모달을 열거나 수정할 댓글을 가져오기 위해 AJAX 요청을 수행할 수 있습니다.
-
-            let data = {
-        //        content: content,
-                commentId: commentId
-            }
-
-            $.ajax({
-                type: "POST",
-                url: "/api/comment/edit",
-                data: JSON.stringify(data),
-                contentType:"application/json; charset=utf-8",
-                dataType: "json"
-            });
-        });
-    });
-}
-
 let index={
     init: function(){
         $("#btn-save").on("click", ()=>{
@@ -51,32 +18,8 @@ let index={
         $("#btn-comment-edit").on("click", ()=>{
             this.commentEdit();
         });
-        /*
-        $(".list-button").on("click", ()=>{
-            this.listButton();
-        });
-        */
     },
-    /*
-    listButton:function(){
-        console.log("@@@@@@@@@");
 
-        var category = $(this).data("category");
-        var country = $(this).data("country");
-
-        console.log("category:" + category);
-        console.log("country:" + country);
-
-        $.ajax({
-            url: "/category",
-            data: { category: category, country: country },
-
-            success: function(data) {
-                $("#board-list").html(data);
-            }
-        });
-    },
-*/
     save:function(){
         let data={
             country:$("#country").val(),
@@ -103,7 +46,6 @@ let index={
     deleteBoard:function(){
         let id = $("#id").val();
          console.log("deleteById called"); // 디버깅 메시지 추가
-
         $.ajax({
             type: "DELETE",
             url: "/api/board/" + id,
@@ -199,36 +141,5 @@ let index={
         });
     },
 
-    commentEdit:function(commentIndex){
-       console.log(commentIndex)
-        let content = $("#content" + commentIndex).val();
-        let commentId = $("#commentId" + commentIndex).val();
-//        let content = $("#content" + content).val();
-//        let commentId = $("#commentId" + commentId).val();
-        console.log(content, commentId)
-
-        let data = {
-            content: content,
-            commentId: commentId
-        }
-        console.log('data:', data)
-
-        $.ajax({
-            type: "POST",
-            url: "/api/comment/edit",
-            data: JSON.stringify(data),
-            contentType:"application/json; charset=utf-8",
-            dataType: "json"
-        })
-        .done(function(resp){
-            if(resp.data == 1){
-                alert("댓글 수정 완료");
-                // Reload the page on success
-                location.reload();
-            }
-        }).fail(function(error){
-            alert(JSON.stringify(error));
-        });
-    }
 }
 index.init();

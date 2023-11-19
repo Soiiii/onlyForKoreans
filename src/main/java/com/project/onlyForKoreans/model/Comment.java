@@ -31,6 +31,7 @@ public class Comment {
     @ManyToOne
     @JoinColumn(name="boardId")
     @OnDelete(action= OnDeleteAction.CASCADE)
+
     private Board board;
 
     @ManyToOne(fetch = FetchType.LAZY)

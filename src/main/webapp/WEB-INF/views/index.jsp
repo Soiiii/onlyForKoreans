@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="./layout/header.jsp"%>
+<style>
+  .container {
+    padding: 80px 120px;
+  }
+</style>
 
   <div class="input-group">
     <input type="text" class="form-control" placeholder="Search Blog..">
@@ -10,60 +15,56 @@
     </span>
   </div>
 
+<div id="band" class="container">
   <div class="row">
-    <div class="col-sm-5">
         <h3> MOST POPULAR </h3>
         <hr>
         <c:forEach var="board" items="${boards}">
             <div>
                 <a href="/board/${board.id}" class="">
-                    <p>[${board.category.name}] ${board.title} view ${board.count} comment 3</p>
+          <div>
+              <span class="label label-success">${board.category.name}</span>
+              ${board.title}
+              <div class="text-right">
+                <i class="bi bi-bookmark-heart-fill" style="color: green; border:none; background-color:white;"></i> Bookmark 3
+                <i class="bi bi-chat-right-dots"></i> Comment 3
+              </div>
+          </div>
                 </a>
             </div>
         </c:forEach>
-    </div>
   </div>
   <br>
   <br>
 
-  <div class="row">
-    <div class="col-sm-5 ">
-      <p>이야기</p>
-      <hr>
-      <p>제목1 view 3</p>
-      <p>제목2 view 3</p>
-      <p>제목3 view 3</p>
-      <p>제목4 view 3</p>
+    <div class="row">
+      <div class="col-sm-6">
+        <h3><i class="bi bi-chat-quote"></i> Daily Story</h3>
+        <hr>
+        <p>제목1 <i class="bi bi-eye" style="float:right;"> view 3</i></p>
+      </div>
+
+      <div class="col-sm-6">
+        <h3><i class="bi bi-heart"></i></i> Relationship / Marriage</h3>
+        <hr>
+        <p>제목1 <i class="bi bi-eye" style="float:right;"> view 3</i></p>
+      </div>
     </div>
-    <div class="col-sm-5">
-      <p>연애/결혼</p>
-      <hr>
-      <p>제목1 view 3</p>
-      <p>제목2 view 3</p>
-      <p>제목3 view 3</p>
-      <p>제목4 view 3</p>
-    </div>
-  </div>
+  <br>
   <br>
   <div class="row">
-    <div class="col-sm-5">
-      <p>회사</p>
+    <div class="col-sm-6">
+      <h3><i class="bi bi-person-workspace"></i> Work</h3>
       <hr>
-      <p>제목1 view 3</p>
-      <p>제목2 view 3</p>
-      <p>제목3 view 3</p>
-      <p>제목4 view 3</p>
+        <p>제목1 <i class="bi bi-eye" style="float:right;"> view 3</i></p>
     </div>
-    <div class="col-sm-5">
-      <p>투자</p>
+    <div class="col-sm-6">
+      <h3><i class="bi bi-currency-exchange"></i> Investment</h3>
       <hr>
-      <p>제목1 view 3</p>
-      <p>제목2 view 3</p>
-      <p>제목3 view 3</p>
-      <p>제목4 view 3</p>
+        <p>제목1 <i class="bi bi-eye" style="float:right;"> view 3</i></p>
     </div>
   </div>
-
+</div>
 
 
 <%--

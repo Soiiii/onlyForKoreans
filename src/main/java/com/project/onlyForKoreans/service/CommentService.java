@@ -34,13 +34,16 @@ public class CommentService {
 
     @Transactional
     public void write(Long boardId, Long userId, String content) {
-        Comment comment = new Comment();
         Optional<User> user = userRepository.findById(userId);
         Optional<Board> board = boardRepository.findById(boardId);
-
-        comment.setContent(content);
-        comment.setUser(user.get());
-        comment.setBoard(board.get());
+        Comment comment = Comment.builder()
+            .content(content)
+            .user(user.get())
+            .board(board.get())
+            .build();
+//        comment.setContent(content);
+//        comment.setUser(user.get());
+//        comment.setBoard(board.get());
         commentRepository.save(comment);
     }
 
@@ -49,9 +52,14 @@ public class CommentService {
         return commentList;
     }
 
-    public void editComment(Long commentNo, String content) {
-        Optional<Comment> comment = commentRepository.findById(commentNo);
+    public void editComment(Long commentId, String content) {
+        Optional<Comment> comment = commentRepository.findById(commentId);
         comment.get().setContent(content);
         commentRepository.save(comment.get());
+    }
+
+    public void deleteComment(Long commentId) {
+        Optional<Comment> comment = commentRepository.findById(commentId);
+        commentRepository.delete(comment.get());
     }
 }
