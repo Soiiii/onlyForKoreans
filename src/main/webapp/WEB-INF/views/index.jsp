@@ -6,7 +6,8 @@
   }
 </style>
 
-  <div class="input-group">
+<!--
+    <div class="input-group">
     <input type="text" class="form-control" placeholder="Search Blog..">
     <span class="input-group-btn">
       <button class="btn btn-default" type="button">
@@ -14,6 +15,7 @@
       </button>
     </span>
   </div>
+  -->
 
 <div id="band" class="container">
   <div class="row">
@@ -37,33 +39,62 @@
   <br>
   <br>
 
-    <div class="row">
-      <div class="col-sm-6">
-        <h3><i class="bi bi-chat-quote"></i> Daily Story</h3>
-        <hr>
-        <p>제목1 <i class="bi bi-eye" style="float:right;"> view 3</i></p>
-      </div>
+<div class="row">
+    <c:set var="dailyStoryDisplayed" value="false" />
+    <c:forEach var="board" items="${boards}">
+        <c:choose>
+            <c:when test="${board.category.id eq 1 and dailyStoryDisplayed eq 'false'}">
+                <c:set var="dailyStoryDisplayed" value="true" />
+                <div class="col-sm-6">
+                    <h3><i class="bi bi-chat-quote"></i> Daily Story </h3>
+                    <hr>
+                    <a href="/board/${board.id}" class="">
+                        <p>${board.title} <i class="bi bi-eye" style="float:right;"> ${board.count}</i></p>
+                    </a>
+                </div>
+            </c:when>
+            <!-- Other cases for different board categories -->
+        </c:choose>
+    </c:forEach>
+</div>
 
-      <div class="col-sm-6">
-        <h3><i class="bi bi-heart"></i></i> Relationship / Marriage</h3>
+
+<div class="row">
+    <c:forEach var="board" items="${boards}">
+        <c:choose>
+            <c:when test="${board.category.id eq 1}">
+                <div class="col-sm-6">
+                    <h3><i class="bi bi-chat-quote"></i> Daily Story </h3>
+                    <hr>
+                     <a href="/board/${board.id}" class=""> <p>${board.title} <i class="bi bi-eye" style="float:right;"> ${board.count}</i></p></a>
+                </div>
+            </c:when>
+            <c:when test="${board.category.id eq 2}">
+                <div class="col-sm-6">
+                    <h3><i class="bi bi-heart"></i> Relationship / Marriage</h3>
+                    <hr>
+                     <a href="/board/${board.id}" class=""> <p>${board.title} <i class="bi bi-eye" style="float:right;"> ${board.count}</i></p></a>
+                </div>
+            </c:when>
+
+        </c:choose>
+    </c:forEach>
+</div>
+
+<br>
+<br>
+
+<div class="row">
+    <div class="col-sm-6">
+        <h3><i class="bi bi-person-workspace"></i> Work</h3>
         <hr>
         <p>제목1 <i class="bi bi-eye" style="float:right;"> view 3</i></p>
-      </div>
-    </div>
-  <br>
-  <br>
-  <div class="row">
-    <div class="col-sm-6">
-      <h3><i class="bi bi-person-workspace"></i> Work</h3>
-      <hr>
-        <p>제목1 <i class="bi bi-eye" style="float:right;"> view 3</i></p>
     </div>
     <div class="col-sm-6">
-      <h3><i class="bi bi-currency-exchange"></i> Investment</h3>
-      <hr>
+        <h3><i class="bi bi-currency-exchange"></i> Investment</h3>
+        <hr>
         <p>제목1 <i class="bi bi-eye" style="float:right;"> view 3</i></p>
     </div>
-  </div>
 </div>
 
 
