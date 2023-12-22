@@ -58,7 +58,7 @@
                 <li><a href="/board">나라 별 게시판</a></li>
                 <li><a href="/board/saveForm">글쓰기</a></li>
               </ul>
-
+<!--
               <div class="input-group w-25 mb-3">
                 <input type="text" class="form-control" placeholder="Search Blog..">
                 <span class="input-group-btn">
@@ -67,7 +67,7 @@
                   </button>
                 </span>
               </div>
-
+-->
               <ul class="nav navbar-nav navbar-right">
 
                 <li><a href="/user/myPage"><span class="glyphicon glyphicon-user"></span> My Page</a></li>

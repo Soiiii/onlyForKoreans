@@ -31,6 +31,7 @@ public class BoardController {
 //    public String index(Model model, @PageableDefault(size=3, sort="id", direction= Sort.Direction.DESC) Pageable pageable)
     {
         model.addAttribute("boards", boardService.list());
+        model.addAttribute("boards", boardService.list());
 //        model.addAttribute("boards", boardService.list(pageable));
         return "index";
     }

@@ -46,11 +46,12 @@
         <input type="hidden" id="id" value="${board.id}"/>
               <div class="form-group">
                 <textarea class="form-control summernote" rows="5" id="title">${board.title}</textarea>
-
-                <input type="${board.title}" class="form-control" id="title">${board.title}</input>
               </div>
+
               <div class="form-group">
-                <textarea class="form-control summernote" rows="5" id="content">${board.content}</textarea>
+    <textarea class="form-control summernote" rows="5" id="content">
+        <c:out value="${board.content}" />
+    </textarea>
               </div>
     </form>
         <button id="btn-update" class="btn btn-primary">수정 완료</button>
