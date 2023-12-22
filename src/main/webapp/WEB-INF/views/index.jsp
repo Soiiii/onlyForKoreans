@@ -39,8 +39,13 @@
   <br>
   <br>
 
+
 <div class="row">
     <c:set var="dailyStoryDisplayed" value="false" />
+    <c:set var="relationshipMarriageDisplayed" value="false" />
+    <c:set var="workDisplayed" value="false" />
+    <c:set var="investmentDisplayed" value="false" />
+
     <c:forEach var="board" items="${boards}">
         <c:choose>
             <c:when test="${board.category.id eq 1 and dailyStoryDisplayed eq 'false'}">
@@ -48,54 +53,63 @@
                 <div class="col-sm-6">
                     <h3><i class="bi bi-chat-quote"></i> Daily Story </h3>
                     <hr>
-                    <a href="/board/${board.id}" class="">
-                        <p>${board.title} <i class="bi bi-eye" style="float:right;"> ${board.count}</i></p>
-                    </a>
+                    <c:forEach var="dailyBoard" items="${boards}" varStatus="loop">
+                        <c:if test="${dailyBoard.category.id eq 1}">
+                            <a href="/board/${dailyBoard.id}" class="">
+                                <p>${dailyBoard.title} <i class="bi bi-eye" style="float:right;"> ${dailyBoard.count}</i></p>
+                            </a>
+                        </c:if>
+                    </c:forEach>
                 </div>
             </c:when>
-            <!-- Other cases for different board categories -->
+            <c:when test="${board.category.id eq 2 and relationshipMarriageDisplayed eq 'false'}">
+                <c:set var="relationshipMarriageDisplayed" value="true" />
+                <div class="col-sm-6">
+                    <h3><i class="bi bi-heart"></i> Relationship / Marriage </h3>
+                    <hr>
+                    <c:forEach var="relationshipMarriage" items="${boards}" varStatus="loop">
+                        <c:if test="${relationshipMarriage.category.id eq 2}">
+                            <a href="/board/${relationshipMarriage.id}" class="">
+                                <p>${relationshipMarriage.title} <i class="bi bi-eye" style="float:right;"> ${relationshipMarriage.count}</i></p>
+                            </a>
+                        </c:if>
+                    </c:forEach>
+                </div>
+            </c:when>
+            <c:when test="${board.category.id eq 8 and workDisplayed eq 'false'}">
+                <c:set var="workDisplayed" value="true" />
+                <div class="col-sm-6">
+                    <h3><i class="bi bi-person-workspace"></i> Work </h3>
+                    <hr>
+                    <c:forEach var="work" items="${boards}" varStatus="loop">
+                        <c:if test="${work.category.id eq 8}">
+                            <a href="/board/${work.id}" class="">
+                                <p>${work.title} <i class="bi bi-eye" style="float:right;"> ${work.count}</i></p>
+                            </a>
+                        </c:if>
+                    </c:forEach>
+                </div>
+            </c:when>
+            <c:when test="${board.category.id eq 3 and investmentDisplayed eq 'false'}">
+                <c:set var="investmentDisplayed" value="true" />
+                <div class="col-sm-6">
+                   <h3><i class="bi bi-currency-exchange"></i> Investment</h3>
+                    <hr>
+                    <c:forEach var="investment" items="${boards}" varStatus="loop">
+                        <c:if test="${investment.category.id eq 3}">
+                            <a href="/board/${investment.id}" class="">
+                                <p>${investment.title} <i class="bi bi-eye" style="float:right;"> ${investment.count}</i></p>
+                            </a>
+                        </c:if>
+                    </c:forEach>
+                </div>
+            </c:when>
+
         </c:choose>
     </c:forEach>
 </div>
-
-
-<div class="row">
-    <c:forEach var="board" items="${boards}">
-        <c:choose>
-            <c:when test="${board.category.id eq 1}">
-                <div class="col-sm-6">
-                    <h3><i class="bi bi-chat-quote"></i> Daily Story </h3>
-                    <hr>
-                     <a href="/board/${board.id}" class=""> <p>${board.title} <i class="bi bi-eye" style="float:right;"> ${board.count}</i></p></a>
-                </div>
-            </c:when>
-            <c:when test="${board.category.id eq 2}">
-                <div class="col-sm-6">
-                    <h3><i class="bi bi-heart"></i> Relationship / Marriage</h3>
-                    <hr>
-                     <a href="/board/${board.id}" class=""> <p>${board.title} <i class="bi bi-eye" style="float:right;"> ${board.count}</i></p></a>
-                </div>
-            </c:when>
-
-        </c:choose>
-    </c:forEach>
-</div>
-
 <br>
 <br>
-
-<div class="row">
-    <div class="col-sm-6">
-        <h3><i class="bi bi-person-workspace"></i> Work</h3>
-        <hr>
-        <p>제목1 <i class="bi bi-eye" style="float:right;"> view 3</i></p>
-    </div>
-    <div class="col-sm-6">
-        <h3><i class="bi bi-currency-exchange"></i> Investment</h3>
-        <hr>
-        <p>제목1 <i class="bi bi-eye" style="float:right;"> view 3</i></p>
-    </div>
-</div>
 
 
 <%--
@@ -127,5 +141,5 @@
             <li class="page-item"><a class="page-link" href="?page=${boards.number+1}">Next</a></li>
         </c:otherwise>
     </c:choose>
-    --%>
 </ul>
+    --%>
