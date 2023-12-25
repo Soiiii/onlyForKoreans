@@ -69,6 +69,7 @@ Soiiii
 
 ## 📝 회고
 
-스케줄 수정 구현
-+ https://deep-longship-e47.notion.site/1e16a73e90664978a7102b1b6eccc6cc
-
+ 즐겨찾기 추가/취소 구현
++ https://capricious-iridium-70f.notion.site/d5a12822bb9e48e780f0d3bd5f4ab7ee
+ 댓글 수정 기능 구현
++ https://capricious-iridium-70f.notion.site/b7f0b987e0cd453da124a70ee4417a8a
