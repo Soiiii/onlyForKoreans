@@ -1,4 +1,3 @@
-![entity](https://github.com/Soiiii/onlyForKoreans/assets/89895941/7c3465c5-5c1c-41cc-af17-654f21fe3a28)# onlyForKoreans
 social networking website project
 
 ## 🖥 프로젝트 소개
