@@ -28,8 +28,8 @@
               <span class="label label-success">${board.category.name}</span>
               ${board.title}
               <div class="text-right">
-                <i class="bi bi-bookmark-heart-fill" style="color: green; border:none; background-color:white;"></i> Bookmark 3
-                <i class="bi bi-chat-right-dots"></i> Comment 3
+                <i class="bi bi-bookmark-heart-fill" style="color: green; border:none; background-color:white;"></i> Bookmark ${board.book_num}
+                <i class="bi bi-chat-right-dots"></i> Comment 0
               </div>
           </div>
                 </a>

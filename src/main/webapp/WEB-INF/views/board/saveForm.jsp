@@ -35,7 +35,7 @@
           </div>
 
           <div class="form-group">
-            <label for="content">내용</label>
+<!--            <label for="content">내용</label>-->
             <textarea class="form-control summernote" rows="5" id="content"></textarea>
           </div>
 

@@ -43,7 +43,7 @@
              <ul class="nav nav-pills nav-stacked">
               <li>
                   <a href="#" class="list-button" data-country="" data-category="">
-                    <button type="button buttonSide" class="btn">
+                    <button type="button buttonSide" class="btn" style="background-color:"red">
                        전체
                     </button>
                  </a>
@@ -60,29 +60,31 @@
         </div>
 
     <div class="col-sm-7">
-              <div class="row">
-                <div class="col-sm-11">
-                  <div class="panel panel-default text-left">
-                    <div class="panel-body">
-                      <p contenteditable="true"> Category</p>
-                         <a href="#" class="list-button" data-country="" data-category="">
-                            <button type="button" class="btn btn-default btn-sm">
-                               전체
-                            </button>
-                         </a>
+          <div class="row">
+            <div class="col-sm-11">
+              <div class="panel panel-default text-left">
+                <div class="panel-body">
+                  <p contenteditable="true"> Category</p>
+                     <a href="#" class="list-button" data-country="" data-category="">
+                        <button type="button" class="btn btn-default btn-sm">
+                           전체
+                        </button>
+                     </a>
 
-                        <c:forEach items="${category}" var="categoryName">
-                        <a href="#" class="list-button" data-category="${categoryName.id}" data-country="${countryName.id}">
-                          <button type="button" class="btn btn-default btn-sm">
-                            <span class="glyphicon glyphicon-thumbs-up"></span> ${categoryName.name}
-                          </button>
-                       </a>
-                       </c:forEach>
-                    </div>
-                  </div>
+                    <c:forEach items="${category}" var="categoryName">
+                    <a href="#" class="list-button" data-category="${categoryName.id}" data-country="${countryName.id}">
+                      <button type="button" class="btn btn-default btn-sm">
+                        <span class="glyphicon glyphicon-thumbs-up"></span> ${categoryName.name}
+                      </button>
+                   </a>
+                   </c:forEach>
                 </div>
               </div>
-
+            </div>
+          </div>
+           <a href="/board/saveForm" >
+                <button type="button" class="btn btn-default btn-sm" > 글쓰기 </button>
+           </a>
     <div id="new-board-list-container">
         <c:forEach var="object" items="${boardsList}" varStatus="status">
             <c:if test="${status.index % 2 == 0}">

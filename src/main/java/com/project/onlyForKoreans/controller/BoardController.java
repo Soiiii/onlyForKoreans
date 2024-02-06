@@ -26,6 +26,13 @@ public class BoardController {
     private CommentService commentService;
 
     //메인페이지
+    @GetMapping({"/map"})
+    public String test(Model model)
+    {
+        return "map";
+    }
+
+    //메인페이지
     @GetMapping({"/"})
     public String index(Model model)
 //    public String index(Model model, @PageableDefault(size=3, sort="id", direction= Sort.Direction.DESC) Pageable pageable)
