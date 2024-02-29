@@ -1,4 +1,5 @@
-social networking website project
+해외 거주자들만을 위한 커뮤니티 프로젝트 🌏
+Social Networking Website Project
 
 ## 🖥 프로젝트 소개
 해외 거주자들만을 위한 커뮤니티 프로젝트 입니다.
