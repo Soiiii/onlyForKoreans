@@ -1,5 +1,7 @@
 해외 거주자들만을 위한 커뮤니티 프로젝트 🌏
+<br>
 Social Networking Website Project
+<br>
 ![onlyForKoreans](https://github.com/Soiiii/onlyForKoreans/assets/89895941/55fadbb4-31fa-4650-a4ad-f35ad1d319dd)
 
 ## 🖥 프로젝트 소개
